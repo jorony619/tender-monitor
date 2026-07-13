@@ -1,0 +1,269 @@
+{
+  "lastUpdated": "2026-07-13T07:26:06.438Z",
+  "projects": [
+    {
+      "id": 1,
+      "sample": true,
+      "no": 1,
+      "discoveryDate": "2026-06-25",
+      "sourcePlatform": "UNGM",
+      "issuer": "UNICEF Sierra Leone",
+      "country": {
+        "zh": "塞拉利昂",
+        "en": "Sierra Leone"
+      },
+      "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
+      "projectNo": "LITB-2026-9204286",
+      "projectType": {
+        "zh": "作业册/教师指南印刷",
+        "en": "Workbook / teacher's guide printing"
+      },
+      "summary": {
+        "zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库",
+        "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"
+      },
+      "quantity": {
+        "zh": "约145万册/本（以标书为准）",
+        "en": "~1.45 million copies (per tender document)"
+      },
+      "specs": {
+        "zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装",
+        "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"
+      },
+      "fundingSource": "UNICEF",
+      "publishDate": "2026-06-05",
+      "deadlineLocal": "2026-06-15 10:00 GMT",
+      "deadlineBeijing": "2026-06-15 18:00",
+      "daysRemaining": -17,
+      "bidMethod": {
+        "zh": "邮件提交",
+        "en": "Email submission"
+      },
+      "submissionContact": "srl-procurementfinancialproposals@unicef.org",
+      "registrationRequired": {
+        "zh": "UNGM注册",
+        "en": "UNGM registration"
+      },
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "jvAllowed": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "currency": "USD",
+      "deliveryTerms": "CIP",
+      "deliveryLocation": "UNICEF Warehouse, Freetown",
+      "deliveryLeadTime": {
+        "zh": "供应商填写",
+        "en": "Supplier to specify"
+      },
+      "paymentTerms": {
+        "zh": "交付后开票，Net 30",
+        "en": "Invoice on delivery, Net 30"
+      },
+      "sampleRequired": {
+        "zh": "后续可能要求",
+        "en": "May be requested at a later stage"
+      },
+      "qualifications": {
+        "zh": "公司注册、税务、社保、UNGM号、类似业绩",
+        "en": "Company registration, tax & social security certificates, UNGM number, comparable track record"
+      },
+      "pastPerformance": {
+        "zh": "至少两个类似印刷合同，其中一个需在采购方所在国执行",
+        "en": "At least two comparable printing contracts, at least one executed in the buyer's country"
+      },
+      "bondRequirement": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "customsResponsibility": {
+        "zh": "供应商负责运输、清关、送仓",
+        "en": "Supplier responsible for freight, customs clearance and warehouse delivery"
+      },
+      "attachment": {
+        "zh": "原始标书PDF",
+        "en": "Original tender PDF"
+      },
+      "keyContact": "Alhaji Sesay / asesay@unicef.org",
+      "openQuestions": {
+        "zh": "是否仍可进入后续供应商名单",
+        "en": "Whether it's still possible to join the subsequent supplier roster"
+      },
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "nextAction": {
+        "zh": "联系UNICEF Sierra Leone表达后续参与意向",
+        "en": "Contact UNICEF Sierra Leone to express interest in future rounds"
+      },
+      "owner": "Fred",
+      "status": {
+        "zh": "已错过",
+        "en": "Missed"
+      },
+      "latestUpdate": {
+        "zh": "用于复盘招标监控机制",
+        "en": "Used to review the tender-monitoring process"
+      },
+      "notes": {
+        "zh": "示例行，可删除",
+        "en": "Sample row — may be deleted"
+      }
+    },
+    {
+      "id": 2,
+      "sample": false,
+      "no": 2,
+      "sourcePlatform": "World Bank",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "intlSuppliersAllowed": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "locallyRestricted": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "jvAllowed": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "currency": "USD / local currency",
+      "grade": "B",
+      "gradeLabel": {
+        "zh": "B-发邮件确认",
+        "en": "B — Confirm by email"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      }
+    },
+    {
+      "id": 3,
+      "sample": false,
+      "no": 3,
+      "verified": true,
+      "discoveryDate": "2026-07-09",
+      "sourcePlatform": "DevelopmentAid",
+      "issuer": "Rastriya Rojgar Prawardhan Kendra (RRPK)",
+      "country": {
+        "zh": "尼泊尔",
+        "en": "Nepal"
+      },
+      "projectName": "Invitation to Tender for ALP Printing (Book & Cards)",
+      "projectType": {
+        "zh": "学习材料印刷",
+        "en": "Learning material printing"
+      },
+      "summary": {
+        "zh": "印刷并供应ALP（加速学习项目）课程材料（书籍与卡片），交付至尼泊尔Malangwa、Sarlahi及Martadi、Bajura指定地点",
+        "en": "Printing and supply of Accelerated Learning Programme (ALP) curriculum materials (books & cards), delivered to specified locations in Malangwa, Sarlahi, and Martadi, Bajura, Nepal"
+      },
+      "publishDate": "2026-04-28",
+      "intlSuppliersAllowed": {
+        "zh": "否（仅限尼泊尔本地供应商）",
+        "en": "No (Nepalese suppliers only)"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已关闭",
+        "en": "Closed"
+      },
+      "nextAction": {
+        "zh": "本地供应商限定，无需跟进；保留用于监控该地区平台动态",
+        "en": "No follow-up needed (locally restricted); kept to track this market's tender activity"
+      },
+      "attachment": {
+        "zh": "DevelopmentAid 原始招标页面",
+        "en": "Original DevelopmentAid tender listing"
+      },
+      "sourceUrl": "https://www.developmentaid.org/tenders/view/1644241/invitation-to-tender-for-alp-printing-book-cards",
+      "notes": {
+        "zh": "经Claude搜索核实，标书已关闭且限本地供应商，仅作监控参考",
+        "en": "Verified via Claude web search; already closed and restricted to local suppliers — kept for monitoring reference only"
+      }
+    },
+    {
+      "id": 4,
+      "sample": false,
+      "no": 4,
+      "verified": true,
+      "discoveryDate": "2026-07-09",
+      "sourcePlatform": "其他 / Other (tenders.lk)",
+      "issuer": "Educational Publications Department, Sri Lanka",
+      "country": {
+        "zh": "斯里兰卡",
+        "en": "Sri Lanka"
+      },
+      "projectName": "Printing of School Textbooks/Modules for the Year 2026",
+      "projectType": {
+        "zh": "教材印刷",
+        "en": "Textbook printing"
+      },
+      "summary": {
+        "zh": "斯里兰卡教育出版司2026学年学校教材/模块印刷招标，标书需付费购买（不可退还的10万卢比）",
+        "en": "Sri Lanka's Educational Publications Department tendered the printing of school textbooks/modules for the 2026 academic year; bid documents required a non-refundable Rs. 100,000 purchase fee"
+      },
+      "publishDate": "2025-07-09",
+      "deadlineLocal": "2025-07-30 10:00 Sri Lanka time",
+      "deadlineBeijing": "2025-07-30 12:30",
+      "daysRemaining": -344,
+      "currency": "LKR",
+      "intlSuppliersAllowed": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "locallyRestricted": {
+        "zh": "待确认",
+        "en": "TBD"
+      },
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期归档",
+        "en": "Expired / archived"
+      },
+      "nextAction": {
+        "zh": "已过期约一年，作为该地区教材印刷招标节奏参考，明年同期可提前关注",
+        "en": "Expired roughly a year ago; kept as a reference point for this market's tender cadence — worth checking again around the same time next cycle"
+      },
+      "attachment": {
+        "zh": "tenders.lk 原始招标页面",
+        "en": "Original tenders.lk listing"
+      },
+      "sourceUrl": "https://www.tenders.lk/site/tenders/view_tender?tender_id=529107&slug=educational-publications-department-bid-no-epdf08022025-printing-of-school-textbooksmoduies-for-the-year-2026",
+      "notes": {
+        "zh": "经Claude搜索核实，招标已过期，非UNGM/UNICEF/World Bank等核心监控平台，归档留存",
+        "en": "Verified via Claude web search; tender has expired and sits outside the core UNGM/UNICEF/World Bank platforms — archived for reference"
+      }
+    }
+  ]
+}
