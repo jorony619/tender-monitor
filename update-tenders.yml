@@ -1,0 +1,48 @@
+name: Update tender data
+
+on:
+  schedule:
+    # 01:00 UTC = 09:00 Beijing time, every day
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}   # lets you click "Run workflow" manually in the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run tender search & update data.json
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/update_tenders.mjs
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "tender-watch-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "Auto-update tender data [skip ci]"
+          git push
+
+  deploy-pages:
+    needs: refresh-data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - uses: actions/deploy-pages@v4
