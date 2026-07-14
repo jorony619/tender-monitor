@@ -1,5 +1,5 @@
 {
-  "lastUpdated": null,
+  "lastUpdated": "2026-07-14T03:29:52.676Z",
   "projects": [
     {
       "id": 1,
@@ -8,34 +8,132 @@
       "discoveryDate": "2026-06-25",
       "sourcePlatform": "UNGM",
       "issuer": "UNICEF Sierra Leone",
-      "country": {"zh": "塞拉利昂", "en": "Sierra Leone"},
+      "country": {
+        "zh": "塞拉利昂",
+        "en": "Sierra Leone"
+      },
       "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
       "projectNo": "LITB-2026-9204286",
-      "projectType": {"zh": "作业册/教师指南印刷", "en": "Workbook / teacher's guide printing"},
-      "summary": {"zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库", "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"},
-      "quantity": {"zh": "约145万册/本（以标书为准）", "en": "~1.45 million copies (per tender document)"},
-      "specs": {"zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装", "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"},
+      "projectType": {
+        "zh": "作业册/教师指南印刷",
+        "en": "Workbook / teacher's guide printing"
+      },
+      "summary": {
+        "zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库",
+        "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"
+      },
+      "quantity": {
+        "zh": "约145万册/本（以标书为准）",
+        "en": "~1.45 million copies (per tender document)"
+      },
+      "specs": {
+        "zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装",
+        "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"
+      },
       "fundingSource": "UNICEF",
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -17,
+      "daysRemaining": -29,
       "grade": "D",
-      "gradeLabel": {"zh": "D-已错过/归档", "en": "D — Missed / archived"},
-      "status": {"zh": "已错过", "en": "Missed"},
-      "notes": {"zh": "示例行，可删除", "en": "Sample row — may be deleted"}
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已错过",
+        "en": "Missed"
+      },
+      "notes": {
+        "zh": "示例行，可删除",
+        "en": "Sample row — may be deleted"
+      }
     },
     {
       "id": 2,
       "sample": false,
       "no": 2,
       "sourcePlatform": "World Bank",
-      "projectType": {"zh": "教材/学习材料印刷", "en": "Textbook / learning material printing"},
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
       "currency": "USD / local currency",
       "grade": "B",
-      "gradeLabel": {"zh": "B-发邮件确认", "en": "B — Confirm by email"},
-      "status": {"zh": "新发现", "en": "Newly discovered"},
-      "notes": {"zh": "新发现", "en": "Newly discovered"}
+      "gradeLabel": {
+        "zh": "B-发邮件确认",
+        "en": "B — Confirm by email"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      }
+    },
+    {
+      "id": 3,
+      "sample": false,
+      "verified": true,
+      "discoveryDate": "2026-07-14",
+      "sourcePlatform": "UNICEF",
+      "issuer": "UNICEF Supply Division",
+      "country": {
+        "zh": "全球",
+        "en": "Global"
+      },
+      "projectName": "Tender calendars",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务采购计划",
+        "en": "Printing Services Procurement Plan"
+      },
+      "summary": {
+        "zh": "联合国儿童基金会供应部发布未来招标计划，包括教材、练习册和教师指南的印刷服务。",
+        "en": "UNICEF Supply Division publishes future tender plans, including printing services for textbooks, workbooks, and teacher's guides."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "UNICEF",
+      "publishDate": "2026-03-02",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://www.unicef.org/supply/tender-calendars",
+      "keyContact": "",
+      "grade": "A",
+      "gradeLabel": {
+        "zh": "高优先级",
+        "en": "High Priority"
+      },
+      "nextAction": {
+        "zh": "定期查看日历，等待具体招标发布。",
+        "en": "Regularly check the calendar for specific tender releases."
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "此页面为UNICEF的招标日历，是获取未来教材印刷项目信息的关键来源。",
+        "en": "This page is UNICEF's tender calendar, a key source for future textbook printing project information."
+      }
     }
   ]
 }
