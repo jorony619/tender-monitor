@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14T03:29:52.676Z",
+  "lastUpdated": "2026-07-14T03:40:21.891Z",
   "projects": [
     {
       "id": 1,
@@ -127,13 +127,75 @@
         "en": "Regularly check the calendar for specific tender releases."
       },
       "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
+        "zh": "已错过",
+        "en": "Missed"
       },
       "notes": {
         "zh": "此页面为UNICEF的招标日历，是获取未来教材印刷项目信息的关键来源。",
         "en": "This page is UNICEF's tender calendar, a key source for future textbook printing project information."
       }
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "discoveryDate": "2026-07-14",
+      "sourcePlatform": "UNICEF",
+      "issuer": "UNICEF Supply Division",
+      "country": {
+        "zh": "全球",
+        "en": "Global"
+      },
+      "projectName": "Tender calendars",
+      "projectNo": "",
+      "projectType": {
+        "zh": "招标日历",
+        "en": "Tender Calendars"
+      },
+      "summary": {
+        "zh": "联合国儿童基金会供应部招标计划发布日历，包含即将发布的招标信息。",
+        "en": "UNICEF Supply Division plans for issuance of tenders, including upcoming tender information."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "UNICEF",
+      "publishDate": "2026-03-02",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://www.unicef.org/supply/tender-calendars",
+      "keyContact": "",
+      "grade": "C",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "定期查看日历，等待相关具体招标发布。",
+        "en": "Regularly check the calendar for relevant specific tenders."
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "这是一个招标信息日历，而非具体招标。需要持续关注以获取与教材、工作手册或教师指南印刷相关的具体招标。",
+        "en": "This is a tender calendar, not a specific tender. Requires continuous monitoring for tenders related to textbook, workbook, or teacher's guide printing."
+      },
+      "id": 4
     }
   ]
 }
