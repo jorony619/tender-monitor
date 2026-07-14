@@ -1,16 +1,20 @@
 #!/usr/bin/env node
 /**
- * update_tenders.mjs
+ * update_tenders.mjs — 智谱AI (BigModel/GLM) 版本
  *
- * Calls the Anthropic API (with the web_search tool) to:
- *   1. Re-check the status of existing non-closed entries in data.json
- *   2. Search for genuinely new, currently-open textbook/workbook/teacher's-guide
- *      printing tenders on UNGM, UNICEF, World Bank, ADB, and peer platforms
- *   3. Merge verified results into data.json (never fabricates — if Claude can't
- *      verify something with a real source link, it's left out)
+ * 两步走：
+ *   1. 调用智谱 Web Search API（真实结构化搜索结果，含真链接），
+ *      对多个关键词分别搜索 UNGM / UNICEF / World Bank / ADB 等平台上的
+ *      教材/作业册/教师指南印刷招标
+ *   2. 把搜到的原始结果（连同已有的 data.json）一起交给 GLM 模型，
+ *      让它只从"确实搜到的真实链接"里提炼出结构化项目，绝不编造项目或链接
  *
- * Run manually:   ANTHROPIC_API_KEY=sk-ant-... node scripts/update_tenders.mjs
- * Run on schedule: see .github/workflows/update-tenders.yml
+ * 环境变量：
+ *   ZHIPU_API_KEY  必填，智谱开放平台的 API Key
+ *   GLM_MODEL      可选，默认 glm-4-plus
+ *
+ * 手动运行：
+ *   ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
  */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -20,23 +24,30 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data.json");
 
-const API_KEY = process.env.ANTHROPIC_API_KEY;
+const API_KEY = process.env.ZHIPU_API_KEY;
 if (!API_KEY) {
-  console.error("Missing ANTHROPIC_API_KEY environment variable.");
+  console.error("Missing ZHIPU_API_KEY environment variable.");
   process.exit(1);
 }
 
-const PLATFORMS = [
-  "UNGM", "UNICEF Supply Division", "World Bank", "ADB", "AfDB", "IsDB", "IDB",
-  "UNESCO", "UNHCR", "UNRWA", "UNDP", "UNOPS", "GPE (Global Partnership for Education)",
-  "ECW (Education Cannot Wait)", "EU Funding & Tenders / TED", "USAID", "FCDO / UK Aid",
-  "DevelopmentAid", "Devex", "dgMarket"
+const MODEL = process.env.GLM_MODEL || "glm-4-plus";
+const BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
+
+const SEARCH_QUERIES = [
+  "UNGM tender printing textbooks workbooks",
+  "UNICEF supply printing workbooks teacher guide tender",
+  "World Bank procurement notice printing textbooks",
+  "ADB invitation for bids printing textbooks learning materials",
+  "UNESCO UNHCR UNRWA printing textbooks tender",
+  "GPE ECW education printing materials tender",
+  "dgMarket Devex printing textbooks tender",
+  "TED europa printing textbooks tender"
 ];
 
 const SCHEMA_NOTE = `
-Each project object MUST use this exact shape (omit a key entirely rather than guessing a value you can't verify):
+Each project object MUST use this exact shape (omit a key entirely rather than guessing a value you can't verify from the search results below):
 {
-  "id": number,                 // leave blank/omit for new items, script will assign
+  "id": number,                 // omit for new items, script will assign
   "sample": false,
   "verified": true,
   "discoveryDate": "YYYY-MM-DD",
@@ -53,108 +64,104 @@ Each project object MUST use this exact shape (omit a key entirely rather than g
   "publishDate": "YYYY-MM-DD",
   "deadlineLocal": string,
   "deadlineBeijing": "YYYY-MM-DD HH:MM",
-  "bidMethod": {"zh": string, "en": string},
-  "submissionContact": string,
-  "registrationRequired": {"zh": string, "en": string},
+  "currency": string,
   "intlSuppliersAllowed": {"zh": string, "en": string},
   "locallyRestricted": {"zh": string, "en": string},
-  "jvAllowed": {"zh": string, "en": string},
-  "currency": string,
-  "deliveryTerms": string,
-  "deliveryLocation": string,
-  "deliveryLeadTime": {"zh": string, "en": string},
-  "paymentTerms": {"zh": string, "en": string},
-  "sampleRequired": {"zh": string, "en": string},
-  "qualifications": {"zh": string, "en": string},
-  "pastPerformance": {"zh": string, "en": string},
-  "bondRequirement": {"zh": string, "en": string},
-  "customsResponsibility": {"zh": string, "en": string},
-  "attachment": {"zh": string, "en": string},
-  "sourceUrl": string,          // REQUIRED — a real URL returned by web_search/web_fetch
+  "sourceUrl": string,          // REQUIRED — must be copied EXACTLY (character for character) from the "link" field of one of the search results provided below. Never invent or modify a URL.
   "keyContact": string,
-  "openQuestions": {"zh": string, "en": string},
   "grade": "A" | "B" | "C" | "D",
   "gradeLabel": {"zh": string, "en": string},
   "nextAction": {"zh": string, "en": string},
-  "owner": string,
   "status": {"zh": string, "en": string},
-  "latestUpdate": {"zh": string, "en": string},
   "notes": {"zh": string, "en": string}
 }`;
 
-async function callClaude(existingProjects) {
+async function zhipuWebSearch(query) {
+  const res = await fetch(`${BASE_URL}/web_search`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      search_query: query,
+      search_engine: "search_pro",
+      search_intent: false,
+      count: 10,
+      search_recency_filter: "noLimit"
+    })
+  });
+  if (!res.ok) {
+    console.warn(`web_search failed for "${query}": ${res.status} ${await res.text()}`);
+    return [];
+  }
+  const data = await res.json();
+  return (data.search_result || []).map(r => ({
+    query,
+    title: r.title,
+    link: r.link,
+    content: r.content,
+    publish_date: r.publish_date
+  }));
+}
+
+async function zhipuChat(prompt) {
+  const res = await fetch(`${BASE_URL}/chat/completions`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.2
+    })
+  });
+  if (!res.ok) {
+    throw new Error(`GLM chat error: ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || "";
+}
+
+function buildPrompt(existingProjects, searchHits) {
   const existingSummary = existingProjects.map(p => ({
     id: p.id,
     sourcePlatform: p.sourcePlatform,
     projectName: p.projectName,
-    projectNo: p.projectNo,
     status: p.status,
-    deadlineBeijing: p.deadlineBeijing,
     sourceUrl: p.sourceUrl || null
   }));
 
-  const prompt = `You are refreshing a live tender-monitoring dashboard for a printing company that
+  return `You are refreshing a live tender-monitoring dashboard for a printing company that
 prints textbooks, workbooks, and teacher's guides for international buyers (UNICEF, World Bank,
 UNGM, ADB, and similar). Today's date is ${new Date().toISOString().slice(0, 10)}.
 
 STRICT RULES:
-- Only include a tender if you found it via web_search/web_fetch and can cite a real, working source URL.
-- NEVER invent a project, deadline, reference number, or contact. If you are not sure, omit the field or omit the whole entry.
-- Prefer the platforms: ${PLATFORMS.join(", ")}.
-- For existing entries below, do a quick check (by revisiting sourceUrl if given, or a fresh search on the
-  project name/reference) to see if the status or deadline has changed. Only report a change you can verify.
+- Only create a project entry if it is clearly supported by one of the search results listed below.
+- The "sourceUrl" field MUST be copied character-for-character from a "link" value in the search results. Never invent, guess, or modify a URL.
+- If a search result is irrelevant (not about textbook/workbook/teacher's-guide printing), ignore it.
+- If you are unsure about a field (deadline, quantity, etc.), omit that field rather than guessing.
 - Grade A = clearly open, international suppliers allowed, worth acting on today.
   Grade B = open but needs a clarifying email (eligibility, local-only ambiguity, etc).
   Grade C = open but low priority / long runway.
   Grade D = closed, expired, or disqualifying restriction (e.g. local suppliers only).
 
-Existing entries (JSON, for status-check context only):
+Existing tracked entries (for context — check if any search result updates their status):
 ${JSON.stringify(existingSummary, null, 2)}
+
+Raw search results (title / link / snippet / publish_date):
+${JSON.stringify(searchHits, null, 2)}
 
 ${SCHEMA_NOTE}
 
-Return ONLY a JSON object with this shape, no prose, no markdown fences:
+Return ONLY a JSON object, no prose, no markdown fences, with this shape:
 {
-  "updates": [ { "id": <existing id>, ...only the fields that changed... } ],
-  "new": [ <full project objects for genuinely new, verified tenders you found> ]
+  "updates": [ { "id": <existing id>, ...only fields that changed... } ],
+  "new": [ <full project objects for genuinely new tenders supported by the search results> ]
 }
-If you find nothing new or nothing changed, return {"updates": [], "new": []}.`;
-
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": API_KEY,
-      "anthropic-version": "2023-06-01"
-    },
-    body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 8000,
-      messages: [{ role: "user", content: prompt }],
-      tools: [{ type: "web_search_20250305", name: "web_search" }]
-    })
-  });
-
-  if (!response.ok) {
-    throw new Error(`Anthropic API error: ${response.status} ${await response.text()}`);
-  }
-
-  const data = await response.json();
-  const textBlocks = data.content.filter(b => b.type === "text").map(b => b.text);
-  const combined = textBlocks.join("\n").trim();
-  const cleaned = combined.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
-
-  const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) {
-    console.warn("No JSON object found in model output. Raw output:\n", combined);
-    return { updates: [], new: [] };
-  }
-  try {
-    return JSON.parse(jsonMatch[0]);
-  } catch (e) {
-    console.warn("Failed to parse model JSON:", e.message);
-    return { updates: [], new: [] };
-  }
+If nothing new or changed, return {"updates": [], "new": []}.`;
 }
 
 function recomputeDays(p) {
@@ -173,10 +180,46 @@ async function main() {
   const data = JSON.parse(raw);
   const projects = data.projects || [];
 
-  console.log(`Loaded ${projects.length} existing projects. Calling Claude...`);
-  const { updates = [], new: newItems = [] } = await callClaude(projects);
+  console.log(`Loaded ${projects.length} existing projects.`);
+  console.log("Running web searches...");
+
+  let searchHits = [];
+  for (const q of SEARCH_QUERIES) {
+    const hits = await zhipuWebSearch(q);
+    console.log(`  "${q}" -> ${hits.length} results`);
+    searchHits = searchHits.concat(hits);
+  }
+
+  // De-duplicate by link
+  const seen = new Set();
+  searchHits = searchHits.filter(h => {
+    if (!h.link || seen.has(h.link)) return false;
+    seen.add(h.link);
+    return true;
+  });
+
+  console.log(`Collected ${searchHits.length} unique search results. Calling GLM to extract...`);
+  const raw2 = await zhipuChat(buildPrompt(projects, searchHits));
+  const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+  const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+
+  let updates = [];
+  let newItems = [];
+  if (jsonMatch) {
+    try {
+      const parsed = JSON.parse(jsonMatch[0]);
+      updates = parsed.updates || [];
+      newItems = parsed.new || [];
+    } catch (e) {
+      console.warn("Failed to parse GLM JSON output:", e.message);
+      console.warn("Raw output was:", raw2.slice(0, 2000));
+    }
+  } else {
+    console.warn("No JSON object found in GLM output. Raw output:", raw2.slice(0, 2000));
+  }
 
   let changed = false;
+  const validLinks = new Set(searchHits.map(h => h.link));
 
   for (const upd of updates) {
     const target = projects.find(p => p.id === upd.id);
@@ -189,8 +232,8 @@ async function main() {
 
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
   for (const item of newItems) {
-    if (!item.sourceUrl) {
-      console.warn("Skipping new item without sourceUrl:", item.projectName);
+    if (!item.sourceUrl || !validLinks.has(item.sourceUrl)) {
+      console.warn("Skipping new item with missing/unverified sourceUrl:", item.projectName);
       continue;
     }
     item.id = nextId++;
