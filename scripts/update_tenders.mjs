@@ -142,6 +142,7 @@ STRICT RULES:
 - Only create a project entry if it is clearly supported by one of the search results listed below.
 - The "sourceUrl" field MUST be copied character-for-character from a "link" value in the search results. Never invent, guess, or modify a URL.
 - If a search result is irrelevant (not about textbook/workbook/teacher's-guide printing), ignore it.
+- Do NOT create an entry from a generic listing, index, calendar, or "current tenders" hub page (e.g. a page that just links out to many opportunities, like a "tender calendar" or a platform's homepage). Only create an entry for a specific, individually identifiable tender/procurement notice with its own reference number or clearly single subject matter. If a result is a hub page, ignore it (you may still use it to decide which platform to search further, but do not turn it into a project row).
 - If you are unsure about a field (deadline, quantity, etc.), omit that field rather than guessing.
 - Grade A = clearly open, international suppliers allowed, worth acting on today.
   Grade B = open but needs a clarifying email (eligibility, local-only ambiguity, etc).
