@@ -603,7 +603,7 @@ function render(){
             ${country? `<span>${country}</span>`:''}
             ${p.projectNo? `<span class="tag">${p.projectNo}</span>`:''}
             ${p.sample? `<span class="tag sample">${t.sample}</span>`:''}
-            ${p.verified? `<span class="tag" style="border-color:var(--teal); color:var(--teal)">${lang==='zh'?'Claude已核实':'Verified by Claude'}</span>`:''}
+            ${p.verified? `<span class="tag" style="border-color:var(--teal); color:var(--teal)">${lang==='zh'?'已核实来源':'Source verified'}</span>`:''}
           </div>
         </div>
         ${daysHtml}
