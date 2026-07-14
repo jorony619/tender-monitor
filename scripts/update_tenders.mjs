@@ -33,7 +33,7 @@ if (!API_KEY) {
 const MODEL = process.env.GLM_MODEL || "glm-4-plus";
 const BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
 
-const SEARCH_QUERIES = [
+const INTL_QUERIES = [
   "UNGM tender printing textbooks workbooks",
   "UNICEF supply printing workbooks teacher guide tender",
   "World Bank procurement notice printing textbooks",
@@ -44,12 +44,21 @@ const SEARCH_QUERIES = [
   "TED europa printing textbooks tender"
 ];
 
+const DOMESTIC_QUERIES = [
+  "教材印刷 中标公告 中国政府采购网",
+  "教辅资料印刷服务 招标公告",
+  "学校 教材印刷 采购公告"
+];
+
+const SEARCH_QUERIES = [...INTL_QUERIES, ...DOMESTIC_QUERIES];
+
 const SCHEMA_NOTE = `
 Each project object MUST use this exact shape (omit a key entirely rather than guessing a value you can't verify from the search results below):
 {
   "id": number,                 // omit for new items, script will assign
   "sample": false,
   "verified": true,
+  "region": "international" | "domestic",   // REQUIRED — see rules below
   "discoveryDate": "YYYY-MM-DD",
   "sourcePlatform": string,
   "issuer": string,
@@ -74,7 +83,13 @@ Each project object MUST use this exact shape (omit a key entirely rather than g
   "nextAction": {"zh": string, "en": string},
   "status": {"zh": string, "en": string},
   "notes": {"zh": string, "en": string}
-}`;
+}
+
+REGION & sourcePlatform RULES (read carefully — this has been a recurring error):
+- "region" must be "international" if the tender is issued by a multilateral/international organization (UNICEF, World Bank, UNGM, ADB, UNESCO, GPE, ECW, UNHCR, UNRWA, USAID, FCDO, EU/TED, etc.) or a non-Chinese national government/agency.
+- "region" must be "domestic" if the buyer is a mainland China entity — a Chinese school, university, hospital, local government procurement office, or a notice published on a Chinese public procurement site (e.g. 中国政府采购网, 省/市级政府采购网, 学校官网, 中国招标投标公共服务平台). This includes Chinese-language domestic tenders even if they happen to mention textbooks/workbooks.
+- "sourcePlatform" MUST be the actual site/platform where the notice was found (e.g. "UNGM", "UNICEF Supply Division", "中国政府采购网", "XX市政府采购网", "学校官网"). NEVER use the name of a multilateral organization (UNICEF, World Bank, GPE, ADB, UNESCO, etc.) as sourcePlatform for a domestic Chinese tender just because the project involves education — that organization must have actually published the notice on its own official channel.
+- If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter.`;
 
 async function zhipuWebSearch(query) {
   const res = await fetch(`${BASE_URL}/web_search`, {
@@ -128,6 +143,7 @@ async function zhipuChat(prompt) {
 function buildPrompt(existingProjects, searchHits) {
   const existingSummary = existingProjects.map(p => ({
     id: p.id,
+    region: p.region || "international",
     sourcePlatform: p.sourcePlatform,
     projectName: p.projectName,
     status: p.status,
@@ -245,6 +261,7 @@ async function main() {
     item.id = nextId++;
     item.sample = false;
     item.verified = true;
+    item.region = item.region === "domestic" ? "domestic" : "international";
     projects.push(item);
     existingUrls.add(item.sourceUrl);
     changed = true;
