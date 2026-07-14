@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14T03:40:21.891Z",
+  "lastUpdated": "2026-07-14T03:54:17.966Z",
   "projects": [
     {
       "id": 1,
@@ -196,6 +196,68 @@
         "en": "This is a tender calendar, not a specific tender. Requires continuous monitoring for tenders related to textbook, workbook, or teacher's guide printing."
       },
       "id": 4
+    },
+    {
+      "id": 5,
+      "sample": false,
+      "verified": true,
+      "discoveryDate": "2026-07-14",
+      "sourcePlatform": "UNICEF",
+      "issuer": "UNICEF Supply Division",
+      "country": {
+        "zh": "全球",
+        "en": "Global"
+      },
+      "projectName": "Tender calendars",
+      "projectNo": "",
+      "projectType": {
+        "zh": "采购计划",
+        "en": "Procurement Plan"
+      },
+      "summary": {
+        "zh": "联合国儿童基金会供应部发布采购计划，包括教科书、练习册和教师指南的印刷服务。",
+        "en": "UNICEF Supply Division's tender calendar, including printing services for textbooks, workbooks, and teacher's guides."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "UNICEF",
+      "publishDate": "2026-03-02",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://www.unicef.org/supply/tender-calendars",
+      "keyContact": "",
+      "grade": "A",
+      "gradeLabel": {
+        "zh": "高优先级",
+        "en": "High Priority"
+      },
+      "nextAction": {
+        "zh": "立即访问采购日历页面，查看具体招标信息。",
+        "en": "Visit the tender calendar page immediately to view specific tender notices."
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "此页面是UNICEF所有印刷相关招标的官方入口，应每日监控。",
+        "en": "This is the official portal for all UNICEF printing-related tenders and should be monitored daily."
+      }
     }
   ]
 }
