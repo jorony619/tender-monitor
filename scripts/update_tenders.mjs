@@ -232,15 +232,21 @@ async function main() {
   }
 
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
+  const existingUrls = new Set(projects.map(p => p.sourceUrl).filter(Boolean));
   for (const item of newItems) {
     if (!item.sourceUrl || !validLinks.has(item.sourceUrl)) {
       console.warn("Skipping new item with missing/unverified sourceUrl:", item.projectName);
+      continue;
+    }
+    if (existingUrls.has(item.sourceUrl)) {
+      console.warn(`Skipping duplicate: sourceUrl already tracked -> ${item.sourceUrl} (${item.projectName})`);
       continue;
     }
     item.id = nextId++;
     item.sample = false;
     item.verified = true;
     projects.push(item);
+    existingUrls.add(item.sourceUrl);
     changed = true;
     console.log(`Added new project #${item.id}: ${item.projectName}`);
   }
