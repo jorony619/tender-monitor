@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T03:55:55.962Z",
+  "lastUpdated": "2026-07-16T03:59:03.671Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -30,
+      "daysRemaining": -31,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -136,6 +136,132 @@
       "notes": {
         "zh": "此页面提供了UNICEF供应部招标计划，可能包含印刷工作簿和教师指南的招标信息",
         "en": "This page provides UNICEF Supply Division's tender plans, which may include tenders for printing workbooks and teacher's guides"
+      }
+    },
+    {
+      "id": 4,
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-07-16",
+      "sourcePlatform": "UNGM",
+      "issuer": "United Nations Global Marketplace",
+      "country": {
+        "zh": "国际",
+        "en": "International"
+      },
+      "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "为联合国机构印刷算术练习册和教师指南。",
+        "en": "Printing of numeracy workbooks and teachers guides for UN agencies."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "United Nations",
+      "publishDate": "2024-01-01",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "USD",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://www.ungm.org/Public/TenderAlertService",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已错过",
+        "en": "Missed"
+      },
+      "nextAction": {
+        "zh": "此标已错过截止日期。",
+        "en": "This tender has been missed."
+      },
+      "status": {
+        "zh": "已错过",
+        "en": "Missed"
+      },
+      "notes": {
+        "zh": "根据现有记录，此标已错过截止日期。",
+        "en": "According to existing records, this tender has been missed."
+      }
+    },
+    {
+      "id": 5,
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-07-16",
+      "sourcePlatform": "World Bank",
+      "issuer": "World Bank",
+      "country": {
+        "zh": "国际",
+        "en": "International"
+      },
+      "projectName": "Printing of Textbooks and Learning Materials",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "世界银行采购教科书和学习材料的印刷服务。",
+        "en": "World Bank procurement of printing services for textbooks and learning materials."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2022-07-14",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "USD",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://max.book118.com/html/2022/0710/5033011313004303.shtm",
+      "keyContact": "",
+      "grade": "C",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "需要进一步核实项目状态和截止日期。",
+        "en": "Further verification of project status and deadline is required."
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "此为世界银行采购指南，可能包含相关印刷项目信息，需进一步核实。",
+        "en": "This is the World Bank procurement guidelines, which may contain information on relevant printing projects. Further verification is needed."
       }
     }
   ]
