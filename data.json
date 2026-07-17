@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-16T03:59:03.671Z",
+  "lastUpdated": "2026-07-17T03:57:47.787Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -31,
+      "daysRemaining": -32,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
