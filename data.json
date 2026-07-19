@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-18T03:52:15.189Z",
+  "lastUpdated": "2026-07-19T04:20:21.814Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -33,
+      "daysRemaining": -35,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -263,6 +263,261 @@
         "zh": "此为世界银行采购指南，可能包含相关印刷项目信息，需进一步核实。",
         "en": "This is the World Bank procurement guidelines, which may contain information on relevant printing projects. Further verification is needed."
       }
+    },
+    {
+      "id": 6,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "江汉大学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "江汉大学2026年试卷印刷服务采购",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务招标",
+        "en": "Printing Services Tender"
+      },
+      "summary": {
+        "zh": "江汉大学2026年试卷及教学材料印刷服务采购，预算50万元。",
+        "en": "Jianghan University's 2026 printing service procurement for exam papers and teaching materials, with a budget of 500,000 RMB."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "江汉大学",
+      "publishDate": "2026-01-22",
+      "deadlineLocal": "2026-02-03",
+      "deadlineBeijing": "2026-02-03 00:00",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "否",
+        "en": "No"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "sourceUrl": "https://www.sohu.com/a/978949698_121956425",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "已过期，无需跟进",
+        "en": "Expired, no follow-up needed"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "该项目已于2026年2月3日截止，已过期。",
+        "en": "This project expired on February 3, 2026, and is no longer active."
+      },
+      "daysRemaining": -167
+    },
+    {
+      "id": 7,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "五常市雅臣中学校",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "五常市雅臣中学校印刷服务招标",
+      "projectNo": "230184zzzxgsCS20260004",
+      "projectType": {
+        "zh": "印刷服务招标",
+        "en": "Printing Services Tender"
+      },
+      "summary": {
+        "zh": "五常市雅臣中学校日常教学训练及考试试卷印刷服务招标，预算134.65万元。",
+        "en": "Wuchang Yacheng Middle School's tender for daily teaching and exam paper printing services, with a budget of 1.3465 million RMB."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "五常市雅臣中学校",
+      "publishDate": "2026-01-29",
+      "deadlineLocal": "2026-03-05",
+      "deadlineBeijing": "2026-03-05 09:00",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "否",
+        "en": "No"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "sourceUrl": "https://www.sohu.com/a/981396217_121956425",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "已过期，无需跟进",
+        "en": "Expired, no follow-up needed"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "该项目已于2026年3月5日截止，已过期。",
+        "en": "This project expired on March 5, 2026, and is no longer active."
+      },
+      "daysRemaining": -137
+    },
+    {
+      "id": 8,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "东港股份有限公司",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "东港股份2026-2027年教材印刷服务",
+      "projectNo": "",
+      "projectType": {
+        "zh": "教材印刷服务",
+        "en": "Textbook Printing Services"
+      },
+      "summary": {
+        "zh": "东港股份有限公司中标2026-2027年教材印刷服务项目。",
+        "en": "Donggang Co., Ltd. won the contract for textbook printing services for 2026-2027."
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "东港股份有限公司",
+      "publishDate": "2026-02-07",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "否",
+        "en": "No"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "sourceUrl": "https://www.sohu.com/a/984786365_122066678",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "已中标，无需跟进",
+        "en": "Already awarded, no follow-up needed"
+      },
+      "status": {
+        "zh": "已中标",
+        "en": "Awarded"
+      },
+      "notes": {
+        "zh": "东港股份有限公司已中标该项目，合同已签订。",
+        "en": "Donggang Co., Ltd. has already been awarded this contract."
+      }
+    },
+    {
+      "id": 9,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "沈阳市辽中区第一高级中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "沈阳辽中区第一高级中学印刷服务招标",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务招标",
+        "en": "Printing Services Tender"
+      },
+      "summary": {
+        "zh": "沈阳市辽中区第一高级中学2026年度学生题单印刷服务招标，预计印刷总量360万张。",
+        "en": "Shenyang Liaozhong District No. 1 High School's 2026 tender for student worksheet printing services, with an estimated total of 3.6 million sheets."
+      },
+      "quantity": {
+        "zh": "360万张",
+        "en": "3.6 million sheets"
+      },
+      "specs": {
+        "zh": "70-80克书写纸，禁止使用再生纸",
+        "en": "70-80g writing paper, recycled paper prohibited"
+      },
+      "fundingSource": "沈阳市辽中区第一高级中学",
+      "publishDate": "2026-02-13",
+      "deadlineLocal": "2026-03-06",
+      "deadlineBeijing": "2026-03-06 09:00",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "否",
+        "en": "No"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "sourceUrl": "https://www.sohu.com/a/987010094_121956425",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "已过期，无需跟进",
+        "en": "Expired, no follow-up needed"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "该项目已于2026年3月6日截止，已过期。",
+        "en": "This project expired on March 6, 2026, and is no longer active."
+      },
+      "daysRemaining": -136
     }
   ]
 }
