@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-19T04:20:21.814Z",
+  "lastUpdated": "2026-07-20T04:34:49.362Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -35,
+      "daysRemaining": -36,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -326,7 +326,7 @@
         "zh": "该项目已于2026年2月3日截止，已过期。",
         "en": "This project expired on February 3, 2026, and is no longer active."
       },
-      "daysRemaining": -167
+      "daysRemaining": -168
     },
     {
       "id": 7,
@@ -390,7 +390,7 @@
         "zh": "该项目已于2026年3月5日截止，已过期。",
         "en": "This project expired on March 5, 2026, and is no longer active."
       },
-      "daysRemaining": -137
+      "daysRemaining": -138
     },
     {
       "id": 8,
@@ -517,7 +517,7 @@
         "zh": "该项目已于2026年3月6日截止，已过期。",
         "en": "This project expired on March 6, 2026, and is no longer active."
       },
-      "daysRemaining": -136
+      "daysRemaining": -137
     }
   ]
 }
