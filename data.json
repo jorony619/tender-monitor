@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-20T04:34:49.362Z",
+  "lastUpdated": "2026-07-21T04:15:10.348Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -36,
+      "daysRemaining": -37,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -326,7 +326,7 @@
         "zh": "该项目已于2026年2月3日截止，已过期。",
         "en": "This project expired on February 3, 2026, and is no longer active."
       },
-      "daysRemaining": -168
+      "daysRemaining": -169
     },
     {
       "id": 7,
@@ -390,7 +390,7 @@
         "zh": "该项目已于2026年3月5日截止，已过期。",
         "en": "This project expired on March 5, 2026, and is no longer active."
       },
-      "daysRemaining": -138
+      "daysRemaining": -139
     },
     {
       "id": 8,
@@ -517,7 +517,133 @@
         "zh": "该项目已于2026年3月6日截止，已过期。",
         "en": "This project expired on March 6, 2026, and is no longer active."
       },
-      "daysRemaining": -137
+      "daysRemaining": -138
+    },
+    {
+      "id": 10,
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-07-21",
+      "sourcePlatform": "UNICEF Supply Division",
+      "issuer": "UNICEF",
+      "country": {
+        "zh": "国际",
+        "en": "International"
+      },
+      "projectName": "Learning Bridges Accelerates Learning for Over 600,000 Students (Jordan)",
+      "projectNo": "",
+      "projectType": {
+        "zh": "教材印刷",
+        "en": "Textbook Printing"
+      },
+      "summary": {
+        "zh": "UNICEF教育案例研究，涉及教材和学习材料的印刷服务",
+        "en": "UNICEF education case study involving printing services for textbooks and learning materials"
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "UNICEF",
+      "publishDate": "2022-10-12",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://www.unicef.org/media/128996/file/Learning+Bridges+accelerates+learning+for+over+600,000+students+(Jordan).pdf",
+      "keyContact": "",
+      "grade": "B",
+      "gradeLabel": {
+        "zh": "需澄清",
+        "en": "Needs Clarification"
+      },
+      "nextAction": {
+        "zh": "联系UNICEF Supply Division获取详细招标信息",
+        "en": "Contact UNICEF Supply Division for detailed tender information"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "UNICEF教育案例研究，涉及教材和学习材料的印刷服务，需进一步确认招标细节",
+        "en": "UNICEF education case study involving printing services for textbooks and learning materials, further verification of tender details required"
+      }
+    },
+    {
+      "id": 11,
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-07-21",
+      "sourcePlatform": "UNESCO",
+      "issuer": "UNESCO",
+      "country": {
+        "zh": "国际",
+        "en": "International"
+      },
+      "projectName": "Scrutiny of Textbooks used in UNRWA/UNESCO Schools",
+      "projectNo": "",
+      "projectType": {
+        "zh": "教材审查",
+        "en": "Textbook Review"
+      },
+      "summary": {
+        "zh": "UNESCO对UNRWA/UNESCO学校使用的教材进行审查",
+        "en": "UNESCO's scrutiny of textbooks used in UNRWA/UNESCO schools"
+      },
+      "quantity": {
+        "zh": "",
+        "en": ""
+      },
+      "specs": {
+        "zh": "",
+        "en": ""
+      },
+      "fundingSource": "UNESCO",
+      "publishDate": "2026-05-05",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "locallyRestricted": {
+        "zh": "否",
+        "en": "No"
+      },
+      "sourceUrl": "https://link.springer.com/chapter/10.1007/978-1-349-08409-8_8",
+      "keyContact": "",
+      "grade": "C",
+      "gradeLabel": {
+        "zh": "低优先级",
+        "en": "Low Priority"
+      },
+      "nextAction": {
+        "zh": "关注UNESCO教材审查相关项目",
+        "en": "Monitor UNESCO textbook review related projects"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "UNESCO对UNRWA/UNESCO学校教材的审查项目，可能涉及印刷服务",
+        "en": "UNESCO's textbook review project for UNRWA/UNESCO schools, may involve printing services"
+      }
     }
   ]
 }
