@@ -191,7 +191,7 @@ async function zhipuChat(prompt) {
       messages: [{ role: "user", content: prompt }],
       temperature: 0.2
     })
-  }, 120000); // 推理这一步内容较多（几十条搜索结果），给120秒
+  }, 180000); // 推理这一步内容较多，给180秒兜底
   if (!res.ok) {
     throw new Error(`GLM chat error: ${res.status} ${await res.text()}`);
   }
@@ -286,10 +286,15 @@ async function main() {
   });
 
   console.log(`Collected ${searchHits.length} unique search results.`);
-  const trimmedHits = searchHits.map(h => ({
+  const MAX_HITS_FOR_MODEL = 50;
+  let trimmedHits = searchHits.map(h => ({
     ...h,
-    content: h.content ? String(h.content).slice(0, 300) : h.content
+    content: h.content ? String(h.content).slice(0, 200) : h.content
   }));
+  if (trimmedHits.length > MAX_HITS_FOR_MODEL) {
+    console.log(`Capping ${trimmedHits.length} results down to ${MAX_HITS_FOR_MODEL} for the model call.`);
+    trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
+  }
   console.log("Calling GLM to extract...");
   const raw2 = await zhipuChat(buildPrompt(projects, trimmedHits));
   const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
