@@ -52,6 +52,25 @@ const DOMESTIC_QUERIES = [
 
 const SEARCH_QUERIES = [...INTL_QUERIES, ...DOMESTIC_QUERIES];
 
+// Generic document-sharing / content-farm sites that frequently host unrelated,
+// re-uploaded PDFs (procurement guides, textbooks, etc.) with no connection to a
+// live tender. Results from these domains are dropped before they ever reach the model.
+const BLOCKED_DOMAINS = [
+  "book118.com", "max.book118.com", "docin.com", "wenku.baidu.com",
+  "doc88.com", "doc.mbalib.com", "docs.qq.com", "coggle.it",
+  "renrendoc.com", "zhuanlan.zhihu.com", "jz.docin.com", "taodocs.com",
+  "docerpro.com", "mianfeiwendang.com", "chinaacc.com", "ppt.docin.com"
+];
+
+function isBlockedDomain(link) {
+  try {
+    const host = new URL(link).hostname.toLowerCase();
+    return BLOCKED_DOMAINS.some(d => host === d || host.endsWith("." + d));
+  } catch {
+    return true; // if the URL doesn't even parse, don't trust it
+  }
+}
+
 const SCHEMA_NOTE = `
 Each project object MUST use this exact shape (omit a key entirely rather than guessing a value you can't verify from the search results below):
 {
@@ -89,7 +108,16 @@ REGION & sourcePlatform RULES (read carefully — this has been a recurring erro
 - "region" must be "international" if the tender is issued by a multilateral/international organization (UNICEF, World Bank, UNGM, ADB, UNESCO, GPE, ECW, UNHCR, UNRWA, USAID, FCDO, EU/TED, etc.) or a non-Chinese national government/agency.
 - "region" must be "domestic" if the buyer is a mainland China entity — a Chinese school, university, hospital, local government procurement office, or a notice published on a Chinese public procurement site (e.g. 中国政府采购网, 省/市级政府采购网, 学校官网, 中国招标投标公共服务平台). This includes Chinese-language domestic tenders even if they happen to mention textbooks/workbooks.
 - "sourcePlatform" MUST be the actual site/platform where the notice was found (e.g. "UNGM", "UNICEF Supply Division", "中国政府采购网", "XX市政府采购网", "学校官网"). NEVER use the name of a multilateral organization (UNICEF, World Bank, GPE, ADB, UNESCO, etc.) as sourcePlatform for a domestic Chinese tender just because the project involves education — that organization must have actually published the notice on its own official channel.
-- If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter.`;
+- If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter.
+
+SOURCE QUALITY RULES (read carefully — this has been a recurring error):
+- A search result is only usable if it is an ACTUAL, SPECIFIC tender/procurement notice: it must reference a specific bid/reference number, a specific deadline, specific submission instructions, or a specific named buyer with a specific requirement. General guides, policy documents, training materials, handbooks, glossaries, news articles about a topic, case studies, program impact reports, academic papers/book chapters, or "how procurement works" explainers are NOT tenders — do not create a project from them even if they mention textbooks/printing/World Bank/UNICEF, and even if they are hosted on the organization's own official domain (e.g. a UNICEF case-study PDF at unicef.org/media/... is not a tender just because it's on unicef.org).
+- NEVER use a result from a generic document-sharing / content-farm site as a source — these host random re-uploaded PDFs with no connection to a live tender and are not authoritative. Examples of domains to always reject: 原创力文档, 道客巴巴, 豆丁网, 百度文库, book118, max.book118.com, docin.com, wenku.baidu.com, coggle/slideshare-style generic upload sites. If the "link" domain looks like a generic document repository rather than an official organization/government/procurement platform, do not use it.
+- Prefer results whose domain matches the organization's own official site (ungm.org, unicef.org, worldbank.org, adb.org, unesco.org, unhcr.org, unrwa.org, ted.europa.eu, dgmarket.com, devex.com, developmentaid.org, gov.cn / *.gov.cn / 中国政府采购网 and similar official government procurement portals).
+- When unsure whether a result is a real, specific, current tender vs. background/reference material, leave it out rather than guessing.
+
+DEDUPLICATION RULE:
+- Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.`;
 
 async function zhipuWebSearch(query) {
   const res = await fetch(`${BASE_URL}/web_search`, {
@@ -207,6 +235,13 @@ async function main() {
     searchHits = searchHits.concat(hits);
   }
 
+  // Drop known generic document-sharing / content-farm domains before they ever reach the model
+  const beforeBlock = searchHits.length;
+  searchHits = searchHits.filter(h => h.link && !isBlockedDomain(h.link));
+  if (beforeBlock !== searchHits.length) {
+    console.log(`Dropped ${beforeBlock - searchHits.length} result(s) from blocked document-sharing domains.`);
+  }
+
   // De-duplicate by link
   const seen = new Set();
   searchHits = searchHits.filter(h => {
@@ -247,8 +282,13 @@ async function main() {
     }
   }
 
+function normalizeKey(name, issuer) {
+  return [name, issuer].filter(Boolean).join("|").toLowerCase().replace(/\s+/g, " ").trim();
+}
+
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
   const existingUrls = new Set(projects.map(p => p.sourceUrl).filter(Boolean));
+  const existingNameKeys = new Set(projects.map(p => normalizeKey(p.projectName, p.issuer)).filter(Boolean));
   for (const item of newItems) {
     if (!item.sourceUrl || !validLinks.has(item.sourceUrl)) {
       console.warn("Skipping new item with missing/unverified sourceUrl:", item.projectName);
@@ -258,12 +298,18 @@ async function main() {
       console.warn(`Skipping duplicate: sourceUrl already tracked -> ${item.sourceUrl} (${item.projectName})`);
       continue;
     }
+    const nameKey = normalizeKey(item.projectName, item.issuer);
+    if (nameKey && existingNameKeys.has(nameKey)) {
+      console.warn(`Skipping duplicate: same project name+issuer already tracked (mirrored source?) -> ${item.projectName}`);
+      continue;
+    }
     item.id = nextId++;
     item.sample = false;
     item.verified = true;
     item.region = item.region === "domestic" ? "domestic" : "international";
     projects.push(item);
     existingUrls.add(item.sourceUrl);
+    if (nameKey) existingNameKeys.add(nameKey);
     changed = true;
     console.log(`Added new project #${item.id}: ${item.projectName}`);
   }
