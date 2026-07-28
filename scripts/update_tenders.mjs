@@ -11,7 +11,7 @@
  *
  * 环境变量：
  *   ZHIPU_API_KEY  必填，智谱开放平台的 API Key
- *   GLM_MODEL      可选，默认 glm-4-plus
+ *   GLM_MODEL      可选，默认 glm-4.5-air
  *
  * 手动运行：
  *   ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
@@ -30,7 +30,7 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-const MODEL = process.env.GLM_MODEL || "glm-4-plus";
+const MODEL = process.env.GLM_MODEL || "glm-4.5-air";
 const BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
 
 const INTL_QUERIES = [
