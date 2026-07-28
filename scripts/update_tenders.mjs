@@ -138,7 +138,7 @@ async function fetchWithTimeout(url, options, timeoutMs = 25000) {
   }
 }
 
-async function bochaWebSearch(query) {
+async function bochaWebSearch(query, attempt = 1) {
   let res;
   try {
     res = await fetchWithTimeout(`${BOCHA_BASE_URL}/web-search`, {
@@ -157,6 +157,12 @@ async function bochaWebSearch(query) {
   } catch (e) {
     console.warn(`Bocha web-search timed out/errored for "${query}": ${e.message}`);
     return [];
+  }
+  if (res.status === 429 && attempt < 3) {
+    const waitMs = 3000 * attempt;
+    console.warn(`Bocha rate-limited on "${query}", retrying in ${waitMs}ms (attempt ${attempt})...`);
+    await new Promise(r => setTimeout(r, waitMs));
+    return bochaWebSearch(query, attempt + 1);
   }
   if (!res.ok) {
     console.warn(`Bocha web-search failed for "${query}": ${res.status} ${await res.text()}`);
@@ -185,7 +191,7 @@ async function zhipuChat(prompt) {
       messages: [{ role: "user", content: prompt }],
       temperature: 0.2
     })
-  }, 60000); // 推理这一步内容更多，给60秒
+  }, 120000); // 推理这一步内容较多（几十条搜索结果），给120秒
   if (!res.ok) {
     throw new Error(`GLM chat error: ${res.status} ${await res.text()}`);
   }
@@ -254,11 +260,15 @@ async function main() {
   console.log("Running web searches...");
 
   let searchHits = [];
-  const results = await Promise.all(SEARCH_QUERIES.map(q => bochaWebSearch(q)));
-  results.forEach((hits, i) => {
-    console.log(`  "${SEARCH_QUERIES[i]}" -> ${hits.length} results`);
-    searchHits = searchHits.concat(hits);
-  });
+  const BATCH_SIZE = 4;
+  for (let i = 0; i < SEARCH_QUERIES.length; i += BATCH_SIZE) {
+    const batch = SEARCH_QUERIES.slice(i, i + BATCH_SIZE);
+    const batchResults = await Promise.all(batch.map(q => bochaWebSearch(q)));
+    batchResults.forEach((hits, j) => {
+      console.log(`  "${batch[j]}" -> ${hits.length} results`);
+      searchHits = searchHits.concat(hits);
+    });
+  }
 
   // Drop known generic document-sharing / content-farm domains before they ever reach the model
   const beforeBlock = searchHits.length;
@@ -275,8 +285,13 @@ async function main() {
     return true;
   });
 
-  console.log(`Collected ${searchHits.length} unique search results. Calling GLM to extract...`);
-  const raw2 = await zhipuChat(buildPrompt(projects, searchHits));
+  console.log(`Collected ${searchHits.length} unique search results.`);
+  const trimmedHits = searchHits.map(h => ({
+    ...h,
+    content: h.content ? String(h.content).slice(0, 300) : h.content
+  }));
+  console.log("Calling GLM to extract...");
+  const raw2 = await zhipuChat(buildPrompt(projects, trimmedHits));
   const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
 
