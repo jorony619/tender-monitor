@@ -8,46 +8,22 @@
       "discoveryDate": "2026-06-25",
       "sourcePlatform": "UNGM",
       "issuer": "UNICEF Sierra Leone",
-      "country": {
-        "zh": "塞拉利昂",
-        "en": "Sierra Leone"
-      },
+      "country": {"zh": "塞拉利昂", "en": "Sierra Leone"},
       "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
       "projectNo": "LITB-2026-9204286",
-      "projectType": {
-        "zh": "作业册/教师指南印刷",
-        "en": "Workbook / teacher's guide printing"
-      },
-      "summary": {
-        "zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库",
-        "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"
-      },
-      "quantity": {
-        "zh": "约145万册/本（以标书为准）",
-        "en": "~1.45 million copies (per tender document)"
-      },
-      "specs": {
-        "zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装",
-        "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"
-      },
+      "projectType": {"zh": "作业册/教师指南印刷", "en": "Workbook / teacher's guide printing"},
+      "summary": {"zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库", "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"},
+      "quantity": {"zh": "约145万册/本（以标书为准）", "en": "~1.45 million copies (per tender document)"},
+      "specs": {"zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装", "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"},
       "fundingSource": "UNICEF",
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
       "daysRemaining": -43,
       "grade": "D",
-      "gradeLabel": {
-        "zh": "D-已错过/归档",
-        "en": "D — Missed / archived"
-      },
-      "status": {
-        "zh": "已错过",
-        "en": "Missed"
-      },
-      "notes": {
-        "zh": "示例行，可删除",
-        "en": "Sample row — may be deleted"
-      },
+      "gradeLabel": {"zh": "D-已错过/归档", "en": "D — Missed / archived"},
+      "status": {"zh": "已错过", "en": "Missed"},
+      "notes": {"zh": "示例行，可删除", "en": "Sample row — may be deleted"},
       "region": "international"
     },
     {
@@ -55,214 +31,105 @@
       "sample": false,
       "no": 2,
       "sourcePlatform": "World Bank",
-      "projectType": {
-        "zh": "教材/学习材料印刷",
-        "en": "Textbook / learning material printing"
-      },
+      "projectType": {"zh": "教材/学习材料印刷", "en": "Textbook / learning material printing"},
       "currency": "USD / local currency",
       "grade": "B",
-      "gradeLabel": {
-        "zh": "B-发邮件确认",
-        "en": "B — Confirm by email"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
+      "gradeLabel": {"zh": "B-发邮件确认", "en": "B — Confirm by email"},
+      "status": {"zh": "新发现", "en": "Newly discovered"},
+      "notes": {"zh": "新发现", "en": "Newly discovered"},
       "region": "international"
     },
     {
       "id": 3,
       "sample": false,
       "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-07-14",
-      "sourcePlatform": "UNICEF Supply Division",
-      "issuer": "UNICEF Supply Division",
-      "country": {
-        "zh": "国际",
-        "en": "International"
-      },
-      "projectName": "Tender calendars",
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "江汉大学",
+      "country": {"zh": "中国", "en": "China"},
+      "projectName": "江汉大学2026年试卷印刷服务采购",
       "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务采购",
-        "en": "Printing Services Procurement"
-      },
-      "summary": {
-        "zh": "联合国儿童基金会供应部发布的印刷工作簿和教师指南招标计划",
-        "en": "UNICEF Supply Division's plans for issuance of tenders for printing workbooks and teacher's guides"
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "UNICEF",
-      "publishDate": "2026-03-02",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "",
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "locallyRestricted": {
-        "zh": "否",
-        "en": "No"
-      },
-      "sourceUrl": "https://www.unicef.org/supply/tender-calendars",
+      "projectType": {"zh": "印刷服务招标", "en": "Printing Services Tender"},
+      "summary": {"zh": "江汉大学2026年试卷及教学材料印刷服务采购，预算50万元。", "en": "Jianghan University's 2026 printing service procurement for exam papers and teaching materials, with a budget of 500,000 RMB."},
+      "quantity": {"zh": "", "en": ""},
+      "specs": {"zh": "", "en": ""},
+      "fundingSource": "江汉大学",
+      "publishDate": "2026-01-22",
+      "deadlineLocal": "2026-02-03",
+      "deadlineBeijing": "2026-02-03 00:00",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {"zh": "否", "en": "No"},
+      "locallyRestricted": {"zh": "是", "en": "Yes"},
+      "sourceUrl": "https://www.sohu.com/a/978949698_121956425",
       "keyContact": "",
-      "grade": "A",
-      "gradeLabel": {
-        "zh": "高优先级",
-        "en": "High Priority"
-      },
-      "nextAction": {
-        "zh": "访问UNICEF招标日历页面，查看具体招标详情",
-        "en": "Visit UNICEF tender calendars page to view specific tender details"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "此页面提供了UNICEF供应部招标计划，可能包含印刷工作簿和教师指南的招标信息",
-        "en": "This page provides UNICEF Supply Division's tender plans, which may include tenders for printing workbooks and teacher's guides"
-      }
+      "grade": "D",
+      "gradeLabel": {"zh": "低优先级", "en": "Low Priority"},
+      "nextAction": {"zh": "已过期，无需跟进", "en": "Expired, no follow-up needed"},
+      "status": {"zh": "已过期", "en": "Expired"},
+      "notes": {"zh": "该项目已于2026年2月3日截止，已过期。", "en": "This project expired on February 3, 2026, and is no longer active."},
+      "daysRemaining": -175
     },
     {
       "id": 4,
       "sample": false,
       "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-07-16",
-      "sourcePlatform": "UNGM",
-      "issuer": "United Nations Global Marketplace",
-      "country": {
-        "zh": "国际",
-        "en": "International"
-      },
-      "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
-      "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务",
-        "en": "Printing Services"
-      },
-      "summary": {
-        "zh": "为联合国机构印刷算术练习册和教师指南。",
-        "en": "Printing of numeracy workbooks and teachers guides for UN agencies."
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "United Nations",
-      "publishDate": "2024-01-01",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "USD",
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "locallyRestricted": {
-        "zh": "否",
-        "en": "No"
-      },
-      "sourceUrl": "https://www.ungm.org/Public/TenderAlertService",
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "五常市雅臣中学校",
+      "country": {"zh": "中国", "en": "China"},
+      "projectName": "五常市雅臣中学校印刷服务招标",
+      "projectNo": "230184zzzxgsCS20260004",
+      "projectType": {"zh": "印刷服务招标", "en": "Printing Services Tender"},
+      "summary": {"zh": "五常市雅臣中学校日常教学训练及考试试卷印刷服务招标，预算134.65万元。", "en": "Wuchang Yacheng Middle School's tender for daily teaching and exam paper printing services, with a budget of 1.3465 million RMB."},
+      "quantity": {"zh": "", "en": ""},
+      "specs": {"zh": "", "en": ""},
+      "fundingSource": "五常市雅臣中学校",
+      "publishDate": "2026-01-29",
+      "deadlineLocal": "2026-03-05",
+      "deadlineBeijing": "2026-03-05 09:00",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {"zh": "否", "en": "No"},
+      "locallyRestricted": {"zh": "是", "en": "Yes"},
+      "sourceUrl": "https://www.sohu.com/a/981396217_121956425",
       "keyContact": "",
       "grade": "D",
-      "gradeLabel": {
-        "zh": "已错过",
-        "en": "Missed"
-      },
-      "nextAction": {
-        "zh": "此标已错过截止日期。",
-        "en": "This tender has been missed."
-      },
-      "status": {
-        "zh": "已错过",
-        "en": "Missed"
-      },
-      "notes": {
-        "zh": "根据现有记录，此标已错过截止日期。",
-        "en": "According to existing records, this tender has been missed."
-      }
+      "gradeLabel": {"zh": "低优先级", "en": "Low Priority"},
+      "nextAction": {"zh": "已过期，无需跟进", "en": "Expired, no follow-up needed"},
+      "status": {"zh": "已过期", "en": "Expired"},
+      "notes": {"zh": "该项目已于2026年3月5日截止，已过期。", "en": "This project expired on March 5, 2026, and is no longer active."},
+      "daysRemaining": -145
     },
     {
       "id": 5,
       "sample": false,
       "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-07-16",
-      "sourcePlatform": "World Bank",
-      "issuer": "World Bank",
-      "country": {
-        "zh": "国际",
-        "en": "International"
-      },
-      "projectName": "Printing of Textbooks and Learning Materials",
+      "region": "domestic",
+      "discoveryDate": "2026-07-19",
+      "sourcePlatform": "中国政府采购网",
+      "issuer": "东港股份有限公司",
+      "country": {"zh": "中国", "en": "China"},
+      "projectName": "东港股份2026-2027年教材印刷服务",
       "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务",
-        "en": "Printing Services"
-      },
-      "summary": {
-        "zh": "世界银行采购教科书和学习材料的印刷服务。",
-        "en": "World Bank procurement of printing services for textbooks and learning materials."
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "World Bank",
-      "publishDate": "2022-07-14",
+      "projectType": {"zh": "教材印刷服务", "en": "Textbook Printing Services"},
+      "summary": {"zh": "东港股份有限公司中标2026-2027年教材印刷服务项目。", "en": "Donggang Co., Ltd. won the contract for textbook printing services for 2026-2027."},
+      "quantity": {"zh": "", "en": ""},
+      "specs": {"zh": "", "en": ""},
+      "fundingSource": "东港股份有限公司",
+      "publishDate": "2026-02-07",
       "deadlineLocal": "",
       "deadlineBeijing": "",
-      "currency": "USD",
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "locallyRestricted": {
-        "zh": "否",
-        "en": "No"
-      },
-      "sourceUrl": "https://max.book118.com/html/2022/0710/5033011313004303.shtm",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {"zh": "否", "en": "No"},
+      "locallyRestricted": {"zh": "是", "en": "Yes"},
+      "sourceUrl": "https://www.sohu.com/a/984786365_122066678",
       "keyContact": "",
-      "grade": "C",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "需要进一步核实项目状态和截止日期。",
-        "en": "Further verification of project status and deadline is required."
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "此为世界银行采购指南，可能包含相关印刷项目信息，需进一步核实。",
-        "en": "This is the World Bank procurement guidelines, which may contain information on relevant printing projects. Further verification is needed."
-      }
+      "grade": "D",
+      "gradeLabel": {"zh": "低优先级", "en": "Low Priority"},
+      "nextAction": {"zh": "已中标，无需跟进", "en": "Already awarded, no follow-up needed"},
+      "status": {"zh": "已中标", "en": "Awarded"},
+      "notes": {"zh": "东港股份有限公司已中标该项目，合同已签订。", "en": "Donggang Co., Ltd. has already been awarded this contract."}
     },
     {
       "id": 6,
@@ -271,379 +138,29 @@
       "region": "domestic",
       "discoveryDate": "2026-07-19",
       "sourcePlatform": "中国政府采购网",
-      "issuer": "江汉大学",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "江汉大学2026年试卷印刷服务采购",
-      "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务招标",
-        "en": "Printing Services Tender"
-      },
-      "summary": {
-        "zh": "江汉大学2026年试卷及教学材料印刷服务采购，预算50万元。",
-        "en": "Jianghan University's 2026 printing service procurement for exam papers and teaching materials, with a budget of 500,000 RMB."
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "江汉大学",
-      "publishDate": "2026-01-22",
-      "deadlineLocal": "2026-02-03",
-      "deadlineBeijing": "2026-02-03 00:00",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "否",
-        "en": "No"
-      },
-      "locallyRestricted": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "sourceUrl": "https://www.sohu.com/a/978949698_121956425",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "已过期，无需跟进",
-        "en": "Expired, no follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "该项目已于2026年2月3日截止，已过期。",
-        "en": "This project expired on February 3, 2026, and is no longer active."
-      },
-      "daysRemaining": -175
-    },
-    {
-      "id": 7,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-07-19",
-      "sourcePlatform": "中国政府采购网",
-      "issuer": "五常市雅臣中学校",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "五常市雅臣中学校印刷服务招标",
-      "projectNo": "230184zzzxgsCS20260004",
-      "projectType": {
-        "zh": "印刷服务招标",
-        "en": "Printing Services Tender"
-      },
-      "summary": {
-        "zh": "五常市雅臣中学校日常教学训练及考试试卷印刷服务招标，预算134.65万元。",
-        "en": "Wuchang Yacheng Middle School's tender for daily teaching and exam paper printing services, with a budget of 1.3465 million RMB."
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "五常市雅臣中学校",
-      "publishDate": "2026-01-29",
-      "deadlineLocal": "2026-03-05",
-      "deadlineBeijing": "2026-03-05 09:00",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "否",
-        "en": "No"
-      },
-      "locallyRestricted": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "sourceUrl": "https://www.sohu.com/a/981396217_121956425",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "已过期，无需跟进",
-        "en": "Expired, no follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "该项目已于2026年3月5日截止，已过期。",
-        "en": "This project expired on March 5, 2026, and is no longer active."
-      },
-      "daysRemaining": -145
-    },
-    {
-      "id": 8,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-07-19",
-      "sourcePlatform": "中国政府采购网",
-      "issuer": "东港股份有限公司",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "东港股份2026-2027年教材印刷服务",
-      "projectNo": "",
-      "projectType": {
-        "zh": "教材印刷服务",
-        "en": "Textbook Printing Services"
-      },
-      "summary": {
-        "zh": "东港股份有限公司中标2026-2027年教材印刷服务项目。",
-        "en": "Donggang Co., Ltd. won the contract for textbook printing services for 2026-2027."
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "东港股份有限公司",
-      "publishDate": "2026-02-07",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "否",
-        "en": "No"
-      },
-      "locallyRestricted": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "sourceUrl": "https://www.sohu.com/a/984786365_122066678",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "已中标，无需跟进",
-        "en": "Already awarded, no follow-up needed"
-      },
-      "status": {
-        "zh": "已中标",
-        "en": "Awarded"
-      },
-      "notes": {
-        "zh": "东港股份有限公司已中标该项目，合同已签订。",
-        "en": "Donggang Co., Ltd. has already been awarded this contract."
-      }
-    },
-    {
-      "id": 9,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-07-19",
-      "sourcePlatform": "中国政府采购网",
       "issuer": "沈阳市辽中区第一高级中学",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
+      "country": {"zh": "中国", "en": "China"},
       "projectName": "沈阳辽中区第一高级中学印刷服务招标",
       "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务招标",
-        "en": "Printing Services Tender"
-      },
-      "summary": {
-        "zh": "沈阳市辽中区第一高级中学2026年度学生题单印刷服务招标，预计印刷总量360万张。",
-        "en": "Shenyang Liaozhong District No. 1 High School's 2026 tender for student worksheet printing services, with an estimated total of 3.6 million sheets."
-      },
-      "quantity": {
-        "zh": "360万张",
-        "en": "3.6 million sheets"
-      },
-      "specs": {
-        "zh": "70-80克书写纸，禁止使用再生纸",
-        "en": "70-80g writing paper, recycled paper prohibited"
-      },
+      "projectType": {"zh": "印刷服务招标", "en": "Printing Services Tender"},
+      "summary": {"zh": "沈阳市辽中区第一高级中学2026年度学生题单印刷服务招标，预计印刷总量360万张。", "en": "Shenyang Liaozhong District No. 1 High School's 2026 tender for student worksheet printing services, with an estimated total of 3.6 million sheets."},
+      "quantity": {"zh": "360万张", "en": "3.6 million sheets"},
+      "specs": {"zh": "70-80克书写纸，禁止使用再生纸", "en": "70-80g writing paper, recycled paper prohibited"},
       "fundingSource": "沈阳市辽中区第一高级中学",
       "publishDate": "2026-02-13",
       "deadlineLocal": "2026-03-06",
       "deadlineBeijing": "2026-03-06 09:00",
       "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "否",
-        "en": "No"
-      },
-      "locallyRestricted": {
-        "zh": "是",
-        "en": "Yes"
-      },
+      "intlSuppliersAllowed": {"zh": "否", "en": "No"},
+      "locallyRestricted": {"zh": "是", "en": "Yes"},
       "sourceUrl": "https://www.sohu.com/a/987010094_121956425",
       "keyContact": "",
       "grade": "D",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "已过期，无需跟进",
-        "en": "Expired, no follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "该项目已于2026年3月6日截止，已过期。",
-        "en": "This project expired on March 6, 2026, and is no longer active."
-      },
+      "gradeLabel": {"zh": "低优先级", "en": "Low Priority"},
+      "nextAction": {"zh": "已过期，无需跟进", "en": "Expired, no follow-up needed"},
+      "status": {"zh": "已过期", "en": "Expired"},
+      "notes": {"zh": "该项目已于2026年3月6日截止，已过期。", "en": "This project expired on March 6, 2026, and is no longer active."},
       "daysRemaining": -144
-    },
-    {
-      "id": 10,
-      "sample": false,
-      "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-07-21",
-      "sourcePlatform": "UNICEF Supply Division",
-      "issuer": "UNICEF",
-      "country": {
-        "zh": "国际",
-        "en": "International"
-      },
-      "projectName": "Learning Bridges Accelerates Learning for Over 600,000 Students (Jordan)",
-      "projectNo": "",
-      "projectType": {
-        "zh": "教材印刷",
-        "en": "Textbook Printing"
-      },
-      "summary": {
-        "zh": "UNICEF教育案例研究，涉及教材和学习材料的印刷服务",
-        "en": "UNICEF education case study involving printing services for textbooks and learning materials"
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "UNICEF",
-      "publishDate": "2022-10-12",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "",
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "locallyRestricted": {
-        "zh": "否",
-        "en": "No"
-      },
-      "sourceUrl": "https://www.unicef.org/media/128996/file/Learning+Bridges+accelerates+learning+for+over+600,000+students+(Jordan).pdf",
-      "keyContact": "",
-      "grade": "B",
-      "gradeLabel": {
-        "zh": "需澄清",
-        "en": "Needs Clarification"
-      },
-      "nextAction": {
-        "zh": "联系UNICEF Supply Division获取详细招标信息",
-        "en": "Contact UNICEF Supply Division for detailed tender information"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "UNICEF教育案例研究，涉及教材和学习材料的印刷服务，需进一步确认招标细节",
-        "en": "UNICEF education case study involving printing services for textbooks and learning materials, further verification of tender details required"
-      }
-    },
-    {
-      "id": 11,
-      "sample": false,
-      "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-07-21",
-      "sourcePlatform": "UNESCO",
-      "issuer": "UNESCO",
-      "country": {
-        "zh": "国际",
-        "en": "International"
-      },
-      "projectName": "Scrutiny of Textbooks used in UNRWA/UNESCO Schools",
-      "projectNo": "",
-      "projectType": {
-        "zh": "教材审查",
-        "en": "Textbook Review"
-      },
-      "summary": {
-        "zh": "UNESCO对UNRWA/UNESCO学校使用的教材进行审查",
-        "en": "UNESCO's scrutiny of textbooks used in UNRWA/UNESCO schools"
-      },
-      "quantity": {
-        "zh": "",
-        "en": ""
-      },
-      "specs": {
-        "zh": "",
-        "en": ""
-      },
-      "fundingSource": "UNESCO",
-      "publishDate": "2026-05-05",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "",
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "locallyRestricted": {
-        "zh": "否",
-        "en": "No"
-      },
-      "sourceUrl": "https://link.springer.com/chapter/10.1007/978-1-349-08409-8_8",
-      "keyContact": "",
-      "grade": "C",
-      "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low Priority"
-      },
-      "nextAction": {
-        "zh": "关注UNESCO教材审查相关项目",
-        "en": "Monitor UNESCO textbook review related projects"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "UNESCO对UNRWA/UNESCO学校教材的审查项目，可能涉及印刷服务",
-        "en": "UNESCO's textbook review project for UNRWA/UNESCO schools, may involve printing services"
-      }
     }
   ]
 }
