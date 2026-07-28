@@ -54,9 +54,9 @@ const INTL_QUERIES = [
 ];
 
 const DOMESTIC_QUERIES = [
-  "教材印刷 中标公告 中国政府采购网",
-  "教辅资料印刷服务 招标公告",
-  "学校 教材印刷 采购公告"
+  "教材印刷 中标公告 site:gov.cn",
+  "教辅资料印刷服务 招标公告 site:gov.cn",
+  "学校 教材印刷 采购公告 site:gov.cn"
 ];
 
 const SEARCH_QUERIES = [...INTL_QUERIES, ...DOMESTIC_QUERIES];
@@ -64,11 +64,20 @@ const SEARCH_QUERIES = [...INTL_QUERIES, ...DOMESTIC_QUERIES];
 // Generic document-sharing / content-farm sites that frequently host unrelated,
 // re-uploaded PDFs (procurement guides, textbooks, etc.) with no connection to a
 // live tender. Results from these domains are dropped before they ever reach the model.
+//
+// Also includes general news-portal / self-media (自媒体) sites: these frequently
+// republish or rewrite real government procurement notices into clickbait articles
+// (e.g. titles like "XX采购：你绝对不能错过的机会！") that can embellish, mix up,
+// or mis-date the underlying notice. Even when the underlying fact is real, these
+// are not primary sources and should not be treated as verified.
 const BLOCKED_DOMAINS = [
   "book118.com", "max.book118.com", "docin.com", "wenku.baidu.com",
   "doc88.com", "doc.mbalib.com", "docs.qq.com", "coggle.it",
   "renrendoc.com", "zhuanlan.zhihu.com", "jz.docin.com", "taodocs.com",
-  "docerpro.com", "mianfeiwendang.com", "chinaacc.com", "ppt.docin.com"
+  "docerpro.com", "mianfeiwendang.com", "chinaacc.com", "ppt.docin.com",
+  "sohu.com", "sina.com.cn", "sina.com", "toutiao.com", "baijiahao.baidu.com",
+  "163.com", "ifeng.com", "news.qq.com", "workercn.cn", "baidu.com",
+  "so.com", "kuaibao.qq.com", "xigua.com", "weibo.com", "douyin.com"
 ];
 
 function isBlockedDomain(link) {
@@ -118,6 +127,7 @@ REGION & sourcePlatform RULES (read carefully — this has been a recurring erro
 - "region" must be "domestic" if the buyer is a mainland China entity — a Chinese school, university, hospital, local government procurement office, or a notice published on a Chinese public procurement site (e.g. 中国政府采购网, 省/市级政府采购网, 学校官网, 中国招标投标公共服务平台). This includes Chinese-language domestic tenders even if they happen to mention textbooks/workbooks.
 - "sourcePlatform" MUST be the actual site/platform where the notice was found (e.g. "UNGM", "UNICEF Supply Division", "中国政府采购网", "XX市政府采购网", "学校官网"). NEVER use the name of a multilateral organization (UNICEF, World Bank, GPE, ADB, UNESCO, etc.) as sourcePlatform for a domestic Chinese tender just because the project involves education — that organization must have actually published the notice on its own official channel.
 - If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter.
+- For "domestic" entries specifically, the sourceUrl MUST be from an official/primary source: a government procurement domain (contains gov.cn), the buying institution's own official site (e.g. a university's own *.edu.cn procurement page), or a recognized official procurement platform (中国政府采购网, 各省市政府采购网, 中国招标投标公共服务平台). Do NOT source a domestic entry from a general news portal, aggregator, or self-media account (e.g. sohu, sina, toutiao, baijiahao, weibo, douyin, WeChat public accounts) — these frequently rewrite real notices into promotional/clickbait articles ("XX采购：你绝对不能错过的机会！") that are not reliable even when the underlying fact is real. If the only source you can find for a domestic tender is this kind of article, leave it out.
 
 SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 - A search result is only usable if it is an ACTUAL, SPECIFIC tender/procurement notice: it must reference a specific bid/reference number, a specific deadline, specific submission instructions, or a specific named buyer with a specific requirement. General guides, policy documents, training materials, handbooks, glossaries, news articles about a topic, case studies, program impact reports, academic papers/book chapters, or "how procurement works" explainers are NOT tenders — do not create a project from them even if they mention textbooks/printing/World Bank/UNICEF, and even if they are hosted on the organization's own official domain (e.g. a UNICEF case-study PDF at unicef.org/media/... is not a tender just because it's on unicef.org).
