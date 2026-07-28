@@ -10,8 +10,9 @@
  *      让它只从"确实搜到的真实链接"里提炼出结构化项目，绝不编造项目或链接
  *
  * 环境变量：
- *   ZHIPU_API_KEY  必填，智谱开放平台的 API Key
- *   GLM_MODEL      可选，默认 glm-4.5-air
+ *   ZHIPU_API_KEY       必填，智谱开放平台的 API Key
+ *   GLM_MODEL           可选，默认 glm-4.5-air
+ *   ZHIPU_SEARCH_ENGINE 可选，默认 search_std（更省资源包额度）；也可设为 search_pro（更准但更贵）
  *
  * 手动运行：
  *   ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
@@ -128,7 +129,7 @@ async function zhipuWebSearch(query) {
     },
     body: JSON.stringify({
       search_query: query,
-      search_engine: "search_pro",
+      search_engine: process.env.ZHIPU_SEARCH_ENGINE || "search_std",
       search_intent: false,
       count: 10,
       search_recency_filter: "noLimit"
