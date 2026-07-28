@@ -1,21 +1,22 @@
 #!/usr/bin/env node
 /**
- * update_tenders.mjs — 智谱AI (BigModel/GLM) 版本
+ * update_tenders.mjs — 博查(Bocha) 搜索 + 智谱(GLM) 推理 混合版
  *
  * 两步走：
- *   1. 调用智谱 Web Search API（真实结构化搜索结果，含真链接），
+ *   1. 调用博查 Web Search API（真实结构化搜索结果，含真链接），
  *      对多个关键词分别搜索 UNGM / UNICEF / World Bank / ADB 等平台上的
- *      教材/作业册/教师指南印刷招标
- *   2. 把搜到的原始结果（连同已有的 data.json）一起交给 GLM 模型，
+ *      教材/作业册/教师指南印刷招标（走博查免费资源包额度，不花钱）
+ *   2. 把搜到的原始结果（连同已有的 data.json）一起交给智谱GLM模型，
  *      让它只从"确实搜到的真实链接"里提炼出结构化项目，绝不编造项目或链接
+ *      （走智谱账户里本来就有的免费token额度，不花钱）
  *
  * 环境变量：
- *   ZHIPU_API_KEY       必填，智谱开放平台的 API Key
- *   GLM_MODEL           可选，默认 glm-4.5-air
- *   ZHIPU_SEARCH_ENGINE 可选，默认 search_std（更省资源包额度）；也可设为 search_pro（更准但更贵）
+ *   BOCHA_API_KEY   必填，博查AI开放平台的 API Key（用于搜索）
+ *   ZHIPU_API_KEY   必填，智谱开放平台的 API Key（用于推理/提炼）
+ *   GLM_MODEL       可选，默认 glm-4.5-air
  *
  * 手动运行：
- *   ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
+ *   BOCHA_API_KEY=xxxx ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
  */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -25,14 +26,21 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data.json");
 
-const API_KEY = process.env.ZHIPU_API_KEY;
-if (!API_KEY) {
+const BOCHA_API_KEY = process.env.BOCHA_API_KEY;
+if (!BOCHA_API_KEY) {
+  console.error("Missing BOCHA_API_KEY environment variable.");
+  process.exit(1);
+}
+
+const ZHIPU_API_KEY = process.env.ZHIPU_API_KEY;
+if (!ZHIPU_API_KEY) {
   console.error("Missing ZHIPU_API_KEY environment variable.");
   process.exit(1);
 }
 
 const MODEL = process.env.GLM_MODEL || "glm-4.5-air";
-const BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
+const ZHIPU_BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
+const BOCHA_BASE_URL = "https://api.bochaai.com/v1";
 
 const INTL_QUERIES = [
   "UNGM tender printing textbooks workbooks",
@@ -120,40 +128,40 @@ SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 DEDUPLICATION RULE:
 - Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.`;
 
-async function zhipuWebSearch(query) {
-  const res = await fetch(`${BASE_URL}/web_search`, {
+async function bochaWebSearch(query) {
+  const res = await fetch(`${BOCHA_BASE_URL}/web-search`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${BOCHA_API_KEY}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      search_query: query,
-      search_engine: process.env.ZHIPU_SEARCH_ENGINE || "search_std",
-      search_intent: false,
-      count: 10,
-      search_recency_filter: "noLimit"
+      query,
+      freshness: "noLimit",
+      summary: true,
+      count: 10
     })
   });
   if (!res.ok) {
-    console.warn(`web_search failed for "${query}": ${res.status} ${await res.text()}`);
+    console.warn(`Bocha web-search failed for "${query}": ${res.status} ${await res.text()}`);
     return [];
   }
   const data = await res.json();
-  return (data.search_result || []).map(r => ({
+  const items = data?.data?.webPages?.value || data?.webPages?.value || [];
+  return items.map(r => ({
     query,
-    title: r.title,
-    link: r.link,
-    content: r.content,
-    publish_date: r.publish_date
+    title: r.name,
+    link: r.url,
+    content: r.summary || r.snippet,
+    publish_date: r.datePublished
   }));
 }
 
 async function zhipuChat(prompt) {
-  const res = await fetch(`${BASE_URL}/chat/completions`, {
+  const res = await fetch(`${ZHIPU_BASE_URL}/chat/completions`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${ZHIPU_API_KEY}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
@@ -231,7 +239,7 @@ async function main() {
 
   let searchHits = [];
   for (const q of SEARCH_QUERIES) {
-    const hits = await zhipuWebSearch(q);
+    const hits = await bochaWebSearch(q);
     console.log(`  "${q}" -> ${hits.length} results`);
     searchHits = searchHits.concat(hits);
   }
