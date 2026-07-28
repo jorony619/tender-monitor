@@ -2,8 +2,8 @@ name: Update tender data
 
 on:
   schedule:
-    # 01:00 UTC = 09:00 Beijing time, every 3 days (省着用搜索资源包)
-    - cron: "0 1 */3 * *"
+    # 01:00 UTC = 09:00 Beijing time, every day
+    - cron: "0 1 * * *"
   workflow_dispatch: {}   # lets you click "Run workflow" manually in the Actions tab
 
 permissions:
@@ -23,6 +23,7 @@ jobs:
 
       - name: Run tender search & update data.json
         env:
+          BOCHA_API_KEY: ${{ secrets.BOCHA_API_KEY }}
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
         run: node scripts/update_tenders.mjs
 
