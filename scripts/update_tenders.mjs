@@ -189,19 +189,37 @@ async function bochaWebSearch(query, attempt = 1) {
   }));
 }
 
-async function zhipuChat(prompt) {
-  const res = await fetchWithTimeout(`${ZHIPU_BASE_URL}/chat/completions`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${ZHIPU_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.2
-    })
-  }, 180000); // 推理这一步内容较多，给180秒兜底
+async function zhipuChat(prompt, attempt = 1) {
+  let res;
+  try {
+    res = await fetchWithTimeout(`${ZHIPU_BASE_URL}/chat/completions`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${ZHIPU_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.2
+      })
+    }, 180000); // 单次最多等180秒
+  } catch (e) {
+    if (attempt < 3) {
+      console.warn(`GLM chat timed out/errored (attempt ${attempt}): ${e.message}. Retrying...`);
+      await new Promise(r => setTimeout(r, 3000));
+      return zhipuChat(prompt, attempt + 1);
+    }
+    throw new Error(`GLM chat failed after ${attempt} attempts: ${e.message}`);
+  }
+  if (res.status === 429 || res.status >= 500) {
+    if (attempt < 3) {
+      const waitMs = 5000 * attempt;
+      console.warn(`GLM chat returned ${res.status} (attempt ${attempt}), retrying in ${waitMs}ms...`);
+      await new Promise(r => setTimeout(r, waitMs));
+      return zhipuChat(prompt, attempt + 1);
+    }
+  }
   if (!res.ok) {
     throw new Error(`GLM chat error: ${res.status} ${await res.text()}`);
   }
