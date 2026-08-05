@@ -252,6 +252,11 @@ STRICT RULES:
   Grade C = open but low priority / long runway.
   Grade D = closed, expired, or disqualifying restriction (e.g. local suppliers only).
 
+DEADLINE / RECENCY RULE (read carefully — this has been a recurring error):
+- NEVER assign grade A or B unless you can see a specific deadline date in the search result content AND that date is on or after today (${new Date().toISOString().slice(0, 10)}). "Invitation to bid" or similar wording does NOT by itself mean the tender is still open — many procurement portals keep old, expired notices permanently online and searchable.
+- Reference/project numbers often encode a year (e.g. "LITB-2024-9190307", "ITB-2025-...") — if the number implies a year clearly in the past relative to today, treat the tender as very likely expired (grade D) even if no explicit deadline is visible, unless the search result content explicitly confirms it is still open.
+- If you cannot find or confirm a specific, still-valid deadline for a result, grade it C at most (never A or B), and set status/notes to say the deadline could not be confirmed and needs verification — do not present it as an urgent, actionable opportunity.
+
 Existing tracked entries (for context — check if any search result updates their status):
 ${JSON.stringify(existingSummary, null, 2)}
 
@@ -346,10 +351,67 @@ async function main() {
   let changed = false;
   const validLinks = new Set(searchHits.map(h => h.link));
 
+function sanityCheckGrade(item) {
+  const zh = (v) => (v && typeof v === "object" ? v.zh : v);
+  const setBothLang = (field, zhText, enText) => {
+    item[field] = { zh: zhText, en: enText };
+  };
+
+  // Try to parse an explicit deadline
+  let deadlineDate = null;
+  if (item.deadlineBeijing) {
+    const m = String(item.deadlineBeijing).match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (m) deadlineDate = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+  }
+  const today = new Date(new Date().toISOString().slice(0, 10));
+
+  // If we have a real deadline and it's already passed, force D + expired status
+  if (deadlineDate && deadlineDate < today) {
+    if (item.grade !== "D") {
+      console.warn(`Auto-downgrading #${item.projectName || item.sourcePlatform}: deadline ${item.deadlineBeijing} has passed -> grade D`);
+    }
+    item.grade = "D";
+    setBothLang("gradeLabel", "D-已错过/归档", "D — Missed / archived");
+    setBothLang("status", "已过期", "Expired");
+    return item;
+  }
+
+  // Check project number for an embedded year that's clearly in the past
+  const yearMatch = String(item.projectNo || "").match(/\b(20\d{2})\b/);
+  const currentYear = new Date().getFullYear();
+  const looksStaleByNumber = yearMatch && parseInt(yearMatch[1], 10) < currentYear;
+
+  // No confirmed future deadline, but grade claims urgency -> downgrade
+  if ((item.grade === "A" || item.grade === "B") && !deadlineDate) {
+    console.warn(`Auto-downgrading #${item.projectName || item.sourcePlatform}: grade ${item.grade} but no confirmed deadline -> grade C`);
+    item.grade = "C";
+    setBothLang("gradeLabel", "C-待核实", "C — Needs verification");
+    setBothLang(
+      "notes",
+      ((zh(item.notes) || "") + " [自动降级：未能确认具体截止日期，需人工核实是否仍然有效]").trim(),
+      ((item.notes && item.notes.en) || "") + " [Auto-downgraded: no confirmed deadline found, needs manual verification]"
+    );
+  }
+
+  if (looksStaleByNumber && item.grade !== "D") {
+    console.warn(`Auto-downgrading #${item.projectName || item.sourcePlatform}: projectNo suggests year ${yearMatch[1]}, likely stale -> grade D`);
+    item.grade = "D";
+    setBothLang("gradeLabel", "D-可能已过期", "D — Likely expired");
+    setBothLang(
+      "notes",
+      ((zh(item.notes) || "") + ` [自动降级：编号中的年份(${yearMatch[1]})早于当前年份，很可能已过期，需人工核实]`).trim(),
+      ((item.notes && item.notes.en) || "") + ` [Auto-downgraded: reference number implies year ${yearMatch[1]}, likely expired, needs manual verification]`
+    );
+  }
+
+  return item;
+}
+
   for (const upd of updates) {
     const target = projects.find(p => p.id === upd.id);
     if (target) {
       Object.assign(target, upd, { id: target.id });
+      sanityCheckGrade(target);
       changed = true;
       console.log(`Updated project #${target.id}: ${target.projectName || target.sourcePlatform}`);
     }
@@ -380,6 +442,7 @@ function normalizeKey(name, issuer) {
     item.sample = false;
     item.verified = true;
     item.region = item.region === "domestic" ? "domestic" : "international";
+    sanityCheckGrade(item);
     projects.push(item);
     existingUrls.add(item.sourceUrl);
     if (nameKey) existingNameKeys.add(nameKey);
