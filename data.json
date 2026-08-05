@@ -8,46 +8,22 @@
       "discoveryDate": "2026-06-25",
       "sourcePlatform": "UNGM",
       "issuer": "UNICEF Sierra Leone",
-      "country": {
-        "zh": "塞拉利昂",
-        "en": "Sierra Leone"
-      },
+      "country": {"zh": "塞拉利昂", "en": "Sierra Leone"},
       "projectName": "Printing of Numeracy Workbooks and Teachers Guides",
       "projectNo": "LITB-2026-9204286",
-      "projectType": {
-        "zh": "作业册/教师指南印刷",
-        "en": "Workbook / teacher's guide printing"
-      },
-      "summary": {
-        "zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库",
-        "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"
-      },
-      "quantity": {
-        "zh": "约145万册/本（以标书为准）",
-        "en": "~1.45 million copies (per tender document)"
-      },
-      "specs": {
-        "zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装",
-        "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"
-      },
+      "projectType": {"zh": "作业册/教师指南印刷", "en": "Workbook / teacher's guide printing"},
+      "summary": {"zh": "P1-P3数学作业册及教师指南印刷，CIP送至UNICEF弗里敦仓库", "en": "Printing of P1–P3 numeracy workbooks and teacher's guides; CIP delivery to the UNICEF Freetown warehouse"},
+      "quantity": {"zh": "约145万册/本（以标书为准）", "en": "~1.45 million copies (per tender document)"},
+      "specs": {"zh": "A4，全彩，80gsm正文，230gsm封面，PUR/胶装", "en": "A4, full colour, 80gsm text stock, 230gsm cover, PUR / perfect binding"},
       "fundingSource": "UNICEF",
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
       "daysRemaining": -52,
       "grade": "D",
-      "gradeLabel": {
-        "zh": "D-已错过/归档",
-        "en": "D — Missed / archived"
-      },
-      "status": {
-        "zh": "已错过",
-        "en": "Missed"
-      },
-      "notes": {
-        "zh": "示例行，可删除",
-        "en": "Sample row — may be deleted"
-      },
+      "gradeLabel": {"zh": "D-已错过/归档", "en": "D — Missed / archived"},
+      "status": {"zh": "已错过", "en": "Missed"},
+      "notes": {"zh": "示例行，可删除", "en": "Sample row — may be deleted"},
       "region": "international"
     },
     {
@@ -55,119 +31,13 @@
       "sample": false,
       "no": 2,
       "sourcePlatform": "World Bank",
-      "projectType": {
-        "zh": "教材/学习材料印刷",
-        "en": "Textbook / learning material printing"
-      },
+      "projectType": {"zh": "教材/学习材料印刷", "en": "Textbook / learning material printing"},
       "currency": "USD / local currency",
       "grade": "B",
-      "gradeLabel": {
-        "zh": "B-发邮件确认",
-        "en": "B — Confirm by email"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
+      "gradeLabel": {"zh": "B-发邮件确认", "en": "B — Confirm by email"},
+      "status": {"zh": "新发现", "en": "Newly discovered"},
+      "notes": {"zh": "新发现", "en": "Newly discovered"},
       "region": "international"
-    },
-    {
-      "region": "international",
-      "sourcePlatform": "UNICEF",
-      "issuer": "UNICEF",
-      "country": {
-        "zh": "卢旺达",
-        "en": "Rwanda"
-      },
-      "projectName": "LITB-2024-9190307 INVITATION TO BID",
-      "projectNo": "LITB-2024-9190307",
-      "projectType": {
-        "zh": "教育材料供应",
-        "en": "Educational Materials Supply"
-      },
-      "summary": {
-        "zh": "联合国儿童基金会招标文件，可能包括教育材料印刷",
-        "en": "UNICEF tender document, likely includes educational materials printing"
-      },
-      "fundingSource": "UNICEF",
-      "publishDate": "2022-03-09",
-      "sourceUrl": "https://www.unicef.org/rwanda/media/5786/file/LITB-2024-9190307.pdf",
-      "grade": "A",
-      "gradeLabel": {
-        "zh": "高优先级",
-        "en": "High Priority"
-      },
-      "nextAction": {
-        "zh": "立即联系获取招标文件",
-        "en": "Contact immediately to obtain tender documents"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "联合国儿童基金会招标文件，可能包括教育材料印刷",
-        "en": "UNICEF tender document, likely includes educational materials printing"
-      },
-      "discoveryDate": "2026-08-04",
-      "verified": true,
-      "sample": false,
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "id": 3
-    },
-    {
-      "region": "international",
-      "sourcePlatform": "UNICEF",
-      "issuer": "UNICEF",
-      "country": {
-        "zh": "卢旺达",
-        "en": "Rwanda"
-      },
-      "projectName": "LITB-2024-9192573 INVITATION TO BID",
-      "projectNo": "LITB-2024-9192573",
-      "projectType": {
-        "zh": "教育材料供应",
-        "en": "Educational Materials Supply"
-      },
-      "summary": {
-        "zh": "联合国儿童基金会招标文件，可能包括教育材料印刷",
-        "en": "UNICEF tender document, likely includes educational materials printing"
-      },
-      "fundingSource": "UNICEF",
-      "publishDate": "2024-12-11",
-      "sourceUrl": "https://www.unicef.org/rwanda/media/6056/file",
-      "grade": "A",
-      "gradeLabel": {
-        "zh": "高优先级",
-        "en": "High Priority"
-      },
-      "nextAction": {
-        "zh": "立即联系获取招标文件",
-        "en": "Contact immediately to obtain tender documents"
-      },
-      "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
-      },
-      "notes": {
-        "zh": "联合国儿童基金会招标文件，可能包括教育材料印刷",
-        "en": "UNICEF tender document, likely includes educational materials printing"
-      },
-      "discoveryDate": "2026-08-04",
-      "verified": true,
-      "sample": false,
-      "intlSuppliersAllowed": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "id": 4
     }
   ]
 }
