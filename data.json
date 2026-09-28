@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-27T06:26:22.762Z",
+  "lastUpdated": "2026-09-28T06:32:19.243Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -105,
+      "daysRemaining": -106,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -851,6 +851,699 @@
         "en": "Published on 2026-03-27, already expired"
       },
       "id": 15
+    },
+    {
+      "id": 16,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "采招网",
+      "issuer": "乌审旗高级中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "乌审旗高级中学印刷服务定点采购",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "采购备课手册、信纸、教师工作手册等印刷服务",
+        "en": "Procurement of printing services for teaching preparation manuals, letter paper, teacher work manuals, etc."
+      },
+      "quantity": {
+        "zh": "备课手册300册，信纸500册，教师工作手册300册",
+        "en": "300 teaching preparation manuals, 500 letter paper sets, 300 teacher work manuals"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-08-28",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://www.bidcenter.com.cn/newscontent-305841886-4.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年8月28日，已过期",
+        "en": "Project published on August 28, 2024, has expired"
+      }
+    },
+    {
+      "id": 17,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "采招网",
+      "issuer": "未明确",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "印制教师工作手册等",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "教师工作手册等印刷服务",
+        "en": "Printing services for teacher work manuals, etc."
+      },
+      "quantity": {
+        "zh": "中标金额0.37万元",
+        "en": "Award amount: 0.37 CNY"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-10-19",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://www.bidcenter.com.cn/news-315733511-4.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年10月19日，已过期",
+        "en": "Project published on October 19, 2024, has expired"
+      }
+    },
+    {
+      "id": 18,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "玉树采招网",
+      "issuer": "玉树藏族自治州第四民族高级中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "学校文印用纸采购",
+      "projectNo": "*10",
+      "projectType": {
+        "zh": "纸张采购",
+        "en": "Paper Procurement"
+      },
+      "summary": {
+        "zh": "学校文印用纸采购",
+        "en": "School office paper procurement"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2025-03-28",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://632701.bidcenter.com.cn/bidinfo-4-a0f73512c37219a92de75ff5c2e274ab38db6c06ec772754.html",
+      "keyContact": "普措文德",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2025年3月28日，已过期",
+        "en": "Project published on March 28, 2025, has expired"
+      }
+    },
+    {
+      "id": 19,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "玉树采招网",
+      "issuer": "玉树藏族自治州第四民族高级中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "文印、广告制作",
+      "projectNo": "*67",
+      "projectType": {
+        "zh": "文印广告制作",
+        "en": "Printing and Advertising Production"
+      },
+      "summary": {
+        "zh": "文印、广告制作服务",
+        "en": "Printing and advertising production services"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2025-03-28",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://632701.bidcenter.com.cn/bidinfo-4-a0f73512c37219a9afbe18f27e036b02d4e9749d956bf035.html",
+      "keyContact": "普措文德",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2025年3月28日，已过期",
+        "en": "Project published on March 28, 2025, has expired"
+      }
+    },
+    {
+      "id": 20,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "西藏招标网",
+      "issuer": "拉萨中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "试卷、书籍等教辅资料印刷",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "试卷、书籍等教辅资料印刷服务",
+        "en": "Printing services for exam papers, books and other teaching materials"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-07-26",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://xizang.jianyu360.cn/jybx/20240726_24072598451630.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年7月26日，已过期",
+        "en": "Project published on July 26, 2024, has expired"
+      }
+    },
+    {
+      "id": 21,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "浙江招标网",
+      "issuer": "杭州市文华中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "杭州市文华中学关于出版物印刷的框架协议采购项目",
+      "projectNo": "",
+      "projectType": {
+        "zh": "出版物印刷",
+        "en": "Publication Printing"
+      },
+      "summary": {
+        "zh": "出版物印刷框架协议采购",
+        "en": "Framework agreement procurement for publication printing"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-01-24",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://zhejiang.jianyu360.cn/jybx/20240124_24012316807998.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年1月24日，已过期",
+        "en": "Project published on January 24, 2024, has expired"
+      }
+    },
+    {
+      "id": 22,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "采招网",
+      "issuer": "阳江市阳东区金湾学校",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "阳江市阳东区金湾学校复印纸等直接订购",
+      "projectNo": "",
+      "projectType": {
+        "zh": "纸张采购",
+        "en": "Paper Procurement"
+      },
+      "summary": {
+        "zh": "复印纸等直接订购",
+        "en": "Direct ordering of copying paper, etc."
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-06-26",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://www.bidcenter.com.cn/newscontent-293382668-4.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年6月26日，已过期",
+        "en": "Project published on June 26, 2024, has expired"
+      }
+    },
+    {
+      "id": 23,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "广东招标网",
+      "issuer": "珠海市金湾区华丰小学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "珠海市金湾区华丰小学复印纸(等)直接订购",
+      "projectNo": "",
+      "projectType": {
+        "zh": "纸张采购",
+        "en": "Paper Procurement"
+      },
+      "summary": {
+        "zh": "复印纸等直接订购",
+        "en": "Direct ordering of copying paper, etc."
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-05-27",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://guangdong.jianyu360.cn/jybx/20240527_24052669821444.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年5月27日，已过期",
+        "en": "Project published on May 27, 2024, has expired"
+      }
+    },
+    {
+      "id": 24,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "浙江招标网",
+      "issuer": "金华市第六中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "金华市第六中学关于出版物印刷的框架协议采购项目",
+      "projectNo": "",
+      "projectType": {
+        "zh": "出版物印刷",
+        "en": "Publication Printing"
+      },
+      "summary": {
+        "zh": "出版物印刷框架协议采购",
+        "en": "Framework agreement procurement for publication printing"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-11-26",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://zhejiang.jianyu360.cn/jybx/20241126_241125143148324.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年11月26日，已过期",
+        "en": "Project published on November 26, 2024, has expired"
+      }
+    },
+    {
+      "id": 25,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "浙江招标网",
+      "issuer": "金华市生态环境局永康分局",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "金华市生态环境局永康分局关于出版物印刷的框架协议采购项目",
+      "projectNo": "",
+      "projectType": {
+        "zh": "出版物印刷",
+        "en": "Publication Printing"
+      },
+      "summary": {
+        "zh": "出版物印刷框架协议采购",
+        "en": "Framework agreement procurement for publication printing"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-03-06",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://zhejiang.jianyu360.cn/jybx/20240306_24030532486407.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年3月6日，已过期",
+        "en": "Project published on March 6, 2024, has expired"
+      }
+    },
+    {
+      "id": 26,
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-09-28",
+      "sourcePlatform": "广东招标网",
+      "issuer": "五华县兴华中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "五华县兴华中学印刷服务定点采购",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing Services"
+      },
+      "summary": {
+        "zh": "印刷服务定点采购",
+        "en": "Printing services fixed-point procurement"
+      },
+      "quantity": {
+        "zh": "未明确",
+        "en": "Not specified"
+      },
+      "specs": {
+        "zh": "详见招标文件",
+        "en": "See tender documents for specifications"
+      },
+      "fundingSource": "",
+      "publishDate": "2024-08-05",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未明确说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://guangdong.jianyu360.cn/jybx/20240805_240804102860401.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进",
+        "en": "No follow-up needed"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "项目发布于2024年8月5日，已过期",
+        "en": "Project published on August 5, 2024, has expired"
+      }
     }
   ]
 }
