@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-13T07:28:06.879Z",
+  "lastUpdated": "2026-11-03T02:28:08.573Z",
   "projects": [
     {
       "id": 1,
@@ -34,7 +34,7 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -121,
+      "daysRemaining": -141,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
@@ -1607,6 +1607,52 @@
         "zh": "成交公告，项目已完成",
         "en": "Award notice, project completed"
       }
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-11-03",
+      "sourcePlatform": "广东省政府采购网",
+      "issuer": "普宁市大坝镇华东初级中学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "普宁市大坝镇华东初级中学印刷服务定点采购",
+      "projectNo": "DDYJ-2023-743420",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing service"
+      },
+      "summary": {
+        "zh": "采购内容为七年级同步练习（下册）的印刷服务，要求黑白双面印刷、印刷清晰、数量正确。",
+        "en": "Procurement of printing services for Grade 7 synchronous exercise book (Volume 2), requiring black-and-white double-sided printing, clear print quality, and correct quantities."
+      },
+      "specs": {
+        "zh": "印刷品名称：七年级同步练习（下册）；所属类别：培训材料；印刷要求：黑白双面印刷；印刷清晰，数量正确。",
+        "en": "Item: Grade 7 synchronous exercise book (Volume 2); category: training material; printing requirement: black-and-white double-sided; clear printing and correct quantity."
+      },
+      "publishDate": "2023-03-22",
+      "sourceUrl": "https://gdgpo.czt.gd.gov.cn/freecms/site/gd/ggxx/info/2023/8a7e87ec8643e6910187098410c902bb.html",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已截止/已过期",
+        "en": "Closed/Expired"
+      },
+      "nextAction": {
+        "zh": "无需跟进，历史采购已过期；仅作归档参考。",
+        "en": "No follow-up; historical procurement is expired; for archive reference only."
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "公告发布于2023年，项目编号含2023，按编号年份判定已过期。",
+        "en": "Notice published in 2023 and project number contains 2023; treated as expired by year in reference number."
+      },
+      "id": 28
     }
   ]
 }
