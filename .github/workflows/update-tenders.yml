@@ -24,7 +24,6 @@ jobs:
       - name: Run tender search & update data.json
         env:
           BOCHA_API_KEY: ${{ secrets.BOCHA_API_KEY }}
-          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
         run: node scripts/update_tenders.mjs
 
       - name: Commit changes if any
