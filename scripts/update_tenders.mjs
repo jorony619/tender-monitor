@@ -198,7 +198,8 @@ async function bochaChat(prompt, attempt = 1) {
       body: JSON.stringify({
         model: MODEL,
         messages: [{ role: "user", content: prompt }],
-        stream: false
+        stream: false,
+        thinking: { type: "disabled" } // 关闭深度思考模式，避免生成大量额外思考token导致超时
       })
     }, 180000); // 单次最多等180秒
   } catch (e) {
@@ -326,7 +327,7 @@ async function main() {
     console.log(`Capping ${trimmedHits.length} results down to ${MAX_HITS_FOR_MODEL} for the model call.`);
     trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
   }
-  console.log("Calling GLM to extract...");
+  console.log("Calling Bocha Model API (DeepSeek V4) to extract...");
   const raw2 = await bochaChat(buildPrompt(projects, trimmedHits));
   const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
