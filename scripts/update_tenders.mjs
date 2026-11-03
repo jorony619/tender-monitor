@@ -1,22 +1,23 @@
 #!/usr/bin/env node
 /**
- * update_tenders.mjs — 博查(Bocha) 搜索 + 智谱(GLM) 推理 混合版
+ * update_tenders.mjs — 博查(Bocha) 一体化版：搜索 + 推理全部走博查账户
  *
  * 两步走：
  *   1. 调用博查 Web Search API（真实结构化搜索结果，含真链接），
  *      对多个关键词分别搜索 UNGM / UNICEF / World Bank / ADB 等平台上的
- *      教材/作业册/教师指南印刷招标（走博查免费资源包额度，不花钱）
- *   2. 把搜到的原始结果（连同已有的 data.json）一起交给智谱GLM模型，
- *      让它只从"确实搜到的真实链接"里提炼出结构化项目，绝不编造项目或链接
- *      （走智谱账户里本来就有的免费token额度，不花钱）
+ *      教材/作业册/教师指南印刷招标
+ *   2. 把搜到的原始结果（连同已有的 data.json）一起交给博查 Model API
+ *      （DeepSeek V4，OpenAI兼容接口），让它只从"确实搜到的真实链接"里
+ *      提炼出结构化项目，绝不编造项目或链接
+ *
+ * 两步都走同一个博查账户余额，不用再单独管理智谱那边的额度/过期时间。
  *
  * 环境变量：
- *   BOCHA_API_KEY   必填，博查AI开放平台的 API Key（用于搜索）
- *   ZHIPU_API_KEY   必填，智谱开放平台的 API Key（用于推理/提炼）
- *   GLM_MODEL       可选，默认 glm-4.5-air
+ *   BOCHA_API_KEY   必填，博查AI开放平台的 API Key（搜索 + 推理都用这一个）
+ *   BOCHA_MODEL     可选，默认 deepseek-v4-flash（比 deepseek-v4-pro 便宜很多，够用）
  *
  * 手动运行：
- *   BOCHA_API_KEY=xxxx ZHIPU_API_KEY=xxxx node scripts/update_tenders.mjs
+ *   BOCHA_API_KEY=xxxx node scripts/update_tenders.mjs
  */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -32,15 +33,9 @@ if (!BOCHA_API_KEY) {
   process.exit(1);
 }
 
-const ZHIPU_API_KEY = process.env.ZHIPU_API_KEY;
-if (!ZHIPU_API_KEY) {
-  console.error("Missing ZHIPU_API_KEY environment variable.");
-  process.exit(1);
-}
-
-const MODEL = process.env.GLM_MODEL || "glm-4.5-air";
-const ZHIPU_BASE_URL = "https://open.bigmodel.cn/api/paas/v4";
-const BOCHA_BASE_URL = "https://api.bochaai.com/v1";
+const MODEL = process.env.BOCHA_MODEL || "deepseek-v4-flash";
+const BOCHA_SEARCH_BASE_URL = "https://api.bochaai.com/v1";
+const BOCHA_MODEL_BASE_URL = "https://api.bocha.cn/v1"; // Model API 走这个域名，跟 Web Search 的域名不一样
 
 const INTL_QUERIES = [
   "UNGM tender printing textbooks workbooks",
@@ -50,7 +45,8 @@ const INTL_QUERIES = [
   "UNESCO UNHCR UNRWA printing textbooks tender",
   "GPE ECW education printing materials tender",
   "dgMarket Devex printing textbooks tender",
-  "TED europa printing textbooks tender"
+  "TED europa printing textbooks tender",
+  "site:bidsinfo.com printing textbooks tender"
 ];
 
 const DOMESTIC_QUERIES = [
@@ -134,6 +130,7 @@ SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 - NEVER use a result from a generic document-sharing / content-farm site as a source — these host random re-uploaded PDFs with no connection to a live tender and are not authoritative. Examples of domains to always reject: 原创力文档, 道客巴巴, 豆丁网, 百度文库, book118, max.book118.com, docin.com, wenku.baidu.com, coggle/slideshare-style generic upload sites. If the "link" domain looks like a generic document repository rather than an official organization/government/procurement platform, do not use it.
 - Prefer results whose domain matches the organization's own official site (ungm.org, unicef.org, worldbank.org, adb.org, unesco.org, unhcr.org, unrwa.org, ted.europa.eu, dgmarket.com, devex.com, developmentaid.org, gov.cn / *.gov.cn / 中国政府采购网 and similar official government procurement portals).
 - When unsure whether a result is a real, specific, current tender vs. background/reference material, leave it out rather than guessing.
+- Some sources (e.g. bidsinfo.com and similar paid tender-aggregator sites) show only a summary publicly — title, country, closing date, reference number — and gate full details (buyer name, contact, full scope) behind a paid login. It's fine to create an entry from just the public summary IF it clearly names a specific tender with a specific closing date, but you MUST: (a) only fill in the fields you can actually see (leave the rest blank), (b) note in "openQuestions" or "notes" that full details require logging into the source site, and (c) never grade it A — treat it as B/C at most since eligibility and scope can't be confirmed without the gated content.
 
 DEDUPLICATION RULE:
 - Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.`;
@@ -151,7 +148,7 @@ async function fetchWithTimeout(url, options, timeoutMs = 25000) {
 async function bochaWebSearch(query, attempt = 1) {
   let res;
   try {
-    res = await fetchWithTimeout(`${BOCHA_BASE_URL}/web-search`, {
+    res = await fetchWithTimeout(`${BOCHA_SEARCH_BASE_URL}/web-search`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${BOCHA_API_KEY}`,
@@ -189,39 +186,39 @@ async function bochaWebSearch(query, attempt = 1) {
   }));
 }
 
-async function zhipuChat(prompt, attempt = 1) {
+async function bochaChat(prompt, attempt = 1) {
   let res;
   try {
-    res = await fetchWithTimeout(`${ZHIPU_BASE_URL}/chat/completions`, {
+    res = await fetchWithTimeout(`${BOCHA_MODEL_BASE_URL}/chat/completions`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${ZHIPU_API_KEY}`,
+        Authorization: `Bearer ${BOCHA_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         model: MODEL,
         messages: [{ role: "user", content: prompt }],
-        temperature: 0.2
+        stream: false
       })
     }, 180000); // 单次最多等180秒
   } catch (e) {
     if (attempt < 3) {
-      console.warn(`GLM chat timed out/errored (attempt ${attempt}): ${e.message}. Retrying...`);
+      console.warn(`Bocha Model API timed out/errored (attempt ${attempt}): ${e.message}. Retrying...`);
       await new Promise(r => setTimeout(r, 3000));
-      return zhipuChat(prompt, attempt + 1);
+      return bochaChat(prompt, attempt + 1);
     }
-    throw new Error(`GLM chat failed after ${attempt} attempts: ${e.message}`);
+    throw new Error(`Bocha Model API failed after ${attempt} attempts: ${e.message}`);
   }
   if (res.status === 429 || res.status >= 500) {
     if (attempt < 3) {
       const waitMs = 5000 * attempt;
-      console.warn(`GLM chat returned ${res.status} (attempt ${attempt}), retrying in ${waitMs}ms...`);
+      console.warn(`Bocha Model API returned ${res.status} (attempt ${attempt}), retrying in ${waitMs}ms...`);
       await new Promise(r => setTimeout(r, waitMs));
-      return zhipuChat(prompt, attempt + 1);
+      return bochaChat(prompt, attempt + 1);
     }
   }
   if (!res.ok) {
-    throw new Error(`GLM chat error: ${res.status} ${await res.text()}`);
+    throw new Error(`Bocha Model API error: ${res.status} ${await res.text()}`);
   }
   const data = await res.json();
   return data.choices?.[0]?.message?.content || "";
@@ -330,7 +327,7 @@ async function main() {
     trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
   }
   console.log("Calling GLM to extract...");
-  const raw2 = await zhipuChat(buildPrompt(projects, trimmedHits));
+  const raw2 = await bochaChat(buildPrompt(projects, trimmedHits));
   const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
 
