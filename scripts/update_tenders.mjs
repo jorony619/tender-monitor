@@ -470,7 +470,16 @@ async function main() {
     trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
   }
   console.log("Calling Bocha Model API (DeepSeek V4) to extract...");
-  const raw2 = await bochaChat(buildPrompt(projects, trimmedHits));
+  let raw2 = "";
+  try {
+    raw2 = await bochaChat(buildPrompt(projects, trimmedHits));
+  } catch (e) {
+    // Don't let an inference-step failure take down the whole run: the
+    // World Bank official-dataset candidates below don't depend on this
+    // call at all, and we still want them merged + written to data.json
+    // even if Bocha's Model API is having a bad day.
+    console.warn(`Bocha Model API extraction failed, continuing without web-search-derived updates: ${e.message}`);
+  }
   const cleaned = raw2.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
 
