@@ -87,6 +87,17 @@ function isOffScopeDomestic(item) {
   return OFF_SCOPE_DOMESTIC_NAME.test(String(item.projectName || ""));
 }
 
+// Code-level safety net for the TENDER-vs-RESULT RULE in the prompt — same
+// "don't trust the LLM alone" approach. Catches award/result notices (bidding
+// already closed, winner already announced) in either language, regardless
+// of region, so they never get added even as a D-graded historical entry.
+const RESULT_NOTICE_PATTERN = /成交公告|中标公告|中标结果|成交结果|中标候选人|废标公告|流标公告|竞价成交|contract award|award notice|results? notice|winning bidder/i;
+function isResultAnnouncement(item) {
+  const text = [item.projectName, (item.summary && item.summary.zh), (item.summary && item.summary.en), (item.notes && item.notes.zh), (item.notes && item.notes.en)]
+    .filter(Boolean).join(" ");
+  return RESULT_NOTICE_PATTERN.test(text);
+}
+
 function isBlockedDomain(link) {
   try {
     const host = new URL(link).hostname.toLowerCase();
@@ -301,6 +312,10 @@ SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 - Prefer results whose domain matches the organization's own official site (ungm.org, unicef.org, worldbank.org, adb.org, unesco.org, unhcr.org, unrwa.org, ted.europa.eu, dgmarket.com, devex.com, developmentaid.org, gov.cn / *.gov.cn / 中国政府采购网 and similar official government procurement portals).
 - When unsure whether a result is a real, specific, current tender vs. background/reference material, leave it out rather than guessing.
 - Some sources (e.g. bidsinfo.com and similar paid tender-aggregator sites) show only a summary publicly — title, country, closing date, reference number — and gate full details (buyer name, contact, full scope) behind a paid login. It's fine to create an entry from just the public summary IF it clearly names a specific tender with a specific closing date, but you MUST: (a) only fill in the fields you can actually see (leave the rest blank), (b) note in "openQuestions" or "notes" that full details require logging into the source site, and (c) never grade it A — treat it as B/C at most since eligibility and scope can't be confirmed without the gated content.
+
+TENDER-vs-RESULT RULE (read carefully — applies to BOTH domestic and international, this has been a recurring error):
+- Only create an entry for an OPEN opportunity — a notice inviting bids/quotations that a supplier could still act on, or at minimum a genuine call-for-bids record. Do NOT create an entry for an after-the-fact RESULT/AWARD record — a notice whose content is reporting who already won, that bidding has already closed, or that the contract is already signed. This applies regardless of language: Chinese 成交公告/中标公告/中标结果/成交结果/中标候选人公示/废标公告/流标公告 and English "Contract Award" / "Award Notice" / "Results Notice" / "Winning Bidder" are all RESULT records, not opportunities — even if they technically mention the original project/subject matter (e.g. "小学教辅本册印刷...竞价成交公告" is reporting a result, not inviting bids — skip it entirely, don't add it even as a D/expired entry).
+- If a search result's content makes clear the award has already been decided (names a winning supplier/contractor, states a signed contract, or is explicitly labeled as a result/award notice), leave it out of "new" entirely rather than including it with a low grade — these aren't useful even as historical records for this dashboard.
 
 DOMESTIC SCOPE RULE (read carefully — this has been a recurring error):
 - The buyer's business only prints textbooks, workbooks, teacher's guides, exam papers, and similar finished educational-content printing SERVICES. It does NOT buy/sell raw paper stock, office consumables, or generic advertising production.
@@ -593,11 +608,26 @@ function sanityCheckGrade(item) {
     console.warn(`Auto-downgrading #${item.projectName || item.sourcePlatform}: projectNo suggests year ${yearMatch[1]}, likely stale -> grade D`);
     item.grade = "D";
     setBothLang("gradeLabel", "D-可能已过期", "D — Likely expired");
+    setBothLang("status", "可能已过期", "Likely expired");
     setBothLang(
       "notes",
       ((zh(item.notes) || "") + ` [自动降级：编号中的年份(${yearMatch[1]})早于当前年份，很可能已过期，需人工核实]`).trim(),
       ((item.notes && item.notes.en) || "") + ` [Auto-downgraded: reference number implies year ${yearMatch[1]}, likely expired, needs manual verification]`
     );
+  }
+
+  // Final consistency check: the LLM sometimes sets "status" to say expired
+  // (e.g. because the publish date is clearly old) in one pass, without the
+  // "grade"/"gradeLabel" fields getting the matching downgrade — producing a
+  // contradictory record (e.g. status "已过期" but grade still "C-低优先级").
+  // Whatever the grade logic above decided, if status says expired/missed,
+  // force the grade to match so the badge and the status text never disagree.
+  const statusText = `${zh(item.status) || ""} ${(item.status && item.status.en) || ""}`;
+  const statusSaysExpired = /已过期|已错过|expired|missed/i.test(statusText);
+  if (statusSaysExpired && item.grade !== "D") {
+    console.warn(`Auto-downgrading #${item.projectName || item.sourcePlatform}: status says expired but grade was ${item.grade} -> grade D`);
+    item.grade = "D";
+    setBothLang("gradeLabel", "D-已错过/归档", "D — Missed / archived");
   }
 
   return item;
@@ -648,6 +678,10 @@ function normalizeKey(name, issuer) {
     }
     if (isOffScopeDomestic(item)) {
       console.warn(`Skipping out-of-scope domestic item (raw paper/consumables/ad-production, not a printing service): ${item.projectName}`);
+      continue;
+    }
+    if (isResultAnnouncement(item)) {
+      console.warn(`Skipping award/result announcement (bidding already closed, not an open opportunity): ${item.projectName}`);
       continue;
     }
     const nameKey = normalizeKey(item.projectName, item.issuer);
