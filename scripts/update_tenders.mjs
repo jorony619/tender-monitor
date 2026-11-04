@@ -85,6 +85,137 @@ function isBlockedDomain(link) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// World Bank official "Procurement Notice" open dataset (DS00979)
+// ---------------------------------------------------------------------------
+// Why this exists: projects.worldbank.org/.../procurement-detail/OPxxxxxxxx
+// pages are rendered client-side (a JS single-page app) with no static,
+// crawlable content for any search engine (verified: a brand-new notice's
+// own reference number returns zero hits anywhere on the open web, even
+// though the page itself is live and public). That means NO web-search-based
+// pipeline — Bocha included — can ever reliably catch a fresh World Bank
+// tender the moment it's published; search engines simply haven't (and may
+// never) index the page.
+//
+// The World Bank separately publishes this same data as a structured, public,
+// unauthenticated, daily-updated open dataset via its "Finances One" data
+// catalog (CC-BY 4.0 license, dataset id DS00979, resource id RS00909). We
+// call that API directly instead of relying on search for this platform.
+// Docs: https://financesone.worldbank.org/api-explorer?id=DS00979
+const WB_DATASET_ID = "DS00979";
+const WB_RESOURCE_ID = "RS00909";
+const WB_API_BASE = "https://datacatalogapi.worldbank.org/dexapps/fone/api";
+
+const PRINTING_KEYWORDS = /\bprint(?:ing)?\b|re-?print|textbook|work\s*book|teacher'?s?\s*guide|learning material|exercise book|school material|educational material/i;
+
+function parseWbDate(s) {
+  // World Bank API dates look like "DD-MMM-YYYY", e.g. "15-JUN-2026"
+  if (!s) return null;
+  const m = String(s).match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})/);
+  if (!m) return null;
+  const months = { JAN:1,FEB:2,MAR:3,APR:4,MAY:5,JUN:6,JUL:7,AUG:8,SEP:9,OCT:10,NOV:11,DEC:12 };
+  const mo = months[m[2].toUpperCase()];
+  if (!mo) return null;
+  return `${m[3]}-${String(mo).padStart(2, "0")}-${String(m[1]).padStart(2, "0")}`; // YYYY-MM-DD
+}
+
+async function fetchWorldBankProcurementNotices() {
+  console.log("Fetching World Bank official Procurement Notice dataset (DS00979)...");
+
+  // The dataset has 400k+ historical rows in (apparently) ascending order, so
+  // skip=0 would only return very old notices. Try to read the total row
+  // count from the metadata endpoint so we can jump near the end (the most
+  // recently added rows). If that fails for any reason, fall back to skip=0
+  // rather than crashing the whole run.
+  let skip = 0;
+  try {
+    const metaRes = await fetchWithTimeout(`${WB_API_BASE}/metadata?assetId=${WB_DATASET_ID}`, {}, 20000);
+    if (metaRes.ok) {
+      const metaText = await metaRes.text();
+      const countMatch = metaText.match(/"(?:rowCount|row_count|totalRows|total_rows|recordCount|record_count|totalRecords|total_records)"\s*:\s*"?(\d+)/i);
+      if (countMatch) {
+        const total = parseInt(countMatch[1], 10);
+        skip = Math.max(0, total - 3000);
+        console.log(`  Dataset reports ~${total} total rows; fetching the most recent ~3000 (skip=${skip}).`);
+      } else {
+        console.log("  Could not find a row count in dataset metadata; defaulting to skip=0 (may miss recent rows).");
+      }
+    }
+  } catch (e) {
+    console.warn(`  Could not fetch World Bank dataset metadata (defaulting to skip=0): ${e.message}`);
+  }
+
+  let rows = [];
+  try {
+    const url = `${WB_API_BASE}/apiservice?datasetId=${WB_DATASET_ID}&resourceId=${WB_RESOURCE_ID}&top=3000&skip=${skip}&type=json`;
+    const res = await fetchWithTimeout(url, {}, 45000);
+    if (!res.ok) {
+      console.warn(`  World Bank procurement API returned ${res.status}; skipping this source for this run.`);
+      return [];
+    }
+    const data = await res.json();
+    rows = Array.isArray(data) ? data : (data.data || data.value || data.records || data.Results || []);
+  } catch (e) {
+    console.warn(`  World Bank procurement API fetch failed (skipping this source for this run): ${e.message}`);
+    return [];
+  }
+  console.log(`  Fetched ${rows.length} World Bank procurement notice rows (skip=${skip}).`);
+
+  const matches = rows.filter(r => PRINTING_KEYWORDS.test(String(r.bid_description || r.BID_DESCRIPTION || "")));
+  console.log(`  ${matches.length} row(s) match printing/textbook/workbook keywords.`);
+  return matches;
+}
+
+function wbRowToProject(r) {
+  const desc = String(r.bid_description || r.BID_DESCRIPTION || "").trim();
+  const sourceUrl = r.url || r.URL;
+  if (!desc || !sourceUrl) return null;
+
+  const deadlineYmd = parseWbDate(r.deadline_date || r.DEADLINE_DATE);
+  const publishYmd = parseWbDate(r.publication_date || r.PUBLICATION_DATE);
+  const todayYmd = new Date().toISOString().slice(0, 10);
+  const hasDeadline = !!deadlineYmd;
+  const isOpen = hasDeadline && deadlineYmd >= todayYmd;
+  const country = r.country_name || r.COUNTRY_NAME || "";
+
+  const grade = isOpen ? "B" : (hasDeadline ? "D" : "C");
+  const gradeLabel = isOpen
+    ? { zh: "B-发邮件确认", en: "B — Confirm by email" }
+    : hasDeadline
+      ? { zh: "D-已错过/归档", en: "D — Missed / archived" }
+      : { zh: "C-待核实", en: "C — Needs verification" };
+
+  return {
+    sample: false,
+    verified: true,
+    region: "international",
+    discoveryDate: new Date().toISOString().slice(0, 10),
+    sourcePlatform: "World Bank（官方Procurement Notice数据集 / official dataset API）",
+    issuer: `World Bank${country ? " – " + country : ""}`,
+    country: { zh: country, en: country },
+    projectName: desc,
+    projectNo: String(r.id || r.ID || r.project_id || r.PROJECT_ID || ""),
+    projectType: { zh: "教材/学习材料印刷", en: "Textbook / learning material printing" },
+    summary: { zh: desc, en: desc },
+    fundingSource: "World Bank",
+    publishDate: publishYmd || undefined,
+    deadlineLocal: r.deadline_date || r.DEADLINE_DATE || undefined,
+    deadlineBeijing: deadlineYmd ? `${deadlineYmd} 23:59` : undefined,
+    sourceUrl,
+    grade,
+    gradeLabel,
+    status: isOpen
+      ? { zh: "新发现", en: "Newly discovered" }
+      : hasDeadline
+        ? { zh: "已过期", en: "Expired" }
+        : { zh: "待核实", en: "Needs verification" },
+    notes: {
+      zh: "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+      en: "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+    }
+  };
+}
+
 const SCHEMA_NOTE = `
 Each project object MUST use this exact shape (omit a key entirely rather than guessing a value you can't verify from the search results below):
 {
@@ -289,6 +420,14 @@ async function main() {
   const projects = data.projects || [];
 
   console.log(`Loaded ${projects.length} existing projects.`);
+
+  // Kick off the World Bank official dataset fetch in parallel with the web
+  // searches below — it's an independent source, no need to wait for it.
+  const wbRowsPromise = fetchWorldBankProcurementNotices().catch(e => {
+    console.warn(`World Bank official dataset fetch threw unexpectedly: ${e.message}`);
+    return [];
+  });
+
   console.log("Running web searches...");
 
   let searchHits = [];
@@ -301,6 +440,9 @@ async function main() {
       searchHits = searchHits.concat(hits);
     });
   }
+
+  const wbRows = await wbRowsPromise;
+  const wbCandidates = wbRows.map(wbRowToProject).filter(Boolean);
 
   // Drop known generic document-sharing / content-farm domains before they ever reach the model
   const beforeBlock = searchHits.length;
@@ -423,6 +565,23 @@ function normalizeKey(name, issuer) {
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
   const existingUrls = new Set(projects.map(p => p.sourceUrl).filter(Boolean));
   const existingNameKeys = new Set(projects.map(p => normalizeKey(p.projectName, p.issuer)).filter(Boolean));
+
+  // Merge World Bank official-dataset candidates first (most trustworthy —
+  // structured official data, not AI-extracted) so later LLM-derived
+  // duplicates of the same tender get skipped by the dedup checks below.
+  for (const item of wbCandidates) {
+    if (existingUrls.has(item.sourceUrl)) continue; // already tracked
+    const nameKey = normalizeKey(item.projectName, item.issuer);
+    if (nameKey && existingNameKeys.has(nameKey)) continue;
+    item.id = nextId++;
+    sanityCheckGrade(item);
+    projects.push(item);
+    existingUrls.add(item.sourceUrl);
+    if (nameKey) existingNameKeys.add(nameKey);
+    changed = true;
+    console.log(`Added new project #${item.id} (World Bank official dataset): ${item.projectName}`);
+  }
+
   for (const item of newItems) {
     if (!item.sourceUrl || !validLinks.has(item.sourceUrl)) {
       console.warn("Skipping new item with missing/unverified sourceUrl:", item.projectName);
