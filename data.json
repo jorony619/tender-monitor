@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-04T06:14:42.904Z",
+  "lastUpdated": "2026-11-04T06:23:11.398Z",
   "projects": [
     {
       "id": 1,
@@ -1492,6 +1492,109 @@
         "en": "Result is an award notice, project already concluded."
       },
       "id": 48
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "内蒙古招标网",
+      "issuer": "乌海市海勃湾区第四完全小学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "乌海市海勃湾区第四完全小学印刷服务定点采购",
+      "projectNo": "NMGZFCG-DDFW-2025-7",
+      "projectType": {
+        "zh": "印刷服务定点采购",
+        "en": "Designated printing service procurement"
+      },
+      "summary": {
+        "zh": "乌海市海勃湾区第四完全小学采用竞价方式对印刷服务定点采购进行采购，邀请入围印刷服务品目并有能力响应需求的供应商参与。",
+        "en": "Wuhai Haibowan District No.4 Complete Primary School is procuring designated printing services through competitive bidding, inviting qualified suppliers in the printing services category."
+      },
+      "publishDate": "2025-10-25",
+      "intlSuppliersAllowed": {
+        "zh": "未说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://neimenggu.jianyu360.cn/jybx/20251025_2510246807849.html",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-可能已过期",
+        "en": "D — Likely expired"
+      },
+      "nextAction": {
+        "zh": "联系采购单位确认投标资格和截止时间",
+        "en": "Contact the procuring entity to confirm eligibility and deadline"
+      },
+      "status": {
+        "zh": "开放，截止日期待核实",
+        "en": "Open, deadline to be verified"
+      },
+      "notes": {
+        "zh": "发布于2025年10月，距今已超过一年，需确认是否仍然有效。未显示明确截止日期。 [自动降级：编号中的年份(2025)早于当前年份，很可能已过期，需人工核实]",
+        "en": "Published in October 2025, over a year ago. Need to confirm if still active. No clear deadline shown. [Auto-downgraded: reference number implies year 2025, likely expired, needs manual verification]"
+      },
+      "id": 49
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "江陵采招网",
+      "issuer": "江陵县郝穴小学",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "教师工作手册印刷",
+      "projectNo": "JJ(略)",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing service"
+      },
+      "summary": {
+        "zh": "江陵县郝穴小学公开竞价采购教师工作手册印刷服务，预算金额未公开，竞价时间为2026-04-15上午。",
+        "en": "Jiangling County Haoxue Primary School is conducting open competitive bidding for printing teacher work manuals. Budget not disclosed, bidding time is 2026-04-15 morning."
+      },
+      "publishDate": "2026-04-10",
+      "deadlineLocal": "2026-04-15 12:00",
+      "deadlineBeijing": "2026-04-15 12:00",
+      "intlSuppliersAllowed": {
+        "zh": "否（国内采购）",
+        "en": "No (domestic procurement)"
+      },
+      "locallyRestricted": {
+        "zh": "专门面向中小企业（未完全确认）",
+        "en": "Specifically for SMEs (not fully confirmed)"
+      },
+      "sourceUrl": "https://421024.bidcenter.com.cn/bidinfo-1-a0f73512c37219a9b96881f4697b7585babae2de717da20e.html",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "nextAction": {
+        "zh": "无需行动，截止日期已过",
+        "en": "No action needed, deadline has passed"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "竞价时间为2026-04-15，早于今日（2026-11-04），已过期。",
+        "en": "Bidding time was 2026-04-15, before today (2026-11-04), expired."
+      },
+      "id": 50,
+      "daysRemaining": -204
     }
   ]
 }
