@@ -51,31 +51,6 @@
       "region": "international"
     },
     {
-      "id": 2,
-      "sample": false,
-      "no": 2,
-      "sourcePlatform": "World Bank",
-      "projectType": {
-        "zh": "教材/学习材料印刷",
-        "en": "Textbook / learning material printing"
-      },
-      "currency": "USD / local currency",
-      "grade": "C",
-      "gradeLabel": {
-        "zh": "C-待核实",
-        "en": "C — Needs verification"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "新发现 [自动降级：未能确认具体截止日期，需人工核实是否仍然有效]",
-        "en": "Newly discovered [Auto-downgraded: no confirmed deadline found, needs manual verification]"
-      },
-      "region": "international"
-    },
-    {
       "sample": false,
       "verified": true,
       "region": "domestic",
@@ -98,14 +73,14 @@
       },
       "publishDate": "2026-04-24",
       "sourceUrl": "https://henan.jianyu360.cn/jybx/20260424_26042349000139.html",
-      "grade": "C",
+      "grade": "D",
       "gradeLabel": {
-        "zh": "低优先级",
-        "en": "Low priority"
+        "zh": "已过期",
+        "en": "Expired"
       },
       "nextAction": {
-        "zh": "需要验证截止日期",
-        "en": "Need to verify deadline"
+        "zh": "无",
+        "en": "None"
       },
       "status": {
         "zh": "已过期",
@@ -1189,69 +1164,6 @@
       }
     },
     {
-      "id": 27,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-29",
-      "sourcePlatform": "销邦招标平台",
-      "issuer": "四会市玉城学校",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "玉城学校印刷服务定点采购",
-      "projectNo": "DDYJ-2026-#",
-      "projectType": {
-        "zh": "印刷服务",
-        "en": "Printing Service"
-      },
-      "summary": {
-        "zh": "四会市玉城学校印刷服务定点采购",
-        "en": "Sihui Yucheng School Printing Service Fixed-point Procurement"
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "fundingSource": "学校自筹",
-      "publishDate": "2026-06-01",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "否",
-        "en": "No"
-      },
-      "locallyRestricted": {
-        "zh": "是",
-        "en": "Yes"
-      },
-      "sourceUrl": "https://www.ixbang.com/bid/detail/0620FA950D0C4F49C2E8DA122B0151D4.html",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无",
-        "en": "None"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "成交公告，项目已完成",
-        "en": "Award notice, project completed"
-      }
-    },
-    {
       "sample": false,
       "verified": true,
       "region": "domestic",
@@ -1441,63 +1353,6 @@
       "verified": true,
       "region": "domestic",
       "discoveryDate": "2026-11-04",
-      "sourcePlatform": "青海招标网",
-      "issuer": "玉树州八一知行学校",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "小学教辅本册印刷（一）",
-      "projectNo": "",
-      "projectType": {
-        "zh": "印刷服务",
-        "en": "Printing service"
-      },
-      "summary": {
-        "zh": "玉树州八一知行学校小学教辅本册印刷项目竞价成交公告，发布日期2026-10-25。",
-        "en": "Competitive negotiation award notice for printing of primary school supplementary books at Yushu Bayi Zhixing School, published 2026-10-25."
-      },
-      "quantity": {},
-      "specs": {},
-      "fundingSource": "",
-      "publishDate": "2026-10-25",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "",
-      "intlSuppliersAllowed": {
-        "zh": "未说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://qinghai.jianyu360.cn/jybx/20261025_26102497126342.html",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已关闭/过期",
-        "en": "Closed/Expired"
-      },
-      "nextAction": {
-        "zh": "无——该项目为成交公告，已结束",
-        "en": "None — award notice, already closed"
-      },
-      "status": {
-        "zh": "已过期（成交公告）",
-        "en": "Expired (award notice)"
-      },
-      "notes": {
-        "zh": "结果为竞价成交公告，项目已结束。",
-        "en": "Result is an award notice, project already concluded."
-      },
-      "id": 48
-    },
-    {
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-11-04",
       "sourcePlatform": "内蒙古招标网",
       "issuer": "乌海市海勃湾区第四完全小学",
       "country": {
@@ -1534,8 +1389,8 @@
         "en": "Contact the procuring entity to confirm eligibility and deadline"
       },
       "status": {
-        "zh": "开放，截止日期待核实",
-        "en": "Open, deadline to be verified"
+        "zh": "可能已过期",
+        "en": "Likely expired"
       },
       "notes": {
         "zh": "发布于2025年10月，距今已超过一年，需确认是否仍然有效。未显示明确截止日期。 [自动降级：编号中的年份(2025)早于当前年份，很可能已过期，需人工核实]",
