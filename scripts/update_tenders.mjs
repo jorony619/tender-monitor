@@ -76,6 +76,17 @@ const BLOCKED_DOMAINS = [
   "so.com", "kuaibao.qq.com", "xigua.com", "weibo.com", "douyin.com"
 ];
 
+// Code-level safety net for the DOMESTIC SCOPE RULE in the prompt — don't
+// rely solely on the LLM following instructions. Catches raw paper/consumable
+// purchases and generic ad-production listings that aren't actually a
+// textbook/workbook/teacher's-guide printing SERVICE.
+const OFF_SCOPE_DOMESTIC_NAME = /用纸采购|复印纸.{0,6}(采购|订购)|纸张采购|耗材采购|广告制作|宣传品制作/;
+function isOffScopeDomestic(item) {
+  // Check by content pattern regardless of how "region" got labeled — a raw
+  // paper/consumables/ad-production listing is out of scope either way.
+  return OFF_SCOPE_DOMESTIC_NAME.test(String(item.projectName || ""));
+}
+
 function isBlockedDomain(link) {
   try {
     const host = new URL(link).hostname.toLowerCase();
@@ -290,6 +301,13 @@ SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 - Prefer results whose domain matches the organization's own official site (ungm.org, unicef.org, worldbank.org, adb.org, unesco.org, unhcr.org, unrwa.org, ted.europa.eu, dgmarket.com, devex.com, developmentaid.org, gov.cn / *.gov.cn / 中国政府采购网 and similar official government procurement portals).
 - When unsure whether a result is a real, specific, current tender vs. background/reference material, leave it out rather than guessing.
 - Some sources (e.g. bidsinfo.com and similar paid tender-aggregator sites) show only a summary publicly — title, country, closing date, reference number — and gate full details (buyer name, contact, full scope) behind a paid login. It's fine to create an entry from just the public summary IF it clearly names a specific tender with a specific closing date, but you MUST: (a) only fill in the fields you can actually see (leave the rest blank), (b) note in "openQuestions" or "notes" that full details require logging into the source site, and (c) never grade it A — treat it as B/C at most since eligibility and scope can't be confirmed without the gated content.
+
+DOMESTIC SCOPE RULE (read carefully — this has been a recurring error):
+- The buyer's business only prints textbooks, workbooks, teacher's guides, exam papers, and similar finished educational-content printing SERVICES. It does NOT buy/sell raw paper stock, office consumables, or generic advertising production.
+- REJECT (do not create an entry) any domestic tender whose subject is purchasing raw materials/consumables rather than a printing/production service — e.g. titles containing "用纸采购" (paper stock procurement), "复印纸...订购" (copier-paper direct purchase), "纸张采购" (paper purchase), "耗材采购" (consumables purchase). These are buying blank paper, not commissioning a printing job — not relevant even though they mention "教材"/"教辅"/"印刷".
+- REJECT generic, non-specific "文印、广告制作" (printing & advertising production) listings that don't name a specific educational-material printing scope (workbooks, exam papers, teaching manuals, etc.) — these are usually broad office-printing/signage contracts, not textbook/workbook printing.
+- REJECT any domestic tender whose buyer is NOT an educational institution or education authority (a school, university, kindergarten, vocational college, education bureau/education publishing house). A tender from an unrelated government department (e.g. an environmental protection bureau, a transportation department) that happens to use the phrase "出版物印刷" (publication printing) is out of scope even if "印刷" appears in the title — check who the buyer actually is, not just the keyword.
+- A domestic entry IS in scope when it's a school/education authority procuring printing SERVICES that plausibly cover instructional materials — textbooks, workbooks (教辅/练习册/作业本), teacher's handbooks/guides (教师用书/教师指导/教师工作手册), exam papers (试卷), or a general "印刷服务定点采购"/"出版物印刷框架协议" from a school (since that framework would cover the school's own instructional-material printing needs even without spelling out "教材" explicitly).
 
 DEDUPLICATION RULE:
 - Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.`;
@@ -626,6 +644,10 @@ function normalizeKey(name, issuer) {
     }
     if (existingUrls.has(item.sourceUrl)) {
       console.warn(`Skipping duplicate: sourceUrl already tracked -> ${item.sourceUrl} (${item.projectName})`);
+      continue;
+    }
+    if (isOffScopeDomestic(item)) {
+      console.warn(`Skipping out-of-scope domestic item (raw paper/consumables/ad-production, not a printing service): ${item.projectName}`);
       continue;
     }
     const nameKey = normalizeKey(item.projectName, item.issuer);
