@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-03T07:41:38.072Z",
+  "lastUpdated": "2026-11-04T00:56:57.895Z",
   "projects": [
     {
       "id": 1,
@@ -1653,6 +1653,817 @@
         "en": "Notice published in 2023 and project number contains 2023; treated as expired by year in reference number."
       },
       "id": 28
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Eastern and Southern Africa",
+      "country": {
+        "zh": "Eastern and Southern Africa",
+        "en": "Eastern and Southern Africa"
+      },
+      "projectName": "Printing of IEC Materials for One Health awareness campaigns",
+      "projectNo": "474270",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing of IEC Materials for One Health awareness campaigns",
+        "en": "Printing of IEC Materials for One Health awareness campaigns"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-09",
+      "deadlineLocal": "09-Oct-2026",
+      "deadlineBeijing": "2026-10-09 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474270",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 29,
+      "daysRemaining": -26
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Nigeria",
+      "country": {
+        "zh": "Nigeria",
+        "en": "Nigeria"
+      },
+      "projectName": "procurement  of digital equipment (25 computers desktop, 1 Projector,1 printer for  printing of desing cards,1 smart, interactive Board  (Per School), for 50 Number of  Schools) for Continous monitoring of  teacher and training  of students in schools, 20",
+      "projectNo": "474329",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "procurement  of digital equipment (25 computers desktop, 1 Projector,1 printer for  printing of desing cards,1 smart, interactive Board  (Per School), for 50 Number of  Schools) for Continous monitoring of  teacher and training  of students in schools, 20",
+        "en": "procurement  of digital equipment (25 computers desktop, 1 Projector,1 printer for  printing of desing cards,1 smart, interactive Board  (Per School), for 50 Number of  Schools) for Continous monitoring of  teacher and training  of students in schools, 20"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-09",
+      "deadlineLocal": "09-Oct-2026",
+      "deadlineBeijing": "2026-10-09 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474329",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 30,
+      "daysRemaining": -26
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Western and Central Africa",
+      "country": {
+        "zh": "Western and Central Africa",
+        "en": "Western and Central Africa"
+      },
+      "projectName": "Printing of assorted documents (Policies, Agenda, Branded Folders), Banner for One Health Policy Briefing and Governance One Health Governance Manual.",
+      "projectNo": "474382",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing of assorted documents (Policies, Agenda, Branded Folders), Banner for One Health Policy Briefing and Governance One Health Governance Manual.",
+        "en": "Printing of assorted documents (Policies, Agenda, Branded Folders), Banner for One Health Policy Briefing and Governance One Health Governance Manual."
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-10",
+      "deadlineLocal": "10-Oct-2026",
+      "deadlineBeijing": "2026-10-10 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474382",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 31,
+      "daysRemaining": -25
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Nigeria",
+      "country": {
+        "zh": "Nigeria",
+        "en": "Nigeria"
+      },
+      "projectName": "Procurement of manuals complaint/suggestion boxes and grievances registers for 461 JSS and  SS, 23 LGAs, 6 ZEQA, MOBSE and SUBEB, Printing of Safe Space training manual for mentors as well as Production/Printing of photo album of project exucuted in SIG b",
+      "projectNo": "474399",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Procurement of manuals complaint/suggestion boxes and grievances registers for 461 JSS and  SS, 23 LGAs, 6 ZEQA, MOBSE and SUBEB, Printing of Safe Space training manual for mentors as well as Production/Printing of photo album of project exucuted in SIG b",
+        "en": "Procurement of manuals complaint/suggestion boxes and grievances registers for 461 JSS and  SS, 23 LGAs, 6 ZEQA, MOBSE and SUBEB, Printing of Safe Space training manual for mentors as well as Production/Printing of photo album of project exucuted in SIG b"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-10",
+      "deadlineLocal": "10-Oct-2026",
+      "deadlineBeijing": "2026-10-10 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474399",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 32,
+      "daysRemaining": -25
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – India",
+      "country": {
+        "zh": "India",
+        "en": "India"
+      },
+      "projectName": "Printing of Vinyl stickers about the project for promotions.",
+      "projectNo": "474756",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing of Vinyl stickers about the project for promotions.",
+        "en": "Printing of Vinyl stickers about the project for promotions."
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-13",
+      "deadlineLocal": "13-Oct-2026",
+      "deadlineBeijing": "2026-10-13 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474756",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 33,
+      "daysRemaining": -22
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Pakistan",
+      "country": {
+        "zh": "Pakistan",
+        "en": "Pakistan"
+      },
+      "projectName": "Printing of Training Manuals for GTs, SCs and STs Training for remaining 232 Clusters in 12 SELECT districts",
+      "projectNo": "474824",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing of Training Manuals for GTs, SCs and STs Training for remaining 232 Clusters in 12 SELECT districts",
+        "en": "Printing of Training Manuals for GTs, SCs and STs Training for remaining 232 Clusters in 12 SELECT districts"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-13",
+      "deadlineLocal": "13-Oct-2026",
+      "deadlineBeijing": "2026-10-13 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00474824",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 34,
+      "daysRemaining": -22
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – India",
+      "country": {
+        "zh": "India",
+        "en": "India"
+      },
+      "projectName": "Printing and placement of A3 Size Vinyl stickers for IEC activities",
+      "projectNo": "475364",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing and placement of A3 Size Vinyl stickers for IEC activities",
+        "en": "Printing and placement of A3 Size Vinyl stickers for IEC activities"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-15",
+      "deadlineLocal": "15-Oct-2026",
+      "deadlineBeijing": "2026-10-15 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00475364",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 35,
+      "daysRemaining": -20
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Mozambique",
+      "country": {
+        "zh": "Mozambique",
+        "en": "Mozambique"
+      },
+      "projectName": "Prescription pad printing for healthcare facilities.  (By batches)",
+      "projectNo": "475558",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Prescription pad printing for healthcare facilities.  (By batches)",
+        "en": "Prescription pad printing for healthcare facilities.  (By batches)"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-20",
+      "deadlineLocal": "02-Dec-2026",
+      "deadlineBeijing": "2026-12-02 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00475558",
+      "grade": "B",
+      "gradeLabel": {
+        "zh": "B-发邮件确认",
+        "en": "B — Confirm by email"
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 36,
+      "daysRemaining": 28
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Central Asia",
+      "country": {
+        "zh": "Central Asia",
+        "en": "Central Asia"
+      },
+      "projectName": "Printing of III-rd version of Red Book of Tajikistan",
+      "projectNo": "475970",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing of III-rd version of Red Book of Tajikistan",
+        "en": "Printing of III-rd version of Red Book of Tajikistan"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-18",
+      "deadlineLocal": "23-Oct-2026",
+      "deadlineBeijing": "2026-10-23 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00475970",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 37,
+      "daysRemaining": -12
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Southwest Indian Ocean",
+      "country": {
+        "zh": "Southwest Indian Ocean",
+        "en": "Southwest Indian Ocean"
+      },
+      "projectName": "Printing Services",
+      "projectNo": "476251",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing Services",
+        "en": "Printing Services"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-20",
+      "deadlineLocal": "20-Oct-2026",
+      "deadlineBeijing": "2026-10-20 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00476251",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 38,
+      "daysRemaining": -15
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Nigeria",
+      "country": {
+        "zh": "Nigeria",
+        "en": "Nigeria"
+      },
+      "projectName": "Printing and Supply of Facility Management and Quality Improvement Tools for 484 Apex Facilities",
+      "projectNo": "476603",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing and Supply of Facility Management and Quality Improvement Tools for 484 Apex Facilities",
+        "en": "Printing and Supply of Facility Management and Quality Improvement Tools for 484 Apex Facilities"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-21",
+      "deadlineLocal": "21-Oct-2026",
+      "deadlineBeijing": "2026-10-21 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00476603",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 39,
+      "daysRemaining": -14
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Liberia",
+      "country": {
+        "zh": "Liberia",
+        "en": "Liberia"
+      },
+      "projectName": "Design, Printing and Installation of VAT Awareness Materials (Billboards, Brochures and Flyers)",
+      "projectNo": "476704",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Design, Printing and Installation of VAT Awareness Materials (Billboards, Brochures and Flyers)",
+        "en": "Design, Printing and Installation of VAT Awareness Materials (Billboards, Brochures and Flyers)"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-21",
+      "deadlineLocal": "21-Oct-2026",
+      "deadlineBeijing": "2026-10-21 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00476704",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 40,
+      "daysRemaining": -14
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Pakistan",
+      "country": {
+        "zh": "Pakistan",
+        "en": "Pakistan"
+      },
+      "projectName": "Procurement of Design, printing and Scanning of approved Training Manuals for PMU",
+      "projectNo": "476808",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Procurement of Design, printing and Scanning of approved Training Manuals for PMU",
+        "en": "Procurement of Design, printing and Scanning of approved Training Manuals for PMU"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-22",
+      "deadlineLocal": "22-Oct-2026",
+      "deadlineBeijing": "2026-10-22 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00476808",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 41,
+      "daysRemaining": -13
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Cambodia",
+      "country": {
+        "zh": "Cambodia",
+        "en": "Cambodia"
+      },
+      "projectName": "Printing Social Accountability Operational, Sustainability Guideline at Commune/Sangkat Level",
+      "projectNo": "477467",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing Social Accountability Operational, Sustainability Guideline at Commune/Sangkat Level",
+        "en": "Printing Social Accountability Operational, Sustainability Guideline at Commune/Sangkat Level"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-27",
+      "deadlineLocal": "27-Oct-2026",
+      "deadlineBeijing": "2026-10-27 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00477467",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 42,
+      "daysRemaining": -8
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Cambodia",
+      "country": {
+        "zh": "Cambodia",
+        "en": "Cambodia"
+      },
+      "projectName": "Printing SA Framework next phase",
+      "projectNo": "477504",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Printing SA Framework next phase",
+        "en": "Printing SA Framework next phase"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-27",
+      "deadlineLocal": "27-Oct-2026",
+      "deadlineBeijing": "2026-10-27 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00477504",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 43,
+      "daysRemaining": -8
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Nigeria",
+      "country": {
+        "zh": "Nigeria",
+        "en": "Nigeria"
+      },
+      "projectName": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide",
+      "projectNo": "478337",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide",
+        "en": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-10-30",
+      "deadlineLocal": "30-Oct-2026",
+      "deadlineBeijing": "2026-10-30 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00478337",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 44,
+      "daysRemaining": -5
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
+      "issuer": "World Bank – Uganda",
+      "country": {
+        "zh": "Uganda",
+        "en": "Uganda"
+      },
+      "projectName": "Design,print and distribute coffee and cocoa farms/farmers Identification Cards (Farmer IDs)",
+      "projectNo": "478503",
+      "projectType": {
+        "zh": "教材/学习材料印刷",
+        "en": "Textbook / learning material printing"
+      },
+      "summary": {
+        "zh": "Design,print and distribute coffee and cocoa farms/farmers Identification Cards (Farmer IDs)",
+        "en": "Design,print and distribute coffee and cocoa farms/farmers Identification Cards (Farmer IDs)"
+      },
+      "fundingSource": "World Bank",
+      "publishDate": "2026-11-01",
+      "deadlineLocal": "01-Nov-2026",
+      "deadlineBeijing": "2026-11-01 23:59",
+      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00478503",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
+        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      },
+      "id": 45,
+      "daysRemaining": -3
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "UNICEF",
+      "issuer": "UNICEF Rwanda",
+      "country": {
+        "zh": "卢旺达",
+        "en": "Rwanda"
+      },
+      "projectName": "LITB-2024-9192573 Invitation to Bid",
+      "projectNo": "LITB-2024-9192573",
+      "projectType": {
+        "zh": "投标邀请书",
+        "en": "Invitation to Bid"
+      },
+      "summary": {
+        "zh": "联合国儿童基金会卢旺达办事处发布投标邀请书，编号LITB-2024-9192573，日期为2024年9月5日。具体采购内容在PDF文件中说明。",
+        "en": "UNICEF Rwanda issued an Invitation to Bid LITB-2024-9192573 dated 05 September 2024. Details of the procurement are in the PDF document."
+      },
+      "publishDate": "2024-09-05",
+      "deadlineLocal": "N/A",
+      "deadlineBeijing": "N/A",
+      "intlSuppliersAllowed": {
+        "zh": "未明确，需查看原始文件",
+        "en": "Not specified, need to review original document"
+      },
+      "sourceUrl": "https://www.unicef.org/rwanda/media/6056/file",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-可能已过期",
+        "en": "D — Likely expired"
+      },
+      "nextAction": {
+        "zh": "下载PDF文件，确认采购内容、投标截止日期和资格要求。",
+        "en": "Download the PDF to confirm the procurement items, deadline, and eligibility requirements."
+      },
+      "status": {
+        "zh": "新发现",
+        "en": "Newly discovered"
+      },
+      "notes": {
+        "zh": "编号为2024年，可能已过期。截止日期未在搜索摘要中显示，需下载PDF确认。 [自动降级：编号中的年份(2024)早于当前年份，很可能已过期，需人工核实]",
+        "en": "Reference number is from 2024, likely expired. Deadline not shown in the snippet; needs verification in the PDF. [Auto-downgraded: reference number implies year 2024, likely expired, needs manual verification]"
+      },
+      "id": 46
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "UNICEF",
+      "issuer": "UNICEF Rwanda",
+      "country": {
+        "zh": "卢旺达",
+        "en": "Rwanda"
+      },
+      "projectName": "LITB-2024-9190307 Invitation to Bid",
+      "projectNo": "LITB-2024-9190307",
+      "projectType": {
+        "zh": "投标邀请书",
+        "en": "Invitation to Bid"
+      },
+      "summary": {
+        "zh": "联合国儿童基金会卢旺达办事处发布投标邀请书，编号LITB-2024-9190307，日期为2024年5月21日。摘要中显示截止日期为2024年5月30日。",
+        "en": "UNICEF Rwanda issued an Invitation to Bid LITB-2024-9190307 dated 21 May 2024. The snippet shows the deadline as 30 May 2024."
+      },
+      "publishDate": "2024-05-21",
+      "deadlineLocal": "2024-05-30",
+      "deadlineBeijing": "2024-05-30 00:00",
+      "intlSuppliersAllowed": {
+        "zh": "未明确，需查看原始文件",
+        "en": "Not specified, need to review original document"
+      },
+      "sourceUrl": "https://www.unicef.org/rwanda/media/5786/file/LITB-2024-9190307.pdf",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "D-已错过/归档",
+        "en": "D — Missed / archived"
+      },
+      "nextAction": {
+        "zh": "此项目截止日期为2024年5月30日，已经过期，无需跟进。",
+        "en": "This tender expired on 30 May 2024; no follow-up needed."
+      },
+      "status": {
+        "zh": "已过期",
+        "en": "Expired"
+      },
+      "notes": {
+        "zh": "截止日期（2024-05-30）已过，项目已关闭。",
+        "en": "The deadline (2024-05-30) has passed, the tender is closed."
+      },
+      "id": 47,
+      "daysRemaining": -888
     }
   ]
 }
