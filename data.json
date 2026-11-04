@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-04T01:11:17.477Z",
+  "lastUpdated": "2026-11-04T06:14:42.904Z",
   "projects": [
     {
       "id": 1,
@@ -34,15 +34,15 @@
       "publishDate": "2026-06-05",
       "deadlineLocal": "2026-06-15 10:00 GMT",
       "deadlineBeijing": "2026-06-15 18:00",
-      "daysRemaining": -142,
+      "daysRemaining": -143,
       "grade": "D",
       "gradeLabel": {
         "zh": "D-已错过/归档",
         "en": "D — Missed / archived"
       },
       "status": {
-        "zh": "已错过",
-        "en": "Missed"
+        "zh": "已过期",
+        "en": "Expired"
       },
       "notes": {
         "zh": "示例行，可删除",
@@ -60,18 +60,18 @@
         "en": "Textbook / learning material printing"
       },
       "currency": "USD / local currency",
-      "grade": "B",
+      "grade": "C",
       "gradeLabel": {
-        "zh": "B-发邮件确认",
-        "en": "B — Confirm by email"
+        "zh": "C-待核实",
+        "en": "C — Needs verification"
       },
       "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
+        "zh": "已过期",
+        "en": "Expired"
       },
       "notes": {
-        "zh": "新发现",
-        "en": "Newly discovered"
+        "zh": "新发现 [自动降级：未能确认具体截止日期，需人工核实是否仍然有效]",
+        "en": "Newly discovered [Auto-downgraded: no confirmed deadline found, needs manual verification]"
       },
       "region": "international"
     },
@@ -1337,7 +1337,7 @@
         "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
       },
       "id": 44,
-      "daysRemaining": -5
+      "daysRemaining": -6
     },
     {
       "sample": false,
@@ -1370,20 +1370,20 @@
       "sourceUrl": "https://www.unicef.org/rwanda/media/6056/file",
       "grade": "D",
       "gradeLabel": {
-        "zh": "D-可能已过期",
-        "en": "D — Likely expired"
+        "zh": "已关闭/过期",
+        "en": "Closed/Expired"
       },
       "nextAction": {
         "zh": "下载PDF文件，确认采购内容、投标截止日期和资格要求。",
         "en": "Download the PDF to confirm the procurement items, deadline, and eligibility requirements."
       },
       "status": {
-        "zh": "新发现",
-        "en": "Newly discovered"
+        "zh": "已过期",
+        "en": "Expired"
       },
       "notes": {
-        "zh": "编号为2024年，可能已过期。截止日期未在搜索摘要中显示，需下载PDF确认。 [自动降级：编号中的年份(2024)早于当前年份，很可能已过期，需人工核实]",
-        "en": "Reference number is from 2024, likely expired. Deadline not shown in the snippet; needs verification in the PDF. [Auto-downgraded: reference number implies year 2024, likely expired, needs manual verification]"
+        "zh": "招标编号LITB-2024-9192573显示2024年，发布日期2024-12-11，早已截止。",
+        "en": "Tender number LITB-2024-9192573 indicates 2024, published 2024-12-11, deadline long passed."
       },
       "id": 46
     },
@@ -1430,11 +1430,68 @@
         "en": "Expired"
       },
       "notes": {
-        "zh": "截止日期（2024-05-30）已过，项目已关闭。",
-        "en": "The deadline (2024-05-30) has passed, the tender is closed."
+        "zh": "招标编号LITB-2024-9190307显示2024年，截止日期2024-05-30，早已过期。",
+        "en": "Tender number LITB-2024-9190307 indicates 2024, deadline 2024-05-30, long expired."
       },
       "id": 47,
-      "daysRemaining": -888
+      "daysRemaining": -889
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-11-04",
+      "sourcePlatform": "青海招标网",
+      "issuer": "玉树州八一知行学校",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "小学教辅本册印刷（一）",
+      "projectNo": "",
+      "projectType": {
+        "zh": "印刷服务",
+        "en": "Printing service"
+      },
+      "summary": {
+        "zh": "玉树州八一知行学校小学教辅本册印刷项目竞价成交公告，发布日期2026-10-25。",
+        "en": "Competitive negotiation award notice for printing of primary school supplementary books at Yushu Bayi Zhixing School, published 2026-10-25."
+      },
+      "quantity": {},
+      "specs": {},
+      "fundingSource": "",
+      "publishDate": "2026-10-25",
+      "deadlineLocal": "",
+      "deadlineBeijing": "",
+      "currency": "",
+      "intlSuppliersAllowed": {
+        "zh": "未说明",
+        "en": "Not specified"
+      },
+      "locallyRestricted": {
+        "zh": "未说明",
+        "en": "Not specified"
+      },
+      "sourceUrl": "https://qinghai.jianyu360.cn/jybx/20261025_26102497126342.html",
+      "keyContact": "",
+      "grade": "D",
+      "gradeLabel": {
+        "zh": "已关闭/过期",
+        "en": "Closed/Expired"
+      },
+      "nextAction": {
+        "zh": "无——该项目为成交公告，已结束",
+        "en": "None — award notice, already closed"
+      },
+      "status": {
+        "zh": "已过期（成交公告）",
+        "en": "Expired (award notice)"
+      },
+      "notes": {
+        "zh": "结果为竞价成交公告，项目已结束。",
+        "en": "Result is an award notice, project already concluded."
+      },
+      "id": 48
     }
   ]
 }
