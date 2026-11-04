@@ -106,7 +106,18 @@ const WB_DATASET_ID = "DS00979";
 const WB_RESOURCE_ID = "RS00909";
 const WB_API_BASE = "https://datacatalogapi.worldbank.org/dexapps/fone/api";
 
-const PRINTING_KEYWORDS = /\bprint(?:ing)?\b|re-?print|textbook|work\s*book|teacher'?s?\s*guide|learning material|exercise book|school material|educational material/i;
+// IMPORTANT: this World Bank dataset spans the bank's ENTIRE global
+// procurement activity, not just education. A bare "print" match alone
+// pulls in a huge amount of irrelevant noise that happens to involve
+// printing — vinyl stickers, prescription pads, ID cards, VAT-awareness
+// billboards, policy guideline booklets, etc. (confirmed empirically: of
+// 17 "print"-matching rows in one real run, only 1 was actually about
+// textbooks/workbooks/teacher's guides). So we require BOTH a printing verb
+// AND a specific education/learning-material noun to be present, not either
+// one alone.
+const PRINT_TERM = /\bprint(?:ing|ed)?\b|re-?print/i;
+const EDU_MATERIAL_TERM = /textbook|work\s*book|teacher'?s?\s*guide|learning material|exercise book|school\s*(?:text)?book|educational material|curriculum/i;
+const PRINTING_KEYWORDS = { test: (s) => PRINT_TERM.test(s) && EDU_MATERIAL_TERM.test(s) };
 
 function parseWbDate(s) {
   // World Bank API dates look like "DD-MMM-YYYY", e.g. "15-JUN-2026"
@@ -161,8 +172,25 @@ async function fetchWorldBankProcurementNotices() {
   }
   console.log(`  Fetched ${rows.length} World Bank procurement notice rows (skip=${skip}).`);
 
-  const matches = rows.filter(r => PRINTING_KEYWORDS.test(String(r.bid_description || r.BID_DESCRIPTION || "")));
-  console.log(`  ${matches.length} row(s) match printing/textbook/workbook keywords.`);
+  const keywordMatches = rows.filter(r => PRINTING_KEYWORDS.test(String(r.bid_description || r.BID_DESCRIPTION || "")));
+  console.log(`  ${keywordMatches.length} row(s) match printing/textbook/workbook keywords.`);
+
+  // The dataset mixes several notice_type values together — open calls for
+  // bids (what we actually want), but also "Contract Award" notices (the
+  // bidding is already over, a winner was already chosen, nothing left to
+  // act on) and similar after-the-fact records (results/shortlists). Those
+  // are real, correctly-sourced data, but they are NOT actionable tender
+  // opportunities, so they should never appear in this dashboard at all —
+  // not even downgraded to D. Filter them out here, before they're even
+  // turned into project candidates.
+  const NON_OPPORTUNITY_NOTICE_TYPE = /award|result|shortlist|debrief|disqualif/i;
+  const matches = keywordMatches.filter(r => {
+    const noticeType = String(r.notice_type || r.NOTICE_TYPE || "");
+    return !NON_OPPORTUNITY_NOTICE_TYPE.test(noticeType);
+  });
+  if (matches.length !== keywordMatches.length) {
+    console.log(`  Dropped ${keywordMatches.length - matches.length} row(s) whose notice_type is a contract-award/result record, not an open opportunity.`);
+  }
   return matches;
 }
 
@@ -210,8 +238,8 @@ function wbRowToProject(r) {
         ? { zh: "已过期", en: "Expired" }
         : { zh: "待核实", en: "Needs verification" },
     notes: {
-      zh: "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
-      en: "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
+      zh: `来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。通知类型：${r.notice_type || r.NOTICE_TYPE || "未知"}。`,
+      en: `Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values. Notice type: ${r.notice_type || r.NOTICE_TYPE || "unknown"}.`
     }
   };
 }
@@ -253,7 +281,7 @@ REGION & sourcePlatform RULES (read carefully — this has been a recurring erro
 - "region" must be "international" if the tender is issued by a multilateral/international organization (UNICEF, World Bank, UNGM, ADB, UNESCO, GPE, ECW, UNHCR, UNRWA, USAID, FCDO, EU/TED, etc.) or a non-Chinese national government/agency.
 - "region" must be "domestic" if the buyer is a mainland China entity — a Chinese school, university, hospital, local government procurement office, or a notice published on a Chinese public procurement site (e.g. 中国政府采购网, 省/市级政府采购网, 学校官网, 中国招标投标公共服务平台). This includes Chinese-language domestic tenders even if they happen to mention textbooks/workbooks.
 - "sourcePlatform" MUST be the actual site/platform where the notice was found (e.g. "UNGM", "UNICEF Supply Division", "中国政府采购网", "XX市政府采购网", "学校官网"). NEVER use the name of a multilateral organization (UNICEF, World Bank, GPE, ADB, UNESCO, etc.) as sourcePlatform for a domestic Chinese tender just because the project involves education — that organization must have actually published the notice on its own official channel.
-- If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter.
+- If in doubt whether something is international or domestic, look at the issuer/buyer's location and the site it was published on, not just the subject matter. In particular: a Chinese publisher/institution tendering on a Chinese platform is "domestic" even if the book/material's SUBJECT concerns an international organization (e.g. printing a catalog of "UNESCO Intangible Cultural Heritage" volumes for a Chinese publisher, found on 千里马招标网/西藏招标网, is domestic — UNESCO didn't issue or fund that tender, it's just the topic of the book). Do not set "fundingSource" to an international organization's name just because it's mentioned in the project description — only set it if that organization is actually the buyer/funder of the tender itself.
 - For "domestic" entries specifically, the sourceUrl MUST be from an official/primary source: a government procurement domain (contains gov.cn), the buying institution's own official site (e.g. a university's own *.edu.cn procurement page), or a recognized official procurement platform (中国政府采购网, 各省市政府采购网, 中国招标投标公共服务平台). Do NOT source a domestic entry from a general news portal, aggregator, or self-media account (e.g. sohu, sina, toutiao, baijiahao, weibo, douyin, WeChat public accounts) — these frequently rewrite real notices into promotional/clickbait articles ("XX采购：你绝对不能错过的机会！") that are not reliable even when the underlying fact is real. If the only source you can find for a domestic tender is this kind of article, leave it out.
 
 SOURCE QUALITY RULES (read carefully — this has been a recurring error):
