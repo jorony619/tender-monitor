@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-04T01:25:22.587Z",
+  "lastUpdated": "2026-11-04T01:11:17.477Z",
   "projects": [
     {
       "id": 1,
@@ -41,8 +41,8 @@
         "en": "D — Missed / archived"
       },
       "status": {
-        "zh": "已过期",
-        "en": "Expired"
+        "zh": "已错过",
+        "en": "Missed"
       },
       "notes": {
         "zh": "示例行，可删除",
@@ -60,18 +60,18 @@
         "en": "Textbook / learning material printing"
       },
       "currency": "USD / local currency",
-      "grade": "C",
+      "grade": "B",
       "gradeLabel": {
-        "zh": "C-待核实",
-        "en": "C — Needs verification"
+        "zh": "B-发邮件确认",
+        "en": "B — Confirm by email"
       },
       "status": {
         "zh": "新发现",
         "en": "Newly discovered"
       },
       "notes": {
-        "zh": "新发现 [自动降级：未能确认具体截止日期，需人工核实是否仍然有效]",
-        "en": "Newly discovered [Auto-downgraded: no confirmed deadline found, needs manual verification]"
+        "zh": "新发现",
+        "en": "Newly discovered"
       },
       "region": "international"
     },
@@ -116,48 +116,6 @@
         "en": "Deadline could not be confirmed as being after 2026-10-02, requires verification"
       },
       "id": 3
-    },
-    {
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-08-08",
-      "sourcePlatform": "新疆招标网",
-      "issuer": "新疆教",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "2026年秋季教材、教辅用纸采购项目",
-      "projectNo": "0634-264XZ3QH0063/5",
-      "projectType": {
-        "zh": "教材用纸采购",
-        "en": "Textbook Paper Procurement"
-      },
-      "summary": {
-        "zh": "秋季教材和教辅材料用纸采购",
-        "en": "Procurement of paper for autumn textbooks and supplementary materials"
-      },
-      "publishDate": "2026-04-16",
-      "sourceUrl": "https://xj.bidcenter.com.cn/diqucontent-414448140-1.html",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无",
-        "en": "None"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "发布日期为2026年4月16日，已过期",
-        "en": "Published on 2026-04-16, already expired"
-      },
-      "id": 4
     },
     {
       "sample": false,
@@ -979,132 +937,6 @@
       }
     },
     {
-      "id": 18,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-28",
-      "sourcePlatform": "玉树采招网",
-      "issuer": "玉树藏族自治州第四民族高级中学",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "学校文印用纸采购",
-      "projectNo": "*10",
-      "projectType": {
-        "zh": "纸张采购",
-        "en": "Paper Procurement"
-      },
-      "summary": {
-        "zh": "学校文印用纸采购",
-        "en": "School office paper procurement"
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "详见招标文件",
-        "en": "See tender documents for specifications"
-      },
-      "fundingSource": "",
-      "publishDate": "2025-03-28",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://632701.bidcenter.com.cn/bidinfo-4-a0f73512c37219a92de75ff5c2e274ab38db6c06ec772754.html",
-      "keyContact": "普措文德",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无需跟进",
-        "en": "No follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "项目发布于2025年3月28日，已过期",
-        "en": "Project published on March 28, 2025, has expired"
-      }
-    },
-    {
-      "id": 19,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-28",
-      "sourcePlatform": "玉树采招网",
-      "issuer": "玉树藏族自治州第四民族高级中学",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "文印、广告制作",
-      "projectNo": "*67",
-      "projectType": {
-        "zh": "文印广告制作",
-        "en": "Printing and Advertising Production"
-      },
-      "summary": {
-        "zh": "文印、广告制作服务",
-        "en": "Printing and advertising production services"
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "详见招标文件",
-        "en": "See tender documents for specifications"
-      },
-      "fundingSource": "",
-      "publishDate": "2025-03-28",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://632701.bidcenter.com.cn/bidinfo-4-a0f73512c37219a9afbe18f27e036b02d4e9749d956bf035.html",
-      "keyContact": "普措文德",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无需跟进",
-        "en": "No follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "项目发布于2025年3月28日，已过期",
-        "en": "Project published on March 28, 2025, has expired"
-      }
-    },
-    {
       "id": 20,
       "sample": false,
       "verified": true,
@@ -1231,132 +1063,6 @@
       }
     },
     {
-      "id": 22,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-28",
-      "sourcePlatform": "采招网",
-      "issuer": "阳江市阳东区金湾学校",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "阳江市阳东区金湾学校复印纸等直接订购",
-      "projectNo": "",
-      "projectType": {
-        "zh": "纸张采购",
-        "en": "Paper Procurement"
-      },
-      "summary": {
-        "zh": "复印纸等直接订购",
-        "en": "Direct ordering of copying paper, etc."
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "详见招标文件",
-        "en": "See tender documents for specifications"
-      },
-      "fundingSource": "",
-      "publishDate": "2024-06-26",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://www.bidcenter.com.cn/newscontent-293382668-4.html",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无需跟进",
-        "en": "No follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "项目发布于2024年6月26日，已过期",
-        "en": "Project published on June 26, 2024, has expired"
-      }
-    },
-    {
-      "id": 23,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-28",
-      "sourcePlatform": "广东招标网",
-      "issuer": "珠海市金湾区华丰小学",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "珠海市金湾区华丰小学复印纸(等)直接订购",
-      "projectNo": "",
-      "projectType": {
-        "zh": "纸张采购",
-        "en": "Paper Procurement"
-      },
-      "summary": {
-        "zh": "复印纸等直接订购",
-        "en": "Direct ordering of copying paper, etc."
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "详见招标文件",
-        "en": "See tender documents for specifications"
-      },
-      "fundingSource": "",
-      "publishDate": "2024-05-27",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://guangdong.jianyu360.cn/jybx/20240527_24052669821444.html",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无需跟进",
-        "en": "No follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "项目发布于2024年5月27日，已过期",
-        "en": "Project published on May 27, 2024, has expired"
-      }
-    },
-    {
       "id": 24,
       "sample": false,
       "verified": true,
@@ -1417,69 +1123,6 @@
       "notes": {
         "zh": "项目发布于2024年11月26日，已过期",
         "en": "Project published on November 26, 2024, has expired"
-      }
-    },
-    {
-      "id": 25,
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-09-28",
-      "sourcePlatform": "浙江招标网",
-      "issuer": "金华市生态环境局永康分局",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "金华市生态环境局永康分局关于出版物印刷的框架协议采购项目",
-      "projectNo": "",
-      "projectType": {
-        "zh": "出版物印刷",
-        "en": "Publication Printing"
-      },
-      "summary": {
-        "zh": "出版物印刷框架协议采购",
-        "en": "Framework agreement procurement for publication printing"
-      },
-      "quantity": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "specs": {
-        "zh": "详见招标文件",
-        "en": "See tender documents for specifications"
-      },
-      "fundingSource": "",
-      "publishDate": "2024-03-06",
-      "deadlineLocal": "",
-      "deadlineBeijing": "",
-      "currency": "CNY",
-      "intlSuppliersAllowed": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确说明",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://zhejiang.jianyu360.cn/jybx/20240306_24030532486407.html",
-      "keyContact": "",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无需跟进",
-        "en": "No follow-up needed"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "项目发布于2024年3月6日，已过期",
-        "en": "Project published on March 6, 2024, has expired"
       }
     },
     {
