@@ -1151,48 +1151,6 @@
       "verified": true,
       "region": "international",
       "discoveryDate": "2026-11-04",
-      "sourcePlatform": "World Bank（官方Procurement Notice数据集 / official dataset API）",
-      "issuer": "World Bank – Nigeria",
-      "country": {
-        "zh": "Nigeria",
-        "en": "Nigeria"
-      },
-      "projectName": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide",
-      "projectNo": "478337",
-      "projectType": {
-        "zh": "教材/学习材料印刷",
-        "en": "Textbook / learning material printing"
-      },
-      "summary": {
-        "zh": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide",
-        "en": "Adaptation and Production of SBMC Manual, Production and distribution of parent consent/undertaking forms for scholarship under CCT, printing of adopted NPGPIE and it guide, printing of Kwara SPGIE, production of digital skills manuals and teachers guide"
-      },
-      "fundingSource": "World Bank",
-      "publishDate": "2026-10-30",
-      "deadlineLocal": "30-Oct-2026",
-      "deadlineBeijing": "2026-10-30 23:59",
-      "sourceUrl": "https://projects.worldbank.org/en/projects-operations/procurement-detail/OP00478337",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "D-已错过/归档",
-        "en": "D — Missed / archived"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "来自世界银行官方Procurement Notice开放数据集（直接调用官方API获取，不经过网页搜索/未经AI改写），字段为官方原始数据。",
-        "en": "Sourced directly from the World Bank's official Procurement Notice open dataset API (not web search, not AI-rewritten) — fields are the raw official values."
-      },
-      "id": 44,
-      "daysRemaining": -6
-    },
-    {
-      "sample": false,
-      "verified": true,
-      "region": "international",
-      "discoveryDate": "2026-11-04",
       "sourcePlatform": "UNICEF",
       "issuer": "UNICEF Rwanda",
       "country": {
