@@ -325,7 +325,8 @@ DOMESTIC SCOPE RULE (read carefully — this has been a recurring error):
 - A domestic entry IS in scope when it's a school/education authority procuring printing SERVICES that plausibly cover instructional materials — textbooks, workbooks (教辅/练习册/作业本), teacher's handbooks/guides (教师用书/教师指导/教师工作手册), exam papers (试卷), or a general "印刷服务定点采购"/"出版物印刷框架协议" from a school (since that framework would cover the school's own instructional-material printing needs even without spelling out "教材" explicitly).
 
 DEDUPLICATION RULE:
-- Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.`;
+- Before proposing a "new" item, compare its projectName + issuer/country against BOTH the existing entries above AND the other items you are about to return. If the same underlying tender appears to be mirrored on multiple sites (same project name, same buyer, same subject), only include it ONCE — pick the most authoritative/official source URL.
+- Match by projectName ALONE when deciding this, not projectName+issuer — a mirrored listing on a second aggregator site often has a vaguer/missing issuer ("未明确"/"Not specified") than the first, which would otherwise make them look like two different projects when they're the same one. When you do find a mirror pair, keep whichever copy has the MORE complete information (real issuer name, real project number) rather than the first one found.`;
 
 async function fetchWithTimeout(url, options, timeoutMs = 25000) {
   const controller = new AbortController();
@@ -647,9 +648,47 @@ function normalizeKey(name, issuer) {
   return [name, issuer].filter(Boolean).join("|").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
+// "未明确"/"Not specified"/etc. are placeholder non-values the LLM fills in
+// when a field genuinely isn't visible in the source — not a real issuer
+// name. When one mirrored listing has a real issuer and another (same
+// underlying tender, different aggregator site) has a placeholder issuer,
+// normalizeKey(name, issuer) produces two DIFFERENT keys and the dedup check
+// misses it (seen in practice: the same 图书印刷项目 added twice from
+// 千里马招标网 and 西藏招标网, one with issuer "未明确"). Fall back to
+// matching on projectName alone whenever either side's issuer is a
+// placeholder.
+const PLACEHOLDER_VALUE = /^(未明确|未说明|not specified|tbd|n\/a|unknown)?$/i;
+function isPlaceholderIssuer(v) {
+  return PLACEHOLDER_VALUE.test(String(v || "").trim());
+}
+function normalizeNameOnlyKey(name) {
+  return String(name || "").toLowerCase().replace(/\s+/g, " ").trim();
+}
+
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
   const existingUrls = new Set(projects.map(p => p.sourceUrl).filter(Boolean));
   const existingNameKeys = new Set(projects.map(p => normalizeKey(p.projectName, p.issuer)).filter(Boolean));
+  const existingNameOnlyKeys = new Set(projects.map(p => normalizeNameOnlyKey(p.projectName)).filter(Boolean));
+  const placeholderIssuerNameOnlyKeys = new Set(
+    projects.filter(p => isPlaceholderIssuer(p.issuer)).map(p => normalizeNameOnlyKey(p.projectName)).filter(Boolean)
+  );
+  function isMirroredDuplicate(item) {
+    const nameOnlyKey = normalizeNameOnlyKey(item.projectName);
+    if (!nameOnlyKey) return false;
+    // Either side having a placeholder issuer means normalizeKey(name,issuer)
+    // won't match a real-issuer twin of the same tender — fall back to
+    // matching on the project name alone in that case.
+    if (placeholderIssuerNameOnlyKeys.has(nameOnlyKey)) return true;
+    if (isPlaceholderIssuer(item.issuer) && existingNameOnlyKeys.has(nameOnlyKey)) return true;
+    return false;
+  }
+  function trackNameKeys(item) {
+    const nameOnlyKey = normalizeNameOnlyKey(item.projectName);
+    if (nameOnlyKey) {
+      existingNameOnlyKeys.add(nameOnlyKey);
+      if (isPlaceholderIssuer(item.issuer)) placeholderIssuerNameOnlyKeys.add(nameOnlyKey);
+    }
+  }
 
   // Merge World Bank official-dataset candidates first (most trustworthy —
   // structured official data, not AI-extracted) so later LLM-derived
@@ -658,11 +697,13 @@ function normalizeKey(name, issuer) {
     if (existingUrls.has(item.sourceUrl)) continue; // already tracked
     const nameKey = normalizeKey(item.projectName, item.issuer);
     if (nameKey && existingNameKeys.has(nameKey)) continue;
+    if (isMirroredDuplicate(item)) continue;
     item.id = nextId++;
     sanityCheckGrade(item);
     projects.push(item);
     existingUrls.add(item.sourceUrl);
     if (nameKey) existingNameKeys.add(nameKey);
+    trackNameKeys(item);
     changed = true;
     console.log(`Added new project #${item.id} (World Bank official dataset): ${item.projectName}`);
   }
@@ -689,6 +730,10 @@ function normalizeKey(name, issuer) {
       console.warn(`Skipping duplicate: same project name+issuer already tracked (mirrored source?) -> ${item.projectName}`);
       continue;
     }
+    if (isMirroredDuplicate(item)) {
+      console.warn(`Skipping duplicate: same project name tracked already (issuer unclear on one side, likely mirrored across aggregator sites) -> ${item.projectName}`);
+      continue;
+    }
     item.id = nextId++;
     item.sample = false;
     item.verified = true;
@@ -697,6 +742,7 @@ function normalizeKey(name, issuer) {
     projects.push(item);
     existingUrls.add(item.sourceUrl);
     if (nameKey) existingNameKeys.add(nameKey);
+    trackNameKeys(item);
     changed = true;
     console.log(`Added new project #${item.id}: ${item.projectName}`);
   }
