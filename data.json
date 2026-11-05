@@ -160,69 +160,6 @@
       "verified": true,
       "region": "domestic",
       "discoveryDate": "2026-08-23",
-      "sourcePlatform": "千里马招标网",
-      "issuer": "未明确",
-      "country": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "projectName": "2025年民文资助项目图书印刷项目",
-      "projectNo": "未明确",
-      "projectType": {
-        "zh": "图书印刷",
-        "en": "Book Printing"
-      },
-      "summary": {
-        "zh": "联合国教科文组织人类非物质文化遗产名录(1-13卷)图书印刷",
-        "en": "Printing of UNESCO Intangible Cultural Heritage of Humanity (Volumes 1-13)"
-      },
-      "quantity": {
-        "zh": "13种/每种200册",
-        "en": "13 types/200 copies each"
-      },
-      "specs": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "fundingSource": "UNESCO",
-      "publishDate": "2025-10-27",
-      "deadlineLocal": "未明确",
-      "deadlineBeijing": "未明确",
-      "currency": "未明确",
-      "intlSuppliersAllowed": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "locallyRestricted": {
-        "zh": "未明确",
-        "en": "Not specified"
-      },
-      "sourceUrl": "https://xz.qianlima.com/zbcontent-547910191.html",
-      "keyContact": "未明确",
-      "grade": "D",
-      "gradeLabel": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "nextAction": {
-        "zh": "无",
-        "en": "None"
-      },
-      "status": {
-        "zh": "已过期",
-        "en": "Expired"
-      },
-      "notes": {
-        "zh": "发布日期为2025年10月27日，已过期",
-        "en": "Published on 2025-10-27, already expired"
-      },
-      "id": 6
-    },
-    {
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-08-23",
       "sourcePlatform": "西藏招标网",
       "issuer": "西藏藏文古籍出版社",
       "country": {
