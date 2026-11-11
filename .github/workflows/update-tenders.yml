@@ -46,3 +46,16 @@ jobs:
         with:
           path: .
       - uses: actions/deploy-pages@v4
+
+  # Turns the run red (and triggers GitHub's failure email) when the search
+  # services were down this run, even though data.json was still published.
+  health-check:
+    needs: deploy-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Fail if search services were down
+        run: |
+          node -e "const d=require('./data.json'); const h=d.searchHealth||{}; console.log('searchHealth:', JSON.stringify(h)); if(h.status==='down'){ console.error('::error::Bocha search/model services failed this run (likely out of balance). Recharge and re-run.'); process.exit(1); }"
