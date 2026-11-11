@@ -545,9 +545,11 @@ ${SCHEMA_NOTE}
 Return ONLY a JSON object, no prose, no markdown fences, with this shape:
 {
   "updates": [ { "id": <existing id>, ...only fields that changed... } ],
-  "new": [ <full project objects for genuinely new tenders supported by the search results> ]
+  "new": [ <full project objects for genuinely new tenders supported by the search results> ],
+  "skipped": [ { "n": <the [number] of the search result as listed>, "reason": "<one short phrase in Chinese: why this result was NOT added, e.g. 成交公告 / 已过期 / 非教材印刷 / 金额低于50万 / 目录页 / 已收录>" } ]
 }
-If nothing new or changed, return {"updates": [], "new": []}.`;
+"skipped" must cover EVERY search result you did not turn into a new entry (one line each, keep reasons very short).
+If nothing new or changed, return {"updates": [], "new": [], "skipped": [...]}.`;
 }
 
 function recomputeDays(p) {
@@ -634,6 +636,7 @@ async function main() {
     console.log(`Capping ${trimmedHits.length} results down to ${MAX_HITS_FOR_MODEL} for the model call.`);
     trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
   }
+  trimmedHits = trimmedHits.map((h, i) => ({ n: i + 1, ...h }));
   // Diagnostics: show exactly which search results the model is given, so a
   // "No changes found" run can be told apart from "nothing relevant was searched".
   console.log(`Search results sent to the model (${trimmedHits.length}):`);
@@ -660,6 +663,14 @@ async function main() {
       const parsed = JSON.parse(jsonMatch[0]);
       updates = parsed.updates || [];
       newItems = parsed.new || [];
+      const skipped = Array.isArray(parsed.skipped) ? parsed.skipped : [];
+      if (skipped.length) {
+        console.log(`Model skipped ${skipped.length} result(s), reasons:`);
+        skipped.forEach(sk => {
+          const h = trimmedHits[Number(sk.n) - 1];
+          console.log(`  skipped [${sk.n}] ${h ? String(h.title || "").slice(0, 60) : "?"} -> ${sk.reason}`);
+        });
+      }
       console.log(`Model returned ${newItems.length} new item(s) and ${updates.length} update(s).`);
       newItems.forEach(it => console.log(`  model proposed: [${it.region || "?"}] ${String(it.projectName || "").slice(0, 80)} | amount=${it.budgetAmountCNY ?? "null"} | grade=${it.grade || "?"}`));
     } catch (e) {
