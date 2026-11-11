@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-11T08:05:32.437Z",
+  "lastUpdated": "2026-11-11T08:11:37.470Z",
   "projects": [
     {
       "id": 1,
@@ -245,11 +245,63 @@
         "en": "Entered manually from the tender document package (RFP, ToR, Annexes 1–4), not from automated search. sourceUrl is the UNGM notice search page; search UNGM for LRFP-2026-9207041 to open the original notice and replace with the direct link."
       },
       "sourceUrl": "https://www.ungm.org/Public/Notice"
+    },
+    {
+      "sample": false,
+      "verified": true,
+      "region": "domestic",
+      "discoveryDate": "2026-11-11",
+      "sourcePlatform": "中南大学出版社官网",
+      "issuer": "中南大学出版社有限责任公司",
+      "country": {
+        "zh": "中国",
+        "en": "China"
+      },
+      "projectName": "中南大学出版社有限责任公司图书印制服务项目及图书印制用纸张采购项目供应商公开招标公告",
+      "projectType": {
+        "zh": "图书印制服务",
+        "en": "Book printing services"
+      },
+      "summary": {
+        "zh": "中南大学出版社有限责任公司公开招标图书印制服务及印制用纸张供应商，服务期限2027年1月1日至2029年12月31日。",
+        "en": "Central South University Press invites bids for book printing services and printing paper suppliers, service period 1 Jan 2027 to 31 Dec 2029."
+      },
+      "publishDate": "2026-11-02",
+      "currency": "CNY",
+      "intlSuppliersAllowed": {
+        "zh": "否（国内公开招标）",
+        "en": "No (domestic public tender)"
+      },
+      "locallyRestricted": {
+        "zh": "是",
+        "en": "Yes"
+      },
+      "sourceUrl": "https://csup.csu.edu.cn/info/1026/8254.htm",
+      "budgetAmountCNY": null,
+      "grade": "C",
+      "gradeLabel": {
+        "zh": "开放，优先级低/需核实",
+        "en": "Open, low priority / needs verification"
+      },
+      "nextAction": {
+        "zh": "核实截止日期及投标资格要求，评估图书印制服务包是否适合投标",
+        "en": "Verify deadline and eligibility; assess whether the book printing service lot fits"
+      },
+      "status": {
+        "zh": "开放中，截止日期未确认，需核实",
+        "en": "Open, deadline not confirmed — needs verification"
+      },
+      "notes": {
+        "zh": "结果内容未披露截止日期与预算金额，需登录来源页面核实。 公告未写明预算/金额，需核实是否达到50万元门槛。",
+        "en": "Search snippet does not show deadline or budget; verify on the source page. No budget/amount stated in the notice; verify it meets the RMB 500,000 threshold."
+      },
+      "id": 52,
+      "amountUnverified": true
     }
   ],
   "searchHealth": {
     "status": "ok",
-    "checkedAt": "2026-11-11T08:05:32.437Z",
+    "checkedAt": "2026-11-11T08:11:37.470Z",
     "searches": {
       "attempted": 12,
       "failed": 0
