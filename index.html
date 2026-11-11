@@ -113,6 +113,10 @@
   }
 
   /* ---------- sources / refresh panel ---------- */
+  .health-banner{display:none; margin:12px 40px 0; padding:12px 16px; border:1px solid #e0605a; background:rgba(224,96,90,0.12); color:#ffb3ae; border-radius:8px; font-size:13px; line-height:1.6;}
+  .health-banner.show{display:block;}
+  .health-banner.degraded{border-color:#e8a33d; background:rgba(232,163,61,0.12); color:#f5cf8a;}
+  .health-banner b{color:inherit;}
   .sources-panel{
     margin:0 40px 8px; padding:18px 22px; border:1px solid var(--border); border-radius:10px;
     background:linear-gradient(180deg, rgba(232,163,61,0.05), transparent);
@@ -269,6 +273,8 @@
   </div>
 </header>
 
+<div class="health-banner" id="health-banner"></div>
+
 <div class="region-tabs" id="region-tabs">
   <div class="region-tab active" data-region="international" onclick="setRegion('international')">
     <span data-i18n="tabIntl">国际招标</span> <span class="rt-count" id="count-intl"></span>
@@ -306,6 +312,7 @@
     </div>
     <div class="source-links">
       <a href="https://www.ungm.org/Public/Notice" target="_blank" rel="noopener">UNGM Notices</a>
+      <a href="https://www.ungm.org/Vendor/Registration" target="_blank" rel="noopener">UNGM Vendor Registration + Tender Alerts</a>
       <a href="https://projects.worldbank.org/en/projects-operations/opportunities" target="_blank" rel="noopener">World Bank Opportunities</a>
       <a href="https://www.unicef.org/supply/tender-calendars" target="_blank" rel="noopener">UNICEF Tender Calendars</a>
       <a href="https://ungm.in-tend.co.uk/unicef/aspx/Tenders/Current" target="_blank" rel="noopener">UNICEF eTendering</a>
@@ -509,6 +516,20 @@ const fallbackProjects = [
 
 let projects = fallbackProjects;
 let dataSourceInfo = { live:false, lastUpdated:null };
+let searchHealth = null;
+
+function renderHealthBanner(){
+  const el = document.getElementById('health-banner');
+  if(!el) return;
+  if(!searchHealth || !searchHealth.status || searchHealth.status === 'ok' || !searchHealth.message){
+    el.className = 'health-banner'; el.innerHTML = ''; return;
+  }
+  const msg = searchHealth.message[lang] || searchHealth.message.zh || '';
+  const when = searchHealth.checkedAt ? searchHealth.checkedAt.slice(0,10) : '';
+  const title = lang === 'zh' ? '⚠ 搜索服务异常' : '⚠ Search service problem';
+  el.className = 'health-banner show' + (searchHealth.status === 'degraded' ? ' degraded' : '');
+  el.innerHTML = '<b>' + title + (when ? ' (' + when + ')' : '') + '</b> — ' + msg;
+}
 
 async function loadData(){
   try{
@@ -518,6 +539,7 @@ async function loadData(){
     if(Array.isArray(json.projects) && json.projects.length){
       projects = json.projects.map(recomputeDays);
       dataSourceInfo = { live:true, lastUpdated: json.lastUpdated || null };
+      searchHealth = json.searchHealth || null;
     }
   }catch(e){
     projects = fallbackProjects.map(recomputeDays);
@@ -559,6 +581,7 @@ function setLang(l){
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
     el.placeholder = T[l][el.getAttribute('data-i18n-ph')] || '';
   });
+  renderHealthBanner();
   buildFilters();
   renderKpis();
   render();
