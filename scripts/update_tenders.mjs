@@ -37,6 +37,12 @@ const MODEL = process.env.BOCHA_MODEL || "deepseek-v4-flash";
 const BOCHA_SEARCH_BASE_URL = "https://api.bochaai.com/v1";
 const BOCHA_MODEL_BASE_URL = "https://api.bocha.cn/v1"; // Model API 走这个域名，跟 Web Search 的域名不一样
 
+// Only look at pages published in the last month. With "noLimit" the engine
+// returned mostly closed 2024-2025 notices and award announcements, so the
+// model had nothing open to pick from. Override with the SEARCH_FRESHNESS env
+// var (oneDay | oneWeek | oneMonth | oneYear | noLimit) if needed.
+const SEARCH_FRESHNESS = process.env.SEARCH_FRESHNESS || "oneMonth";
+
 const INTL_QUERIES = [
   "UNGM tender printing textbooks workbooks",
   "UNICEF supply printing workbooks teacher guide tender",
@@ -425,7 +431,7 @@ async function bochaWebSearch(query, attempt = 1) {
       },
       body: JSON.stringify({
         query,
-        freshness: "noLimit",
+        freshness: SEARCH_FRESHNESS,
         summary: true,
         count: 10
       })
