@@ -50,9 +50,9 @@ const INTL_QUERIES = [
 ];
 
 const DOMESTIC_QUERIES = [
-  "教材印刷 中标公告 site:gov.cn",
-  "教辅资料印刷服务 招标公告 site:gov.cn",
-  "学校 教材印刷 采购公告 site:gov.cn"
+  "教材印刷 公开招标 招标公告 预算金额 万元 site:gov.cn",
+  "教辅资料印刷服务 招标公告 预算金额 万元 site:gov.cn",
+  "学校 教材 教辅 印刷 采购公告 预算金额 万元 site:gov.cn"
 ];
 
 const SEARCH_QUERIES = [...INTL_QUERIES, ...DOMESTIC_QUERIES];
@@ -91,11 +91,67 @@ function isOffScopeDomestic(item) {
 // "don't trust the LLM alone" approach. Catches award/result notices (bidding
 // already closed, winner already announced) in either language, regardless
 // of region, so they never get added even as a D-graded historical entry.
-const RESULT_NOTICE_PATTERN = /成交公告|中标公告|中标结果|成交结果|中标候选人|废标公告|流标公告|竞价成交|contract award|award notice|results? notice|winning bidder/i;
+const RESULT_NOTICE_PATTERN = /成交公告|成交公示|成交信息|成交供应商|成交结果|议价成交|中标公告|中标结果|中标候选人|结果公告|结果公示|合同公告|废标公告|流标公告|竞价成交|contract award|award notice|results? notice|winning bidder/i;
 function isResultAnnouncement(item) {
   const text = [item.projectName, (item.summary && item.summary.zh), (item.summary && item.summary.en), (item.notes && item.notes.zh), (item.notes && item.notes.en)]
     .filter(Boolean).join(" ");
   return RESULT_NOTICE_PATTERN.test(text);
+}
+
+// The model often drops "成交公告"/"中标公告" from the project name it returns
+// (e.g. "明诚学校试卷印刷定点议价成交公告" -> "明诚学校试卷印刷"), so the check above
+// can't see it. This one looks at the ORIGINAL search result (title + snippet)
+// the item's sourceUrl came from, which still carries the real notice title.
+function normUrl(u) {
+  return String(u || "").replace(/^https?:\/\//i, "").replace(/[?#].*$/, "").replace(/\.html?$/i, "").replace(/\/+$/, "").toLowerCase();
+}
+// Snippet text is only checked against a narrower pattern: an open tender's
+// terms can legitimately say things like "确定成交供应商", so the broad words are
+// reserved for the notice TITLE.
+const RESULT_SNIPPET_PATTERN = /成交公告|成交公示|中标公告|结果公告|结果公示|三[、.]\s*成交信息|成交金额\s*[:：]|中标金额\s*[:：]|contract award|award notice/i;
+function isResultByOriginalHit(item, hitByUrl) {
+  const hit = hitByUrl.get(normUrl(item.sourceUrl));
+  if (!hit) return false;
+  return RESULT_NOTICE_PATTERN.test(String(hit.title || "")) || RESULT_SNIPPET_PATTERN.test(String(hit.content || ""));
+}
+
+// DOMESTIC AMOUNT RULE: domestic projects are only worth tracking at or above
+// this budget / contract amount (RMB). A STATED amount below the threshold is
+// skipped; an amount that is NOT stated is let through but flagged C / "needs
+// verification" (see flagUnknownDomesticAmount) so a real big project isn't lost.
+const DOMESTIC_MIN_BUDGET_CNY = 500000;
+function extractAmountCNY(item) {
+  if (typeof item.budgetAmountCNY === "number" && isFinite(item.budgetAmountCNY)) return item.budgetAmountCNY;
+  if (typeof item.budgetAmountCNY === "string") {
+    const n = Number(item.budgetAmountCNY.replace(/[,，\s]/g, ""));
+    if (isFinite(n) && n > 0) return n;
+  }
+  const text = [item.projectName, item.quantity && item.quantity.zh, item.specs && item.specs.zh, item.summary && item.summary.zh, item.notes && item.notes.zh].filter(Boolean).join(" ");
+  let m = text.match(/(\d+(?:\.\d+)?)\s*万元/);
+  if (m) return Math.round(parseFloat(m[1]) * 10000);
+  m = text.match(/(?:预算|金额|限价|报价)[^\d]{0,8}(\d[\d,]*(?:\.\d+)?)\s*元/);
+  if (m) return Math.round(parseFloat(m[1].replace(/,/g, "")));
+  return null;
+}
+function failsDomesticAmountRule(item) {
+  if (item.region !== "domestic") return null;
+  const amt = extractAmountCNY(item);
+  if (amt === null) return null; // unknown amount: not rejected, flagged instead
+  if (amt < DOMESTIC_MIN_BUDGET_CNY) return `amount ${amt} < ${DOMESTIC_MIN_BUDGET_CNY}`;
+  return null;
+}
+// Unknown amount on a domestic item: keep it, but never above grade C, and say why.
+function flagUnknownDomesticAmount(item) {
+  if (item.region !== "domestic" || extractAmountCNY(item) !== null) return;
+  item.amountUnverified = true;
+  if (item.grade === "A" || item.grade === "B") {
+    item.grade = "C";
+    item.gradeLabel = { zh: "C-待核实（金额未写明）", en: "C — Needs verification (amount not stated)" };
+  }
+  const addZh = "公告未写明预算/金额，需核实是否达到50万元门槛。";
+  const addEn = "No budget/amount stated in the notice; verify it meets the RMB 500,000 threshold.";
+  const n = item.notes && typeof item.notes === "object" ? item.notes : { zh: item.notes || "", en: "" };
+  item.notes = { zh: [n.zh, addZh].filter(Boolean).join(" "), en: [n.en, addEn].filter(Boolean).join(" ") };
 }
 
 function isBlockedDomain(link) {
@@ -292,6 +348,7 @@ Each project object MUST use this exact shape (omit a key entirely rather than g
   "locallyRestricted": {"zh": string, "en": string},
   "sourceUrl": string,          // REQUIRED — must be copied EXACTLY (character for character) from the "link" field of one of the search results provided below. Never invent or modify a URL.
   "keyContact": string,
+  "budgetAmountCNY": number | null,   // DOMESTIC items only: budget / maximum price / contract amount in RMB (yuan) as a plain number — convert 万元 (×10000). null if the notice states no amount.
   "grade": "A" | "B" | "C" | "D",
   "gradeLabel": {"zh": string, "en": string},
   "nextAction": {"zh": string, "en": string},
@@ -313,9 +370,14 @@ SOURCE QUALITY RULES (read carefully — this has been a recurring error):
 - When unsure whether a result is a real, specific, current tender vs. background/reference material, leave it out rather than guessing.
 - Some sources (e.g. bidsinfo.com and similar paid tender-aggregator sites) show only a summary publicly — title, country, closing date, reference number — and gate full details (buyer name, contact, full scope) behind a paid login. It's fine to create an entry from just the public summary IF it clearly names a specific tender with a specific closing date, but you MUST: (a) only fill in the fields you can actually see (leave the rest blank), (b) note in "openQuestions" or "notes" that full details require logging into the source site, and (c) never grade it A — treat it as B/C at most since eligibility and scope can't be confirmed without the gated content.
 
+TITLE FIDELITY RULE: "projectName" must be the notice's ORIGINAL title as shown in the search result's "title"/content, word for word — do NOT shorten it or drop words such as 成交公告 / 中标公告 / 结果公示 / 议价成交 / 定点议价成交. (Dropping them hides that the notice is a result record.) If a result's title or text contains ANY of these, it is a RESULT notice: skip it.
+- Another tell for result notices: sections like "成交信息 / 成交供应商 / 成交金额 / 中标供应商 / 中标金额" naming a winning company. A tender invitation never names a winner.
+
 TENDER-vs-RESULT RULE (read carefully — applies to BOTH domestic and international, this has been a recurring error):
 - Only create an entry for an OPEN opportunity — a notice inviting bids/quotations that a supplier could still act on, or at minimum a genuine call-for-bids record. Do NOT create an entry for an after-the-fact RESULT/AWARD record — a notice whose content is reporting who already won, that bidding has already closed, or that the contract is already signed. This applies regardless of language: Chinese 成交公告/中标公告/中标结果/成交结果/中标候选人公示/废标公告/流标公告 and English "Contract Award" / "Award Notice" / "Results Notice" / "Winning Bidder" are all RESULT records, not opportunities — even if they technically mention the original project/subject matter (e.g. "小学教辅本册印刷...竞价成交公告" is reporting a result, not inviting bids — skip it entirely, don't add it even as a D/expired entry).
 - If a search result's content makes clear the award has already been decided (names a winning supplier/contractor, states a signed contract, or is explicitly labeled as a result/award notice), leave it out of "new" entirely rather than including it with a low grade — these aren't useful even as historical records for this dashboard.
+
+DOMESTIC AMOUNT RULE (mandatory): the buyer only wants DOMESTIC projects of RMB 500,000 (50万元) or MORE. Fill "budgetAmountCNY" with the budget / maximum price / contract amount as a number whenever the notice states one. If a stated amount is BELOW 500,000, do NOT return the project at all (small school print jobs and "定点采购/议价" quotes are not wanted). If the notice does NOT state any amount, still return the project (it is a qualified-looking open tender) with "budgetAmountCNY": null and grade "C" — do not guess an amount. This rule does not apply to international tenders.
 
 DOMESTIC SCOPE RULE (read carefully — this has been a recurring error):
 - The buyer's business only prints textbooks, workbooks, teacher's guides, exam papers, and similar finished educational-content printing SERVICES. It does NOT buy/sell raw paper stock, office consumables, or generic advertising production.
@@ -539,6 +601,7 @@ async function main() {
   });
 
   console.log(`Collected ${searchHits.length} unique search results.`);
+  const hitByUrl = new Map(searchHits.map(h => [normUrl(h.link), h]));
 
   // Fair share per query: results are ordered by query, so a plain "first 50"
   // cap lets the first queries (UNGM/UNICEF/World Bank/ADB) crowd out the
@@ -756,8 +819,13 @@ function normalizeNameOnlyKey(name) {
       console.warn(`Skipping out-of-scope domestic item (raw paper/consumables/ad-production, not a printing service): ${item.projectName}`);
       continue;
     }
-    if (isResultAnnouncement(item)) {
+    if (isResultAnnouncement(item) || isResultByOriginalHit(item, hitByUrl)) {
       console.warn(`Skipping award/result announcement (bidding already closed, not an open opportunity): ${item.projectName}`);
+      continue;
+    }
+    const amountFail = failsDomesticAmountRule(item);
+    if (amountFail) {
+      console.warn(`Skipping domestic item below the RMB ${DOMESTIC_MIN_BUDGET_CNY} budget rule (${amountFail}): ${item.projectName}`);
       continue;
     }
     const nameKey = normalizeKey(item.projectName, item.issuer);
@@ -774,6 +842,7 @@ function normalizeNameOnlyKey(name) {
     item.verified = true;
     item.region = item.region === "domestic" ? "domestic" : "international";
     sanityCheckGrade(item);
+    flagUnknownDomesticAmount(item);
     projects.push(item);
     existingUrls.add(item.sourceUrl);
     if (nameKey) existingNameKeys.add(nameKey);
