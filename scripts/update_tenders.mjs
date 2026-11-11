@@ -90,7 +90,12 @@ const OFF_SCOPE_DOMESTIC_NAME = /用纸采购|复印纸.{0,6}(采购|订购)|纸
 function isOffScopeDomestic(item) {
   // Check by content pattern regardless of how "region" got labeled — a raw
   // paper/consumables/ad-production listing is out of scope either way.
-  return OFF_SCOPE_DOMESTIC_NAME.test(String(item.projectName || ""));
+  const name = String(item.projectName || "");
+  // A combined "printing service + paper supply" project (e.g. "图书印刷服务项目及
+  // 图书印制用纸采购项目") is in scope — only reject when there is no printing
+  // SERVICE in the title.
+  if (/印刷服务|印制服务|印刷项目|印刷费|印务/.test(name)) return false;
+  return OFF_SCOPE_DOMESTIC_NAME.test(name);
 }
 
 // Code-level safety net for the TENDER-vs-RESULT RULE in the prompt — same
@@ -549,6 +554,7 @@ Return ONLY a JSON object, no prose, no markdown fences, with this shape:
   "new": [ <full project objects for genuinely new tenders supported by the search results> ],
   "skipped": [ { "n": <the [number] of the search result as listed>, "reason": "<one short phrase in Chinese: why this result was NOT added, e.g. 成交公告 / 已过期 / 非教材印刷 / 金额低于50万 / 目录页 / 已收录>" } ]
 }
+A missing amount is NEVER a valid reason to put a domestic result in "skipped" (see DOMESTIC AMOUNT RULE): an open domestic printing tender of an education buyer with no stated amount MUST go into "new" with budgetAmountCNY null and grade C. Workbook / practice-sheet / exam-paper printing (e.g. 课时练, 同步练习, 试卷印刷) counts as educational-material printing.
 "skipped" must cover EVERY search result you did not turn into a new entry (one line each, keep reasons very short).
 If nothing new or changed, return {"updates": [], "new": [], "skipped": [...]}.`;
 }
