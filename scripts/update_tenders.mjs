@@ -628,6 +628,10 @@ async function main() {
     console.log(`Capping ${trimmedHits.length} results down to ${MAX_HITS_FOR_MODEL} for the model call.`);
     trimmedHits = trimmedHits.slice(0, MAX_HITS_FOR_MODEL);
   }
+  // Diagnostics: show exactly which search results the model is given, so a
+  // "No changes found" run can be told apart from "nothing relevant was searched".
+  console.log(`Search results sent to the model (${trimmedHits.length}):`);
+  trimmedHits.forEach((h, i) => console.log(`  [${i + 1}] ${String(h.title || "").slice(0, 70)} | ${String(h.link || "").slice(0, 90)}`));
   console.log("Calling Bocha Model API (DeepSeek V4) to extract...");
   let raw2 = "";
   try {
@@ -650,6 +654,8 @@ async function main() {
       const parsed = JSON.parse(jsonMatch[0]);
       updates = parsed.updates || [];
       newItems = parsed.new || [];
+      console.log(`Model returned ${newItems.length} new item(s) and ${updates.length} update(s).`);
+      newItems.forEach(it => console.log(`  model proposed: [${it.region || "?"}] ${String(it.projectName || "").slice(0, 80)} | amount=${it.budgetAmountCNY ?? "null"} | grade=${it.grade || "?"}`));
     } catch (e) {
       console.warn("Failed to parse GLM JSON output:", e.message);
       console.warn("Raw output was:", raw2.slice(0, 2000));
