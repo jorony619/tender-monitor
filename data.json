@@ -1345,6 +1345,105 @@
       },
       "id": 50,
       "daysRemaining": -210
+    },
+    {
+      "id": 51,
+      "sample": false,
+      "verified": true,
+      "region": "international",
+      "discoveryDate": "2026-11-06",
+      "sourcePlatform": "UNGM / UNICEF",
+      "issuer": "UNICEF Papua New Guinea（牵头单位：国家教育部课程发展司 NDoE-CDD）",
+      "country": {
+        "zh": "巴布亚新几内亚",
+        "en": "Papua New Guinea"
+      },
+      "projectName": "Procurement of Grade 1 and Grade 2 Mathematics Textbooks and Teacher Manuals for Junior Primary Schools in Papua New Guinea",
+      "projectNo": "LRFP-2026-9207041",
+      "projectType": {
+        "zh": "教材/教师手册印刷（含版面更新、包装、运输）",
+        "en": "Textbook / teacher manual printing (incl. layout update, packing, shipping)"
+      },
+      "summary": {
+        "zh": "G1、G2数学学生用书及教师手册的印刷、版面更新、按校包装和海运，送至莱城港和莫尔兹比港，覆盖9个省、3,837所学校。",
+        "en": "Printing, layout update, school-level packing and sea freight of G1/G2 mathematics textbooks and teacher manuals to Lae and Port Moresby ports; 9 provinces, 3,837 schools."
+      },
+      "quantity": {
+        "zh": "学生用书：G1、G2各189,719本；教师手册：G1、G2各4,873本（附件1及ToR 3.2）。注意：ToR 5.1规格表数量较少（173,848 / 159,626 / 3,588 / 3,622），需向UNICEF澄清。",
+        "en": "Student textbooks: 189,719 each for G1 and G2; teacher manuals: 4,873 each (Annex 1 and ToR 3.2). Note: the ToR 5.1 spec table shows lower figures (173,848 / 159,626 / 3,588 / 3,622) — to be clarified with UNICEF."
+      },
+      "specs": {
+        "zh": "A4竖版；封面4页、250gsm、4C+4C；内页180/340/232/396页（G1书/G1手册/G2书/G2手册），内页只给出厚度0.087mm，未给克重；PUR胶装。",
+        "en": "A4 portrait; 4pp cover, 250gsm, 4C+4C; inside 180/340/232/396 pp (G1 book / G1 manual / G2 book / G2 manual), inside paper given only as 0.087mm thickness (no gsm); PUR perfect binding."
+      },
+      "fundingSource": "GPE（系统转型拨款 STG），UNICEF为授权代理 / GPE (System Transformation Grant), UNICEF as grant agent",
+      "publishDate": "2026-11-02",
+      "deadlineLocal": "2026-11-24 23:30 PNG time (UTC+10)",
+      "deadlineBeijing": "2026-11-24 21:30",
+      "daysRemaining": 13,
+      "currency": "PGK；国际投标人用USD / PGK; USD for international bidders",
+      "deliveryTerms": "DAP (Incoterms 2020)（附件4按FCA报价，两者冲突，需澄清）",
+      "deliveryLocation": "莱城港（8个省）；莫尔兹比港Motukea（中央省）/ Lae Port (8 provinces); Port Moresby Motukea (Central)",
+      "deliveryLeadTime": {
+        "zh": "样品批准4–6周 + 印装10–12周 + 运输8–10周，合计约22–28周，未给最终交货日期",
+        "en": "Sample approval 4–6 wks + printing 10–12 wks + shipping 8–10 wks = ~22–28 wks; no firm delivery date given"
+      },
+      "paymentTerms": {
+        "zh": "10%印前文件批准后；40%印装完成后；50%到港并清关后；验收后30天内付款（与GTC 3.2“交货后开票”冲突）",
+        "en": "10% on print-ready approval; 40% on printing & packing complete; 50% on delivery and customs clearance; paid within 30 days of acceptance (conflicts with GTC 3.2 'invoice after delivery')"
+      },
+      "customsResponsibility": {
+        "zh": "DAP下通常由买方进口清关，但ToR要求“清关完成”才付最后50%并要求提前一个月提供单证，责任不清，需澄清",
+        "en": "Under DAP the buyer normally clears import, yet ToR ties the final 50% to customs clearance and requires documents a month ahead — unclear, to be clarified"
+      },
+      "bidMethod": {
+        "zh": "仅限邮件提交至 png-bids@unicef.org；技术标和价格标分开发送，价格标设密码；每封小于25MB；不得抄送；不接受云盘链接。11月13日前确认参标意向。",
+        "en": "Email only to png-bids@unicef.org; technical and price proposals separate, price file password-protected; <25MB per email; no CC; no cloud links. Confirm intent to bid by 13 Nov 2026."
+      },
+      "registrationRequired": {
+        "zh": "投标表需填写UNGM编号",
+        "en": "UNGM vendor number required on the bid form"
+      },
+      "bondRequirement": {
+        "zh": "未要求投标保函；预付款超过总价20%或1万美元需银行保函",
+        "en": "No bid bond; bank guarantee required if advance payment exceeds 20% of price or USD 10,000"
+      },
+      "sampleRequired": {
+        "zh": "资格要求提供类似教育印刷品样品，但仅邮件投标，提交方式未说明",
+        "en": "Samples of similar printed educational materials required, but submission is email-only; method unspecified"
+      },
+      "qualifications": {
+        "zh": "合法注册并有税务合规文件；至少3年大规模教材印刷经验；近3年同类项目参考；具备产能与设备（评分另看近5年经验）",
+        "en": "Registered business with tax compliance documents; ≥3 years large-scale textbook printing; references from last 3 years; capacity & equipment (scoring looks at last 5 years)"
+      },
+      "intlSuppliersAllowed": {
+        "zh": "允许，国际投标人以美元报价",
+        "en": "Yes — international bidders quote in USD"
+      },
+      "keyContact": "Michelle Elizabeth Kopon (mkopon@unicef.org) — 仅供咨询，不用于提交报价 / enquiries only, not for submissions",
+      "submissionContact": "png-bids@unicef.org",
+      "openQuestions": {
+        "zh": "1) 规格表与附件1数量不一致，G2数量疑似复制G1；2) FCA与DAP冲突，清关责任不清；3) 附件4缺版面更新、样书、说明卡片、缓冲库存、保险报价行，总价公式未乘集装箱数；4) 付款节点与GTC冲突；5) 违约金费率、保险要求（产品责任险含召回）；6) 可否只投一个Kit。详见《招标文件审阅》文档。",
+        "en": "1) Spec table vs Annex 1 quantity mismatch, G2 looks copied from G1; 2) FCA vs DAP conflict, customs responsibility unclear; 3) Annex 4 lacks lines for layout update, mock-ups, instruction cards, buffer stock, insurance; total formula ignores container count; 4) payment milestones conflict with GTC; 5) liquidated damages rate, insurance (product liability incl. recall); 6) can one Kit be bid alone. See the tender review document."
+      },
+      "grade": "A",
+      "gradeLabel": {
+        "zh": "A-立即推进",
+        "en": "A — Act now"
+      },
+      "status": {
+        "zh": "开放中，截止2026-11-24",
+        "en": "Open — closes 2026-11-24"
+      },
+      "nextAction": {
+        "zh": "11月13日前发送参标意向邮件；确认UNGM编号；向png-bids@unicef.org发送澄清问题；请UNICEF换方式提供Google Drive艺术稿（大陆无法访问）。",
+        "en": "Send intent-to-bid email by 13 Nov; confirm UNGM number; send clarification questions to png-bids@unicef.org; ask UNICEF for an alternative to the Google Drive artwork link (not reachable from mainland China)."
+      },
+      "notes": {
+        "zh": "根据招标文件包（RFP、ToR、附件1–4）人工录入，非自动搜索结果。sourceUrl为UNGM公告检索页，请在UNGM搜索编号LRFP-2026-9207041打开原公告，找到后可替换为具体链接。",
+        "en": "Entered manually from the tender document package (RFP, ToR, Annexes 1–4), not from automated search. sourceUrl is the UNGM notice search page; search UNGM for LRFP-2026-9207041 to open the original notice and replace with the direct link."
+      },
+      "sourceUrl": "https://www.ungm.org/Public/Notice"
     }
   ],
   "searchHealth": {
