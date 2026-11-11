@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-10T08:04:15.197Z",
+  "lastUpdated": "2026-11-11T00:48:11.307Z",
   "projects": [
     {
       "id": 1,
@@ -1346,5 +1346,15 @@
       "id": 50,
       "daysRemaining": -210
     }
-  ]
+  ],
+  "searchHealth": {
+    "status": "ok",
+    "checkedAt": "2026-11-11T00:48:11.307Z",
+    "searches": {
+      "attempted": 12,
+      "failed": 0
+    },
+    "modelError": null,
+    "message": null
+  }
 }
