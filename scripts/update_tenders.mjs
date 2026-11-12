@@ -23,6 +23,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { fetchOsceCandidates } from "./osce_source.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data.json");
@@ -584,6 +585,10 @@ async function main() {
     return [];
   });
 
+  // OSCE official procurement portal: also an independent, search-free source
+  // (public list page, parsed directly). Never throws — returns {items, listed, error}.
+  const osceResultPromise = fetchOsceCandidates({ fetchWithTimeout });
+
   console.log("Running web searches...");
 
   let searchHits = [];
@@ -599,6 +604,9 @@ async function main() {
 
   const wbRows = await wbRowsPromise;
   const wbCandidates = wbRows.map(wbRowToProject).filter(Boolean);
+  const osceResult = await osceResultPromise;
+  const osceCandidates = osceResult.items;
+  const osceError = osceResult.error;
 
   // Drop known generic document-sharing / content-farm domains before they ever reach the model
   const beforeBlock = searchHits.length;
@@ -719,7 +727,10 @@ function sanityCheckGrade(item) {
   // Check project number for an embedded year that's clearly in the past
   const yearMatch = String(item.projectNo || "").match(/\b(20\d{2})\b/);
   const currentYear = new Date().getFullYear();
-  const looksStaleByNumber = yearMatch && parseInt(yearMatch[1], 10) < currentYear;
+  // A confirmed deadline that is still in the future beats the reference-number
+  // year heuristic (e.g. an OSCE "RFQ/.../2025/..." that is genuinely still open).
+  const hasConfirmedFutureDeadline = !!(deadlineDate && deadlineDate >= today);
+  const looksStaleByNumber = yearMatch && parseInt(yearMatch[1], 10) < currentYear && !hasConfirmedFutureDeadline;
 
   // No confirmed future deadline, but grade claims urgency -> downgrade
   if ((item.grade === "A" || item.grade === "B") && !deadlineDate) {
@@ -836,7 +847,47 @@ function normalizeNameOnlyKey(name) {
     console.log(`Added new project #${item.id} (World Bank official dataset): ${item.projectName}`);
   }
 
+  // Merge OSCE official-portal candidates right after World Bank (also primary,
+  // structured data). Dedup by URL, by OSCE reference number, then by name.
+  const existingProjectNos = new Set(projects.map(p => String(p.projectNo || "").trim().toLowerCase()).filter(Boolean));
+  for (const item of osceCandidates) {
+    if (existingUrls.has(item.sourceUrl)) continue;
+    const refKey = String(item.projectNo || "").trim().toLowerCase();
+    if (refKey && existingProjectNos.has(refKey)) continue;
+    const nameKey = normalizeKey(item.projectName, item.issuer);
+    if (nameKey && existingNameKeys.has(nameKey)) continue;
+    if (isMirroredDuplicate(item)) continue;
+    item.id = nextId++;
+    sanityCheckGrade(item);
+    projects.push(item);
+    existingUrls.add(item.sourceUrl);
+    if (refKey) existingProjectNos.add(refKey);
+    if (nameKey) existingNameKeys.add(nameKey);
+    trackNameKeys(item);
+    changed = true;
+    console.log(`Added new project #${item.id} (OSCE official portal): ${item.projectName}`);
+  }
+
+  // The same OSCE tender often also shows up on aggregators (e.g. BidsInfo) under a
+  // slightly different title ("...Textbook" vs "...Textbook for the OSCE Project
+  // Co-ordinator in Uzbekistan"), which exact-name dedup misses. Compare loosely
+  // against OSCE-sourced rows only.
+  const looseKey = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9一-龥]+/g, " ").trim();
+  function isLooseDuplicateOfOsce(item) {
+    const a = looseKey(item.projectName);
+    if (a.length < 25) return false;
+    return projects.some(p => {
+      if (!/OSCE/i.test(String(p.sourcePlatform || ""))) return false;
+      const b = looseKey(p.projectName);
+      return b.length >= 25 && (a.includes(b) || b.includes(a));
+    });
+  }
+
   for (const item of newItems) {
+    if (isLooseDuplicateOfOsce(item)) {
+      console.warn(`Skipping duplicate: already tracked from the OSCE official portal -> ${item.projectName}`);
+      continue;
+    }
     if (!item.sourceUrl || !validLinks.has(item.sourceUrl)) {
       console.warn("Skipping new item with missing/unverified sourceUrl:", item.projectName);
       continue;
@@ -893,14 +944,26 @@ function normalizeNameOnlyKey(name) {
   const modelAuthFailed = !!modelError && AUTH_OR_QUOTA.test(modelError);
   let healthStatus = "ok";
   if (allSearchesFailed || modelAuthFailed) healthStatus = "down";
-  else if (searchStats.failed > 0 || modelError) healthStatus = "degraded";
+  else if (searchStats.failed > 0 || modelError || osceError) healthStatus = "degraded";
   const quotaLikely = searchStats.authFailed > 0 || modelAuthFailed;
+  // OSCE is a direct fetch, so a failure there (network error, or the list page
+  // parsing to 0 rows because its markup changed) must be visible, not silent.
+  const osceNote = osceError
+    ? {
+        zh: "OSCE官方采购网站本次抓取失败或解析为0条，本次未覆盖OSCE，请检查 Actions 日志（页面结构可能变了）。",
+        en: "The OSCE procurement portal fetch failed or parsed 0 rows this run, so OSCE was NOT covered — check the Actions log (the page markup may have changed)."
+      }
+    : null;
   data.searchHealth = {
     status: healthStatus,
     checkedAt: data.lastUpdated,
     searches: { attempted: searchStats.attempted, failed: searchStats.failed },
     modelError: modelError ? modelError.slice(0, 300) : null,
-    message: healthStatus === "ok" ? null : {
+    message: healthStatus === "ok" ? null : (osceNote && searchStats.failed === 0 && !modelError) ? {
+      // Only OSCE had a problem: say exactly that, not "web searches failed".
+      zh: osceNote.zh.trim(),
+      en: osceNote.en.trim()
+    } : {
       zh: quotaLikely
         ? "博查搜索服务调用失败（余额不足或权限问题），本次只更新了世界银行官方数据，其他平台未检索，下方“无新项目”不代表真的没有。请检查博查账户余额。"
         : "部分或全部联网搜索失败，本次数据可能不完整，下方“无新项目”不代表真的没有。请查看 Actions 运行日志。",
@@ -909,6 +972,10 @@ function normalizeNameOnlyKey(name) {
         : "Some or all web searches failed this run; data may be incomplete, so “no new projects” may be wrong. Check the Actions run log."
     }
   };
+  if (osceNote && data.searchHealth.message && !(searchStats.failed === 0 && !modelError)) {
+    data.searchHealth.message.zh += " " + osceNote.zh;
+    data.searchHealth.message.en += " " + osceNote.en;
+  }
   if (healthStatus !== "ok") {
     console.error(`SEARCH HEALTH: ${healthStatus} (searches failed ${searchStats.failed}/${searchStats.attempted}${modelError ? `; model error: ${modelError.slice(0, 120)}` : ""})`);
   }
