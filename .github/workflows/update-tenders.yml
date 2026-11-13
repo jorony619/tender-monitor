@@ -24,6 +24,10 @@ jobs:
       - name: Run tender search & update data.json
         env:
           BOCHA_API_KEY: ${{ secrets.BOCHA_API_KEY }}
+          # WeChat notice — set ONE of these as a repository secret (all optional)
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
         run: node scripts/update_tenders.mjs
 
       - name: Commit changes if any
