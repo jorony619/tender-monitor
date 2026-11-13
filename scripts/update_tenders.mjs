@@ -24,6 +24,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fetchOsceCandidates } from "./osce_source.mjs";
+import { fetchUngmCandidates } from "./ungm_source.mjs";
+import { sendWechat } from "./notify.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data.json");
@@ -588,6 +590,8 @@ async function main() {
   // OSCE official procurement portal: also an independent, search-free source
   // (public list page, parsed directly). Never throws — returns {items, listed, error}.
   const osceResultPromise = fetchOsceCandidates({ fetchWithTimeout });
+  // UNGM public notices: also a direct, search-free source (no login used).
+  const ungmResultPromise = fetchUngmCandidates({ fetchWithTimeout });
 
   console.log("Running web searches...");
 
@@ -607,6 +611,9 @@ async function main() {
   const osceResult = await osceResultPromise;
   const osceCandidates = osceResult.items;
   const osceError = osceResult.error;
+  const ungmResult = await ungmResultPromise;
+  const ungmCandidates = ungmResult.items;
+  const ungmError = ungmResult.error;
 
   // Drop known generic document-sharing / content-farm domains before they ever reach the model
   const beforeBlock = searchHits.length;
@@ -805,6 +812,7 @@ function normalizeNameOnlyKey(name) {
 }
 
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
+  const firstNewId = nextId; // ids >= this were added during this run (used for the WeChat notice)
   const existingUrls = new Set(projects.map(p => p.sourceUrl).filter(Boolean));
   const existingNameKeys = new Set(projects.map(p => normalizeKey(p.projectName, p.issuer)).filter(Boolean));
   const existingNameOnlyKeys = new Set(projects.map(p => normalizeNameOnlyKey(p.projectName)).filter(Boolean));
@@ -866,6 +874,25 @@ function normalizeNameOnlyKey(name) {
     trackNameKeys(item);
     changed = true;
     console.log(`Added new project #${item.id} (OSCE official portal): ${item.projectName}`);
+  }
+
+  // Merge UNGM public-notice candidates (direct source). Same dedup as OSCE.
+  for (const item of ungmCandidates) {
+    if (existingUrls.has(item.sourceUrl)) continue;
+    const refKey = String(item.projectNo || "").trim().toLowerCase();
+    if (refKey && existingProjectNos.has(refKey)) continue;
+    const nameKey = normalizeKey(item.projectName, item.issuer);
+    if (nameKey && existingNameKeys.has(nameKey)) continue;
+    if (isMirroredDuplicate(item)) continue;
+    item.id = nextId++;
+    sanityCheckGrade(item);
+    projects.push(item);
+    existingUrls.add(item.sourceUrl);
+    if (refKey) existingProjectNos.add(refKey);
+    if (nameKey) existingNameKeys.add(nameKey);
+    trackNameKeys(item);
+    changed = true;
+    console.log(`Added new project #${item.id} (UNGM public notices): ${item.projectName}`);
   }
 
   // The same OSCE tender often also shows up on aggregators (e.g. BidsInfo) under a
@@ -944,15 +971,22 @@ function normalizeNameOnlyKey(name) {
   const modelAuthFailed = !!modelError && AUTH_OR_QUOTA.test(modelError);
   let healthStatus = "ok";
   if (allSearchesFailed || modelAuthFailed) healthStatus = "down";
-  else if (searchStats.failed > 0 || modelError || osceError) healthStatus = "degraded";
+  else if (searchStats.failed > 0 || modelError || osceError || ungmError) healthStatus = "degraded";
   const quotaLikely = searchStats.authFailed > 0 || modelAuthFailed;
   // OSCE is a direct fetch, so a failure there (network error, or the list page
   // parsing to 0 rows because its markup changed) must be visible, not silent.
-  const osceNote = osceError
-    ? {
-        zh: "OSCE官方采购网站本次抓取失败或解析为0条，本次未覆盖OSCE，请检查 Actions 日志（页面结构可能变了）。",
-        en: "The OSCE procurement portal fetch failed or parsed 0 rows this run, so OSCE was NOT covered — check the Actions log (the page markup may have changed)."
-      }
+  // (the variable keeps its name; it now covers every direct-fetch source: OSCE + UNGM)
+  const directNotes = [];
+  if (osceError) directNotes.push({
+    zh: "OSCE官方采购网站本次抓取失败或解析为0条，本次未覆盖OSCE，请检查 Actions 日志（页面结构可能变了）。",
+    en: "The OSCE procurement portal fetch failed or parsed 0 rows this run, so OSCE was NOT covered — check the Actions log (the page markup may have changed)."
+  });
+  if (ungmError) directNotes.push({
+    zh: "UNGM公开公告本次抓取失败或解析为0条，本次未直接覆盖UNGM，请检查 Actions 日志（请求格式或页面结构可能变了）。",
+    en: "The UNGM public-notice fetch failed or parsed 0 rows this run, so UNGM was NOT directly covered — check the Actions log (the request format or page markup may have changed)."
+  });
+  const osceNote = directNotes.length
+    ? { zh: directNotes.map(n => n.zh).join(" "), en: directNotes.map(n => n.en).join(" ") }
     : null;
   data.searchHealth = {
     status: healthStatus,
@@ -982,6 +1016,22 @@ function normalizeNameOnlyKey(name) {
 
   await writeFile(DATA_PATH, JSON.stringify(data, null, 2) + "\n", "utf8");
   console.log(changed ? "data.json updated." : "No changes found; refreshed timestamp only.");
+
+  // WeChat notice: only for projects added this run that are still open and worth
+  // acting on (grade A/B). Never throws, never fails the run.
+  try {
+    const fresh = projects.filter(p => (p.id || 0) >= firstNewId && (p.grade === "A" || p.grade === "B"));
+    if (fresh.length) {
+      const repo = process.env.GITHUB_REPOSITORY || "";
+      const [owner, name] = repo.split("/");
+      const dashboardUrl = process.env.DASHBOARD_URL || (owner && name ? `https://${owner}.github.io/${name}/` : "");
+      await sendWechat({ fetchWithTimeout, items: fresh, dashboardUrl, health: data.searchHealth });
+    } else {
+      console.log("Notify: no new A/B-grade projects this run; nothing to send.");
+    }
+  } catch (e) {
+    console.warn("Notify step failed (ignored):", String(e && e.message || e).slice(0, 200));
+  }
 }
 
 main().catch(err => {

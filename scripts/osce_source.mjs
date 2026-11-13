@@ -25,7 +25,7 @@ const PRINT_RE = /\bprint(?:ing|ed)?\b|reprint|publication|publish|textbook|work
 // 买打印设备/耗材不是印刷服务
 const EXCLUDE_RE = /\b(?:printers?|toners?|cartridges?|copiers?|photocopiers?|consumables?)\b|printing\s+(?:equipment|machines?)|\bbanners?\b/i;
 // 教材/学习材料类（对你们业务最贴近）→ B；其余印刷 → C
-const EDU_RE = /textbook|workbook|teacher|learning\s+material|educational|curriculum|darslik|exercise\s+book|school|training\s+(?:material|manual)|handbook|учебник/i;
+export const EDU_RE = /textbook|workbook|teacher|learning\s+material|educational|curriculum|darslik|exercise\s+book|school|training\s+(?:material|manual)|handbook|учебник/i;
 
 export function isRelevant(text) {
   const t = String(text || "");
