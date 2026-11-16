@@ -308,7 +308,7 @@
   </div>
   <div class="sources-body">
     <div class="sources-note" data-i18n="srcNote">
-      UNGM、UNICEF、World Bank 等平台的招标列表都是需要登录/JS渲染的动态系统，没有开放的公共接口，所以本页无法在后台7x24自动抓取新标。做法是：当你需要更新时，直接在对话里让Claude去搜索并核实最新的教材/作业册印刷招标，Claude会把找到的真实项目（含来源链接）录入下表——不会编造不存在的项目或截止日期。下面是各平台的公开招标检索入口，也可以直接点开自行查看。
+      每天北京时间约 9 点由 GitHub 自动运行，数据来自四个渠道：①博查网页搜索 + AI 核实（覆盖 UNGM、UNICEF、ADB 等平台的公开公告，不保证全部收录）；②世界银行官方数据集；③OSCE 官方采购网站（直接抓取）；④UNGM 公开公告（直接抓取，但 UNGM 会拦截 GitHub 服务器，目前通常抓取失败，建议同时在 UNGM 里设置邮件提醒）。所有项目都带来源链接，不会编造不存在的项目或截止日期。有新的 A/B 类项目时会推送到微信。下面是各平台的公开招标检索入口，也可以直接点开自行查看。
     </div>
     <div class="source-links">
       <a href="https://www.ungm.org/Public/Notice" target="_blank" rel="noopener">UNGM Notices</a>
@@ -351,7 +351,7 @@ const T = {
     footer:"监控看板逻辑：A-立即推进当天汇报并启动报价；B-发邮件确认核实资格/交付/付款条款；C-持续监控；D-已错过或不符合条件归档保留，用于复盘平台更新频率。",
     kpiTotal:"项目总数", kpiA:"A类·立即推进", kpiB:"B类·发邮件确认", kpiSoon:"7天内截止", kpiMissed:"已错过/过期",
     srcTitle:"数据来源与更新方式", srcChecked:"上次核查：",
-    srcNote:"UNGM、UNICEF、World Bank 等平台的招标列表都是需要登录/JS渲染的动态系统，没有开放的公共接口，所以本页无法在后台7×24自动抓取新标。做法是：当你需要更新时，直接在对话里让Claude去搜索并核实最新的教材/作业册印刷招标，Claude会把找到的真实项目（含来源链接）录入下表——不会编造不存在的项目或截止日期。下面是各平台的公开招标检索入口，也可以直接点开自行查看。",
+    srcNote:"每天北京时间约 9 点由 GitHub 自动运行，数据来自四个渠道：①博查网页搜索 + AI 核实（覆盖 UNGM、UNICEF、ADB 等平台的公开公告，不保证全部收录）；②世界银行官方数据集；③OSCE 官方采购网站（直接抓取）；④UNGM 公开公告（直接抓取，但 UNGM 会拦截 GitHub 服务器，目前通常抓取失败，建议同时在 UNGM 里设置邮件提醒）。所有项目都带来源链接，不会编造不存在的项目或截止日期。有新的 A/B 类项目时会推送到微信。下面是各平台的公开招标检索入口，也可以直接点开自行查看。",
     all:"全部", noResults:"没有符合筛选条件的项目",
     daysOver:"天前截止", daysLeft:"天后截止", daysNA:"待定", daysExpired:"已过期",
     sample:"示例记录",
@@ -382,7 +382,7 @@ const T = {
     footer:"Dashboard logic: Grade A — report same day and start quoting; Grade B — email to confirm eligibility/delivery/payment; Grade C — keep monitoring; Grade D — missed or disqualified, archived for reviewing platform update frequency.",
     kpiTotal:"Total projects", kpiA:"Grade A · Act now", kpiB:"Grade B · Confirm by email", kpiSoon:"Due within 7 days", kpiMissed:"Missed / expired",
     srcTitle:"Data sources & how updates work", srcChecked:"Last checked: ",
-    srcNote:"UNGM, UNICEF, World Bank and similar platforms run login-gated, JS-rendered listings with no open public API, so this page can't scrape new tenders on its own in the background. Instead: whenever you want it updated, just ask Claude in chat to search and verify the latest textbook/workbook printing tenders — Claude will add genuine projects it can confirm, with source links, and won't invent projects or deadlines that don't exist. The links below are the platforms' own public tender search pages if you want to check directly.",
+    srcNote:"Runs automatically on GitHub every day at about 09:00 Beijing time, using four channels: (1) Bocha web search + AI verification (covers public notices on UNGM, UNICEF, ADB etc., but not guaranteed to be complete); (2) the World Bank official dataset; (3) the OSCE procurement portal (direct fetch); (4) UNGM public notices (direct fetch — but UNGM blocks GitHub's servers, so this usually fails; also set up email alerts inside UNGM). Every project carries a source link; nothing is invented. New A/B-grade projects are pushed to WeChat. The links below are the platforms' own public tender search pages if you want to check directly.",
     all:"All", noResults:"No projects match the current filters",
     daysOver:"days overdue", daysLeft:"days left", daysNA:"TBD", daysExpired:"Expired",
     sample:"Sample record",

@@ -982,8 +982,8 @@ function normalizeNameOnlyKey(name) {
     en: "The OSCE procurement portal fetch failed or parsed 0 rows this run, so OSCE was NOT covered — check the Actions log (the page markup may have changed)."
   });
   if (ungmError) directNotes.push({
-    zh: "UNGM公开公告本次抓取失败或解析为0条，本次未直接覆盖UNGM，请检查 Actions 日志（请求格式或页面结构可能变了）。",
-    en: "The UNGM public-notice fetch failed or parsed 0 rows this run, so UNGM was NOT directly covered — check the Actions log (the request format or page markup may have changed)."
+    zh: "UNGM官方网站本次拒绝了自动抓取（GitHub服务器常被UNGM拦截），本次未直接覆盖UNGM；其余渠道不受影响，建议同时在UNGM里设置邮件提醒。",
+    en: "UNGM refused the automated fetch this run (it often blocks GitHub's servers), so UNGM was NOT directly covered; other sources are unaffected. Consider setting up email alerts inside UNGM as well."
   });
   const osceNote = directNotes.length
     ? { zh: directNotes.map(n => n.zh).join(" "), en: directNotes.map(n => n.en).join(" ") }
