@@ -389,57 +389,6 @@
       },
       "id": 54,
       "daysRemaining": 5
-    },
-    {
-      "sample": false,
-      "verified": true,
-      "region": "domestic",
-      "discoveryDate": "2026-11-17",
-      "sourcePlatform": "湖南招标网",
-      "issuer": "中南大学出版社有限责任公司",
-      "country": {
-        "zh": "中国",
-        "en": "China"
-      },
-      "projectName": "【招标公告】中南大学出版社有限责任公司图书印制服务项目及图书印制用纸张采购项目供应商公开招标公告",
-      "projectType": {
-        "zh": "图书印制服务及纸张采购",
-        "en": "Book printing services and paper procurement"
-      },
-      "summary": {
-        "zh": "中南大学出版社对其图书印制服务及印制用纸张供应商进行国内公开招标。",
-        "en": "CSU Press invites domestic bids for its book printing services and printing paper suppliers."
-      },
-      "publishDate": "2026-11-03",
-      "budgetAmountCNY": null,
-      "intlSuppliersAllowed": {
-        "zh": "否（国内公开招标）",
-        "en": "No (domestic open tender)"
-      },
-      "locallyRestricted": {
-        "zh": "是（面向国内供应商）",
-        "en": "Yes (domestic suppliers)"
-      },
-      "sourceUrl": "https://hunan.jianyu360.cn/jybx/20261103_26110299720618.html",
-      "grade": "C",
-      "gradeLabel": {
-        "zh": "开放，低优先级/长期窗口，截止日期未确认",
-        "en": "Open, low priority/long runway, deadline not confirmed"
-      },
-      "nextAction": {
-        "zh": "核实招标截止日期与预算，确认是否仍接受投标",
-        "en": "Verify deadline and budget, confirm whether bids are still accepted"
-      },
-      "status": {
-        "zh": "开放中，截止日期未确认，需核实",
-        "en": "Open, deadline not confirmed — needs verification"
-      },
-      "notes": {
-        "zh": "与已跟踪的中南大学出版社項目（id 52）主题一致，但此为聚合商镜像页面；建议以官方来源为准。未提供明确金额。 公告未写明预算/金额，需核实是否达到50万元门槛。",
-        "en": "Same subject as existing tracked CSU Press item (id 52), but this is an aggregator mirror; prefer official source. No stated amount. No budget/amount stated in the notice; verify it meets the RMB 500,000 threshold."
-      },
-      "id": 55,
-      "amountUnverified": true
     }
   ],
   "searchHealth": {

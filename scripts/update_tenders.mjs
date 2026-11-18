@@ -790,8 +790,20 @@ function sanityCheckGrade(item) {
     }
   }
 
+// Aggregator sites decorate the same notice title differently, e.g.
+// "【招标公告】XX项目公开招标公告" vs "XX项目公开招标公告". Strip leading
+// bracketed labels ([...]/【...】/(...)) before comparing so mirrored copies match.
+function stripTitleDecorations(name) {
+  let t = String(name || "").trim();
+  for (let i = 0; i < 3; i++) {
+    const next = t.replace(/^\s*(?:【[^】]{1,12}】|\[[^\]]{1,12}\]|［[^］]{1,12}］|（[^）]{1,12}）|\([^)]{1,12}\))\s*/, "");
+    if (next === t) break;
+    t = next;
+  }
+  return t;
+}
 function normalizeKey(name, issuer) {
-  return [name, issuer].filter(Boolean).join("|").toLowerCase().replace(/\s+/g, " ").trim();
+  return [stripTitleDecorations(name), issuer].filter(Boolean).join("|").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 // "未明确"/"Not specified"/etc. are placeholder non-values the LLM fills in
@@ -808,7 +820,7 @@ function isPlaceholderIssuer(v) {
   return PLACEHOLDER_VALUE.test(String(v || "").trim());
 }
 function normalizeNameOnlyKey(name) {
-  return String(name || "").toLowerCase().replace(/\s+/g, " ").trim();
+  return stripTitleDecorations(name).toLowerCase().replace(/\s+/g, " ").trim();
 }
 
   let nextId = projects.reduce((max, p) => Math.max(max, p.id || 0), 0) + 1;
