@@ -69,6 +69,15 @@ test("failure paths never throw and set error", async () => {
   assert.ok(r.error && r.items.length === 0);
   r = await fetchUngmCandidates({ fetchWithTimeout: mockFetch((u) => u.endsWith("/Public/Notice") ? ok("") : ok("<html>nothing</html>")), keywords: ["x"], logger: log });
   assert.ok(r.error && /0 notices/.test(r.error));
-  r = await fetchUngmCandidates({ fetchWithTimeout: mockFetch((u) => u.endsWith("/Public/Notice") ? ok("") : { ok: false, status: 403, headers: {}, text: async () => "" }), keywords: ["x"], logger: log });
-  assert.ok(r.error && /403/.test(r.error));
+  r = await fetchUngmCandidates({ fetchWithTimeout: mockFetch((u) => u.endsWith("/Public/Notice") ? ok("") : { ok: false, status: 500, headers: {}, text: async () => "" }), keywords: ["x"], logger: log });
+  assert.ok(r.error && /500/.test(r.error));
+});
+
+test("403 from UNGM is reported as blocked (quiet), not as an error", async () => {
+  const log = { log() {}, warn() {} };
+  const forbidden = { ok: false, status: 403, headers: {}, text: async () => "" };
+  let r = await fetchUngmCandidates({ fetchWithTimeout: async () => forbidden, logger: log });
+  assert.equal(r.error, null); assert.equal(r.blocked, true);
+  r = await fetchUngmCandidates({ fetchWithTimeout: mockFetch((u) => u.endsWith("/Public/Notice") ? ok("") : forbidden), keywords: ["x"], logger: log });
+  assert.equal(r.error, null); assert.equal(r.blocked, true);
 });
