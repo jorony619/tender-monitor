@@ -288,7 +288,14 @@ export async function fetchUngmCandidates({ fetchWithTimeout, today, keywords = 
       || html.match(/value=["']([^"']+)["'][^>]*name=["']__RequestVerificationToken["']/i);
     if (tk) token = tk[1];
   } catch (e) {
-    const error = `UNGM page fetch failed: ${String(e.message || e).slice(0, 200)}`;
+    const msg = String(e.message || e).slice(0, 200);
+    // 401/403/429: UNGM's bot protection refusing GitHub's servers. Expected, not a bug
+    // in our code, so report it as "blocked" (quiet) instead of an error (loud banner).
+    if (/\b(?:401|403|429)\b/.test(msg)) {
+      logger.warn(`  UNGM blocked the automated request (${msg}); skipping UNGM direct fetch this run.`);
+      return { items: [], listed: 0, error: null, blocked: true };
+    }
+    const error = `UNGM page fetch failed: ${msg}`;
     logger.warn(`  ${error}`);
     return { items: [], listed: 0, error };
   }
@@ -336,7 +343,13 @@ export async function fetchUngmCandidates({ fetchWithTimeout, today, keywords = 
   logger.log(`  UNGM: ${rows.length} notice(s) parsed from ${requests} request(s) (${failures} failed).`);
 
   let error = null;
-  if (failures === requests) error = lastError || "UNGM: all search requests failed";
+  if (failures === requests) {
+    if (lastError && /\b(?:401|403|429)\b/.test(lastError)) {
+      logger.warn(`  UNGM blocked the search requests (${lastError}); skipping UNGM direct fetch this run.`);
+      return { items: [], listed: 0, error: null, blocked: true };
+    }
+    error = lastError || "UNGM: all search requests failed";
+  }
   else if (!rows.length) {
     error = "UNGM search parsed 0 notices (request format or page structure may have changed)";
     logger.warn(`  ${error}. Response starts with: ${firstEmptySample || "(empty)"}`);
